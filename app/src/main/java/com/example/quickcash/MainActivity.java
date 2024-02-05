@@ -4,6 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -14,50 +17,54 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private FirebaseDatabase firebaseDB;
-    private DatabaseReference firebaseDBRef;
-    private static final String FIREBASE_URL = "https://fir-demo-cce3c-default-rtdb.firebaseio.com/";
     private TextView textView;
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//        textView = findViewById(R.id.textView);
-        connectFirebase();
-        writeToFirebaseDB();
-        listenToDataChanges();
+        setContentView(R.layout.activity_main);
+        this.setupRegistrationButton();
+        textView = findViewById(R.id.textView);
+
+    }
+    protected void setupRegistrationButton() {
+        Button registerButton = findViewById(R.id.signupBtn);
+        registerButton.setOnClickListener(this);
     }
 
-    private void listenToDataChanges(){
-        // Add a ValueEventListener to listen for changes in the data at the ref
-        firebaseDBRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                // Retrieve the value from the DataSnapshot
-                final String readValue = snapshot.getValue(String.class);
-                // Set the text of the TextView to the retrieved value
-                textView.setText("Success:"+readValue);
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // Handle any errors that occur during data retrieval
-                final String errorValue = error.getMessage();
-                textView.setText("Error: "+errorValue);
-            }
-        });
-    }
-    private void connectFirebase(){
-        // Initialize the Firebase database instance with the specified URL
-        firebaseDB = FirebaseDatabase.getInstance(FIREBASE_URL);
-        // Get a reference to the "message" node in the database
-        firebaseDBRef = firebaseDB.getReference("message");
+
+    protected String getEmail(){
+      EditText emailBox = findViewById(R.id.signupEmail);
+      return emailBox.getText().toString();
     }
 
-    private void writeToFirebaseDB(){
-        // Set the value of the "message" node to "Hello CSCI3130"
-        firebaseDBRef.setValue("Hello CSCI3130");
+    protected String getName(){
+        EditText emailBox = findViewById(R.id.signupName);
+        return emailBox.getText().toString();
+    }
+
+    protected String getPassword() {
+        EditText passwordBox = findViewById(R.id.signupPass);
+        return passwordBox.getText().toString();
+    }
+
+    protected String getConfirmPassword() {
+        EditText passwordBox = findViewById(R.id.signupConfirmPass);
+        return passwordBox.getText().toString();
+    }
+
+
+
+
+    @Override
+    public void onClick(View v) {
+      String email = getEmail();
+      String name = getName();
+      String password = getPassword();
+      String confirmPassword = getConfirmPassword();
+
+
+
     }
 }
