@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -64,7 +65,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
       String name = getName();
       String password = getPassword();
       String confirmPassword = getConfirmPassword();
+        int duration = Toast.LENGTH_SHORT;
 
+        Toast toast = Toast.makeText(this, email, duration); // in Activity
+        toast.show();
+
+
+    }
+    public void onRegister(View v) {
+        String email = getEmail();
+        String name = getName();
+        String password = getPassword();
+        String confirmPassword = getConfirmPassword();
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(this, email, duration); // in Activity
+        toast.show();
 
 
     }
