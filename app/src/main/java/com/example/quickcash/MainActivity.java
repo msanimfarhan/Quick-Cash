@@ -55,6 +55,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         EditText passwordBox = findViewById(R.id.signupConfirmPass);
         return passwordBox.getText().toString();
     }
+    protected void setStatusMessage(String message) {
+        TextView statusLabel = findViewById(R.id.statusLabel);
+        statusLabel.setText(message.trim());
+    }
 
 
 
@@ -65,23 +69,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
       String name = getName();
       String password = getPassword();
       String confirmPassword = getConfirmPassword();
-        int duration = Toast.LENGTH_SHORT;
+      String errorMessage = null;
+      Register register = new Register();
 
-        Toast toast = Toast.makeText(this, email, duration); // in Activity
-        toast.show();
+      if(!register.isValidEmailAddress(email)){
+            errorMessage= getResources().getString(R.string.INVALID_EMAIL_ADDRESS).trim();
+      }
+        setStatusMessage(errorMessage);
 
 
-    }
-    public void onRegister(View v) {
-        String email = getEmail();
-        String name = getName();
-        String password = getPassword();
-        String confirmPassword = getConfirmPassword();
-        int duration = Toast.LENGTH_SHORT;
-
-        Toast toast = Toast.makeText(this, email, duration); // in Activity
-        toast.show();
 
 
     }
+
 }

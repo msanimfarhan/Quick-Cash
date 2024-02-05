@@ -34,6 +34,12 @@
           <timeTargetWasSelectedWithDropDown value="2024-02-05T22:16:14.721818600Z" />
         </State>
       </entry>
+      <entry key="checkIfEmailIsValid()">
+        <State />
+      </entry>
+      <entry key="checkIfEmailValid()">
+        <State />
+      </entry>
     </value>
   </component>
 </project>
