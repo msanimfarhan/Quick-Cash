@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void setupRegistrationButton() {
         Button registerButton = findViewById(R.id.signupBtn);
         registerButton.setOnClickListener(this);
-        // my name
+
     }
 
 
