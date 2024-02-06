@@ -69,11 +69,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
       String name = getName();
       String password = getPassword();
       String confirmPassword = getConfirmPassword();
-      String errorMessage = null;
+      String errorMessage = "";
       Register register = new Register();
 
       if(!register.isValidEmailAddress(email)){
             errorMessage= getResources().getString(R.string.INVALID_EMAIL_ADDRESS).trim();
+      }else{
+          errorMessage=getResources().getString(R.string.VALID_EMAIL_ADDRESS).trim();
       }
         setStatusMessage(errorMessage);
 

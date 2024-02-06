@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">QuickCash</string>
     <string name="INVALID_EMAIL_ADDRESS">Invalid email address</string>
+    <string name="VALID_EMAIL_ADDRESS">valid email address</string>
     <string name="INVALID_PASSWORD">Invalid PASSWORD</string>
     <string name="PASSWORD_NOT_MATCHING"> PASSWORD NOT MATCH</string>
 </resources>

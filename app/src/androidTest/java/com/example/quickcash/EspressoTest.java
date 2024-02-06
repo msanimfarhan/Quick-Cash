@@ -41,7 +41,7 @@ public class EspressoTest {
         onView(withId(R.id.signupPass)).perform(typeText("jahid123"));
         onView(withId(R.id.signupConfirmPass)).perform(typeText("jahid123"));
         onView(withId(R.id.signupBtn)).perform(click());
-        onView(withId(R.id.statusLabel)).check(matches(withText(R.string.INVALID_EMAIL_ADDRESS)));
+        onView(withId(R.id.statusLabel)).check(matches(withText(R.string.VALID_EMAIL_ADDRESS)));
     }
 
     public void checkIfPasswordIsValid() {
