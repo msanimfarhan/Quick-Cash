@@ -22,6 +22,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.218"
+        android:background="@drawable/border_background"
+        android:padding="10dp"
 
         />
 
@@ -41,6 +43,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.329"
         android:gravity="center"
+        android:background="@drawable/border_background"
+        android:padding="10dp"
 
         />
 
@@ -61,7 +65,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.459"
         android:gravity="center"
-
+        android:background="@drawable/border_background"
+        android:padding="10dp"
         />
 
     <EditText
@@ -81,8 +86,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.597"
         android:gravity="center"
+        android:background="@drawable/border_background"
+        android:padding="10dp"
 
         />
+
+
+    <!--    Error Message -->
 
     <Button
         android:id="@+id/signupBtn"
@@ -92,15 +102,11 @@
         android:text="Register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.554"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.131" />
+        app:layout_constraintVertical_bias="0.705" />
 
-
-
-
-    <!--    Error Message -->
     <TextView
         android:id="@+id/invalidEmailMessage"
         android:layout_width="148dp"
@@ -154,6 +160,25 @@
 
 
         />
+
+    <TextView
+        android:id="@+id/signupTitle"
+        android:layout_width="365dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="122dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:text="Register to Quick Cash"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/signupBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.01" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
