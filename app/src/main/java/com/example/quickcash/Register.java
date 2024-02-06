@@ -14,6 +14,26 @@ public class Register {
         Matcher matcher = pattern.matcher(emailAddress);
         return matcher.matches();
     }
+    protected boolean isValidPassword(String password) {
+        if(password == null){
+            return false;
+        }
+        String regexEmail = "^.{8,}$";
+        Pattern pattern = Pattern.compile(regexEmail);
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
+    }
+
+    protected boolean ifBothPasswordMatches(String password1, String password2) {
+        if(password1 == null || password2 == null){
+            return false;
+        }
+        if(password1.equals(password2)){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
 
 

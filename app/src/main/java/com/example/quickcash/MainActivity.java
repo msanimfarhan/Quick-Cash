@@ -1,6 +1,5 @@
 package com.example.quickcash;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -8,15 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -25,13 +15,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.setupRegistrationButton();
-        textView = findViewById(R.id.textView);
 
     }
     protected void setupRegistrationButton() {
         Button registerButton = findViewById(R.id.signupBtn);
         registerButton.setOnClickListener(this);
-
     }
 
 
@@ -55,9 +43,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         EditText passwordBox = findViewById(R.id.signupConfirmPass);
         return passwordBox.getText().toString();
     }
-    protected void setStatusMessage(String message) {
-        TextView statusLabel = findViewById(R.id.statusLabel);
-        statusLabel.setText(message.trim());
+    protected void setStatusMessage(String option,String message) {
+
+        if(option.equals("email")){
+            TextView statusLabel2 = findViewById(R.id.invalidEmailMessage);
+            statusLabel2.setText(message.trim());
+        } else if(option.equals("passValid")){
+            TextView statusLabel2 = findViewById(R.id.invalidPassMsg);
+            statusLabel2.setText(message.trim());
+        } else if (option.equals("passMatch")) {
+            TextView statusLabel2 = findViewById(R.id.passMatchMsg);
+            statusLabel2.setText(message.trim());
+        }
     }
 
 
@@ -69,18 +66,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
       String name = getName();
       String password = getPassword();
       String confirmPassword = getConfirmPassword();
-      String errorMessage = "";
+      String errorMessageForEmail = "";
+      String errorMessageForStrongPass = "";
+      String errorMessageForBothPass = "";
       Register register = new Register();
 
+      // Check if the email is valid or not
       if(!register.isValidEmailAddress(email)){
-            errorMessage= getResources().getString(R.string.INVALID_EMAIL_ADDRESS).trim();
+            errorMessageForEmail= getResources().getString(R.string.INVALID_EMAIL_ADDRESS).trim();
       }else{
-          errorMessage=getResources().getString(R.string.VALID_EMAIL_ADDRESS).trim();
+          errorMessageForEmail=getResources().getString(R.string.VALID_EMAIL_ADDRESS).trim();
       }
-        setStatusMessage(errorMessage);
+        setStatusMessage("email",errorMessageForEmail);
 
+    //      Check if password is strong enough
+      if(!register.isValidPassword(password)){
+          errorMessageForStrongPass= getResources().getString(R.string.INVALID_PASSWORD).trim();
+      } else{
+          errorMessageForStrongPass= getResources().getString(R.string.VALID_PASSWORD).trim();
+      }
+        setStatusMessage("passValid",errorMessageForStrongPass);
 
-
+      //      Check if both password matches
+      if(!register.ifBothPasswordMatches(password,confirmPassword)){
+          errorMessageForBothPass= getResources().getString(R.string.PASSWORD_NOT_MATCHING).trim();
+      } else{
+          errorMessageForBothPass= getResources().getString(R.string.PASSWORD_MATCHING).trim();
+      }
+        setStatusMessage("passMatch",errorMessageForBothPass);
 
     }
 
