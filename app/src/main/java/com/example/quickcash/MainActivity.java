@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -69,11 +70,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
       String errorMessageForEmail = "";
       String errorMessageForStrongPass = "";
       String errorMessageForBothPass = "";
+      Boolean registrationValid=true;
       Register register = new Register();
 
       // Check if the email is valid or not
       if(!register.isValidEmailAddress(email)){
             errorMessageForEmail= getResources().getString(R.string.INVALID_EMAIL_ADDRESS).trim();
+          registrationValid=false;
       }else{
           errorMessageForEmail=getResources().getString(R.string.VALID_EMAIL_ADDRESS).trim();
       }
@@ -82,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //      Check if password is strong enough
       if(!register.isValidPassword(password)){
           errorMessageForStrongPass= getResources().getString(R.string.INVALID_PASSWORD).trim();
+          registrationValid=false;
       } else{
           errorMessageForStrongPass= getResources().getString(R.string.VALID_PASSWORD).trim();
       }
@@ -90,10 +94,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
       //      Check if both password matches
       if(!register.ifBothPasswordMatches(password,confirmPassword)){
           errorMessageForBothPass= getResources().getString(R.string.PASSWORD_NOT_MATCHING).trim();
+          registrationValid=false;
       } else{
           errorMessageForBothPass= getResources().getString(R.string.PASSWORD_MATCHING).trim();
       }
         setStatusMessage("passMatch",errorMessageForBothPass);
+
+      if(registrationValid){
+          Toast.makeText(this,"Registration Successfull!",Toast.LENGTH_SHORT).show();
+      }
 
     }
 
