@@ -39,17 +39,17 @@ public class EspressoTest {
         onView(withId(R.id.signupPass)).perform(typeText("jahid123"));
         onView(withId(R.id.signupConfirmPass)).perform(typeText("jahid123"));
         onView(withId(R.id.signupBtn)).perform(click());
-        onView(withId(R.id.statusLabel)).check(matches(withText(R.string.INVALID_EMAIL_ADDRESS)));
+        onView(withId(R.id.invalidEmailMessage)).check(matches(withText(R.string.INVALID_EMAIL_ADDRESS)));
     }
 
     @Test
     public void checkIfPasswordIsValid() {
         onView(withId(R.id.signupName)).perform(typeText("Jahid Hasan"));
         onView(withId(R.id.signupEmail)).perform(typeText("abc.123@gmail.com"));
-        onView(withId(R.id.signupPass)).perform(typeText("jahid123"));
+        onView(withId(R.id.signupPass)).perform(typeText("jahid1"));
         onView(withId(R.id.signupConfirmPass)).perform(typeText("jahid123"));
         onView(withId(R.id.signupBtn)).perform(click());
-        onView(withId(R.id.statusLabel)).check(matches(withText(R.string.VALID_PASSWORD)));
+        onView(withId(R.id.invalidPassMsg)).check(matches(withText(R.string.INVALID_PASSWORD)));
     }
     @Test
     public void checkIfBothPasswordMatches() {
@@ -58,7 +58,7 @@ public class EspressoTest {
         onView(withId(R.id.signupPass)).perform(typeText("jahid123"));
         onView(withId(R.id.signupConfirmPass)).perform(typeText("jahid123"));
         onView(withId(R.id.signupBtn)).perform(click());
-        onView(withId(R.id.statusLabel)).check(matches(withText(R.string.PASSWORD_MATCHING)));
+        onView(withId(R.id.passMatchMsg)).check(matches(withText(R.string.PASSWORD_MATCHING)));
     }
 
 
