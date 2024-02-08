@@ -48,6 +48,9 @@
 
         />
 
+
+    <!--    Error Message -->
+
     <EditText
         android:id="@+id/signupPass"
         android:layout_width="209dp"
@@ -55,19 +58,18 @@
         android:layout_marginStart="102dp"
         android:layout_marginEnd="99dp"
         android:layout_marginBottom="23dp"
+        android:background="@drawable/border_background"
         android:ems="10"
+        android:gravity="center"
         android:hint="Enter Password"
         android:inputType="textPassword"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.459"
-        android:gravity="center"
-        android:background="@drawable/border_background"
-        android:padding="10dp"
-        />
+        app:layout_constraintVertical_bias="0.585" />
 
     <EditText
         android:id="@+id/signupConfirmPass"
@@ -76,23 +78,20 @@
         android:layout_marginStart="105dp"
         android:layout_marginEnd="96dp"
         android:layout_marginBottom="32dp"
+        android:background="@drawable/border_background"
         android:ems="10"
+        android:gravity="center"
         android:hint="Confirm Password"
         android:inputType="textPassword"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.597"
-        android:gravity="center"
-        android:background="@drawable/border_background"
-        android:padding="10dp"
+        app:layout_constraintVertical_bias="0.708"
 
         />
-
-
-    <!--    Error Message -->
 
     <Button
         android:id="@+id/signupBtn"
@@ -102,10 +101,10 @@
         android:text="Register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.554"
+        app:layout_constraintHorizontal_bias="0.548"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.705" />
+        app:layout_constraintVertical_bias="0.803" />
 
     <TextView
         android:id="@+id/invalidEmailMessage"
@@ -148,15 +147,14 @@
         android:layout_marginStart="176dp"
         android:layout_marginTop="3dp"
         android:layout_marginEnd="177dp"
-        android:layout_marginBottom="273dp"
+        android:gravity="center"
+        android:textColor="#FF0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintHorizontal_bias="0.388"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signupConfirmPass"
         app:layout_constraintVertical_bias="0.0"
-        android:gravity="center"
-        android:textColor="#FF0000"
 
 
         />
@@ -179,6 +177,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.01" />
+
+    <Spinner
+        android:id="@+id/signupRoleSelection"
+        android:layout_width="213dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="98dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="34dp"
+        app:layout_constraintBottom_toTopOf="@+id/signupPass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/invalidEmailMessage"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:background="@drawable/border_background"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

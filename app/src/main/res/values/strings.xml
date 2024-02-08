@@ -6,4 +6,9 @@
     <string name="VALID_PASSWORD"></string>
     <string name="PASSWORD_NOT_MATCHING"> Password Must Match</string>
     <string name="PASSWORD_MATCHING"> </string>
+    <string-array name="roleSelection">
+        <item>Select Role</item>
+        <item>Employer</item>
+        <item>Employee</item>
+    </string-array>
 </resources>
