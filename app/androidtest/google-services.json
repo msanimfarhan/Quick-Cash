@@ -8,6 +8,25 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:724077293463:android:56adb99cb325d5796f5ed2",
+        "android_client_info": {
+          "package_name": "com.example.androidtest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPz-RK5mJWB5D6L89LJB4klGpH4PU9A1c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:724077293463:android:04b4756a7f0f91ec6f5ed2",
         "android_client_info": {
           "package_name": "com.example.quickcash"

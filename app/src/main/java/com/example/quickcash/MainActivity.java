@@ -9,15 +9,35 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+
+    public static String WELCOME_MESSAGE = "ca.dal.csci3130.Qick Cash";
+    FirebaseDatabase database = FirebaseDatabase.getInstance("https://quick-cash-c28b9-default-rtdb.firebaseio.com/");
+    FirebaseCrud crud = null;
+    private DatabaseReference firebaseDBRef;
 
     private TextView textView;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        FirebaseApp.initializeApp(this);
         this.setupRegistrationButton();
+        this.initializeDatabaseAccess();
 
+    }
+    private void connectFirebase(){
+        firebaseDBRef = database.getReference("message");
+    }
+
+    protected void initializeDatabaseAccess() {
+        database = FirebaseDatabase.getInstance(getResources().getString(R.string.FIREBASE_DB_URL));
+        crud = new FirebaseCrud(database);
     }
 
     protected void setupRegistrationButton() {
@@ -27,6 +47,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     protected String getEmail() {
+        EditText emailBox = findViewById(R.id.signupEmail);
+        return emailBox.getText().toString();
+    }
+
+    protected String getRole() {
         EditText emailBox = findViewById(R.id.signupEmail);
         return emailBox.getText().toString();
     }
@@ -44,6 +69,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected String getConfirmPassword() {
         EditText passwordBox = findViewById(R.id.signupConfirmPass);
         return passwordBox.getText().toString();
+    }
+
+
+    protected void saveInfoToFirebase(String name, String emailAddress, String role, String pass) {
+        if (crud != null) {
+
+            crud.setName(name);
+            crud.setEmail(emailAddress);
+            crud.setRole(role);
+            crud.setPass(pass);
+        } else {
+
+            Toast.makeText(this, "Database connection not initialized", Toast.LENGTH_SHORT).show();
+        }
     }
 
     protected void setStatusMessage(String option, String message) {
@@ -68,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String email = getEmail();
         String name = getName();
         String password = getPassword();
+        String role = getRole();
         String confirmPassword = getConfirmPassword();
         Boolean registrationValid = true;
         Register register = new Register();
@@ -109,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (registrationValid) {
             Toast.makeText(this, "Registration Successfully!", Toast.LENGTH_SHORT).show();
         }
-
+        this.saveInfoToFirebase( name, email, role ,password);
     }
 
 }
