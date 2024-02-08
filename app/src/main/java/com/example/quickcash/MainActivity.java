@@ -4,16 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
 
     public static String WELCOME_MESSAGE = "ca.dal.csci3130.Qick Cash";
@@ -28,7 +27,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         FirebaseApp.initializeApp(this);
         this.setupRegistrationButton();
-        this.initializeDatabaseAccess();
+    Spinner roleSelectionSpinner=findViewById(R.id.signupRoleSelection);
+    ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this, R.array.roleSelection, android.R.layout.simple_spinner_item);
+
+adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+roleSelectionSpinner.setAdapter(adapter);
+roleSelectionSpinner.setOnItemSelectedListener(this);
 
     }
     private void connectFirebase(){
@@ -40,6 +44,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         crud = new FirebaseCrud(database);
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        String text = adapterView.getItemAtPosition(i).toString();
+        Toast.makeText(adapterView.getContext(),text,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
     protected void setupRegistrationButton() {
         Button registerButton = findViewById(R.id.signupBtn);
         registerButton.setOnClickListener(this);
@@ -151,5 +165,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         this.saveInfoToFirebase( name, email, role ,password);
     }
+
 
 }
