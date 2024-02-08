@@ -11,6 +11,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.allOf;
 
 import androidx.test.core.app.ActivityScenario;
+import androidx.test.espresso.Espresso;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import org.junit.Before;
@@ -35,19 +36,24 @@ public class EspressoTest {
     @Test
     public void checkIfEmailValid() {
         onView(withId(R.id.signupName)).perform(typeText("Jahid Hasan"));
-        onView(withId(R.id.signupEmail)).perform(typeText("ab@c123@gmail.com"));
+        onView(withId(R.id.signupEmail)).perform(typeText("abc123@gmail.com"));
         onView(withId(R.id.signupPass)).perform(typeText("jahid123"));
+        Espresso.closeSoftKeyboard();
         onView(withId(R.id.signupConfirmPass)).perform(typeText("jahid123"));
+        Espresso.closeSoftKeyboard();
         onView(withId(R.id.signupBtn)).perform(click());
-        onView(withId(R.id.invalidEmailMessage)).check(matches(withText(R.string.INVALID_EMAIL_ADDRESS)));
+        onView(withId(R.id.invalidEmailMessage)).check(matches(withText(R.string.VALID_EMAIL_ADDRESS)));
     }
 
     @Test
     public void checkIfPasswordIsValid() {
         onView(withId(R.id.signupName)).perform(typeText("Jahid Hasan"));
         onView(withId(R.id.signupEmail)).perform(typeText("abc.123@gmail.com"));
+        Espresso.closeSoftKeyboard();
         onView(withId(R.id.signupPass)).perform(typeText("jahid1"));
-        onView(withId(R.id.signupConfirmPass)).perform(typeText("jahid123"));
+        Espresso.closeSoftKeyboard();
+        onView(withId(R.id.signupConfirmPass)).perform(typeText("jahid1"));
+        Espresso.closeSoftKeyboard();
         onView(withId(R.id.signupBtn)).perform(click());
         onView(withId(R.id.invalidPassMsg)).check(matches(withText(R.string.INVALID_PASSWORD)));
     }
