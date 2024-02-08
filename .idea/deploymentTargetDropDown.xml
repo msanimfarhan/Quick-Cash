@@ -11,6 +11,9 @@
       <entry key="testUserCanLoginWithCorrectCredentials()">
         <State />
       </entry>
+      <entry key="testUserRemainsLoggedInAfterAppReopen()">
+        <State />
+      </entry>
     </value>
   </component>
 </project>
