@@ -112,6 +112,7 @@ roleSelectionSpinner.setOnItemSelectedListener(this);
         } else if (option.equals("passMatch")) {
             TextView statusLabel2 = findViewById(R.id.passMatchMsg);
             statusLabel2.setText(message.trim());
+            // commit
         }
     }
 

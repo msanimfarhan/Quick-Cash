@@ -34,9 +34,6 @@
           <timeTargetWasSelectedWithDropDown value="2024-02-05T22:16:14.721818600Z" />
         </State>
       </entry>
-      <entry key="checkIfBothPasswordMatches()">
-        <State />
-      </entry>
       <entry key="checkIfEmailValid()">
         <State>
           <targetSelectedWithDropDown>
@@ -54,6 +51,9 @@
         </State>
       </entry>
       <entry key="checkIfPasswordIsValid()">
+        <State />
+      </entry>
+      <entry key="jUnitTest">
         <State />
       </entry>
     </value>
