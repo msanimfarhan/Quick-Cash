@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    namespace 'com.example.quickcash'
+    namespace 'com.example.androidtest'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.quickcash"
-        minSdk 30
+        applicationId "com.example.androidtest"
+        minSdk 24
         targetSdk 34
         versionCode 1
         versionName "1.0"

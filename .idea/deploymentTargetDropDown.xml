@@ -5,6 +5,47 @@
       <entry key="app">
         <State />
       </entry>
+      <entry key="app.androidtest">
+        <State>
+          <targetSelectedWithDropDown>
+            <Target>
+              <type value="QUICK_BOOT_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\Sanim\.android\avd\Pixel_3a_API_30.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-02-05T22:16:14.721818600Z" />
+        </State>
+      </entry>
+      <entry key="checkIfEmailValid()">
+        <State>
+          <targetSelectedWithDropDown>
+            <Target>
+              <type value="QUICK_BOOT_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\Sanim\.android\avd\Pixel_3a_API_30.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-02-05T23:55:31.353480300Z" />
+        </State>
+      </entry>
+      <entry key="checkIfPasswordIsValid()">
+        <State />
+      </entry>
+      <entry key="checkIfPasswordIsValid() (1)">
+        <State />
+      </entry>
+      <entry key="jUnitTest">
+        <State />
+      </entry>
     </value>
   </component>
 </project>
