@@ -8,12 +8,6 @@
       <entry key="app">
         <State />
       </entry>
-      <entry key="testUserCanLoginWithCorrectCredentials()">
-        <State />
-      </entry>
-      <entry key="testUserRemainsLoggedInAfterAppReopen()">
-        <State />
-      </entry>
     </value>
   </component>
 </project>
