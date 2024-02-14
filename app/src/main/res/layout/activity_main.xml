@@ -7,17 +7,6 @@
     tools:context=".MainActivity">
 
     <!-- Login Label -->
-    <TextView
-        android:id="@+id/login_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@id/username"
-        app:layout_constraintStart_toStartOf="@id/username"
-        app:layout_constraintEnd_toEndOf="@id/username"
-        app:layout_constraintHorizontal_bias="0.5"
-        android:layout_marginBottom="16dp"/>
 
     <!-- Username EditText -->
     <EditText
