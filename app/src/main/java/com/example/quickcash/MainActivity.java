@@ -70,8 +70,8 @@ roleSelectionSpinner.setOnItemSelectedListener(this);
     }
 
     protected String getRole() {
-        EditText emailBox = findViewById(R.id.signupEmail);
-        return emailBox.getText().toString();
+        Spinner roleSpinner = findViewById(R.id.signupRoleSelection);
+        return roleSpinner.getSelectedItem().toString();
     }
 
     protected String getName() {
