@@ -9,10 +9,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class FirebaseCrud {
-    private FirebaseDatabase database;
 
-    public FirebaseCrud(FirebaseDatabase database) {
-        this.database = database;
+    private FirebaseDatabase database;
+    private DatabaseReference userNameRef= null;
+    private DatabaseReference passwordRef = null;
+
+    private String extractedUserName;
+    private String extractedPassword;
+
+    public FirebaseCrud(FirebaseDatabase database){
+        this.database =database;
         this.initializeDatabaseRefs();
         this.initializeDatabaseRefListeners();
     }
