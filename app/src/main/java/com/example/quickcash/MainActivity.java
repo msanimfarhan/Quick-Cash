@@ -31,15 +31,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         FirebaseApp.initializeApp(this);
         this.setupRegistrationButton();
-    Spinner roleSelectionSpinner=findViewById(R.id.signupRoleSelection);
-    ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this, R.array.roleSelection, android.R.layout.simple_spinner_item);
+        Spinner roleSelectionSpinner = findViewById(R.id.signupRoleSelection);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.roleSelection, android.R.layout.simple_spinner_item);
 
-adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-roleSelectionSpinner.setAdapter(adapter);
-roleSelectionSpinner.setOnItemSelectedListener(this);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        roleSelectionSpinner.setAdapter(adapter);
+        roleSelectionSpinner.setOnItemSelectedListener(this);
 
     }
-    private void connectFirebase(){
+
+    private void connectFirebase() {
         firebaseDBRef = database.getReference("message");
     }
 
@@ -51,13 +52,14 @@ roleSelectionSpinner.setOnItemSelectedListener(this);
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String text = adapterView.getItemAtPosition(i).toString();
-        Toast.makeText(adapterView.getContext(),text,Toast.LENGTH_SHORT).show();
+        Toast.makeText(adapterView.getContext(), text, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
     protected void setupRegistrationButton() {
         Button registerButton = findViewById(R.id.signupBtn);
         registerButton.setOnClickListener(this);
@@ -91,6 +93,7 @@ roleSelectionSpinner.setOnItemSelectedListener(this);
 
 
     protected void saveInfoToFirebase(String name, String emailAddress, String role, String pass) {
+        initializeDatabaseAccess();
         if (crud != null) {
 
             crud.setName(name);
@@ -168,7 +171,7 @@ roleSelectionSpinner.setOnItemSelectedListener(this);
         if (registrationValid) {
             Toast.makeText(this, "Registration Successfully!", Toast.LENGTH_SHORT).show();
         }
-        this.saveInfoToFirebase( name, email, role ,password);
+        this.saveInfoToFirebase(name, email, role, password);
     }
 
 
