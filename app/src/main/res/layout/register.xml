@@ -195,5 +195,19 @@
         android:background="@drawable/border_background"
         />
 
+    <Button
+        android:id="@+id/login_onRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="178dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="145dp"
+        android:layout_marginBottom="69dp"
+        android:text="Login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signupBtn" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

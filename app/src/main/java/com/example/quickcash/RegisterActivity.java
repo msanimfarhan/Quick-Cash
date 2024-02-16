@@ -1,5 +1,6 @@
 package com.example.quickcash;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -38,6 +39,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         roleSelectionSpinner.setAdapter(adapter);
         roleSelectionSpinner.setOnItemSelectedListener(this);
+        setupLoginButton();
 
     }
     private void connectFirebase(){
@@ -170,6 +172,21 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             Toast.makeText(this, "Registration Successfully!", Toast.LENGTH_SHORT).show();
         }
         this.saveInfoToFirebase( name, email, role ,password);
+    }
+
+    private void setupLoginButton() {
+        Button loginButton = findViewById(R.id.login_onRegister);
+
+        // Set onClick listener for the login button.
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(RegisterActivity.this,"Register Clicked",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+
+                startActivity(intent);
+            }
+        });
     }
 
 

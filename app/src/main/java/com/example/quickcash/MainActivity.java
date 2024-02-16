@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Setup login button listener
         setupLoginButtonListener();
+        setupRegisterButton();
     }
 
     // Method to initialize Firebase database access and CRUD operations.
@@ -74,5 +75,19 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(intent);
 
+    }
+
+
+    private void setupRegisterButton() {
+        Button loginButton = findViewById(R.id.register_button);
+
+        // Set onClick listener for the login button.
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this,"Register Clicked",Toast.LENGTH_SHORT).show();
+                move2RegisterPage();
+            }
+        });
     }
 }
