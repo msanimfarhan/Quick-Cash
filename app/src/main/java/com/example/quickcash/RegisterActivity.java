@@ -11,11 +11,17 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
@@ -33,8 +39,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.register);
         FirebaseApp.initializeApp(this);
         this.setupRegistrationButton();
-        Spinner roleSelectionSpinner=findViewById(R.id.signupRoleSelection);
-        ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this, R.array.roleSelection, android.R.layout.simple_spinner_item);
+        Spinner roleSelectionSpinner = findViewById(R.id.signupRoleSelection);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.roleSelection, android.R.layout.simple_spinner_item);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         roleSelectionSpinner.setAdapter(adapter);
@@ -42,7 +48,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         setupLoginButton();
 
     }
-    private void connectFirebase(){
+
+    private void connectFirebase() {
         firebaseDBRef = database.getReference("message");
     }
 
@@ -54,13 +61,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String text = adapterView.getItemAtPosition(i).toString();
-        Toast.makeText(adapterView.getContext(),text,Toast.LENGTH_SHORT).show();
+        Toast.makeText(adapterView.getContext(), text, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
     protected void setupRegistrationButton() {
         Button registerButton = findViewById(R.id.signupBtn);
         registerButton.setOnClickListener(this);
@@ -93,18 +101,40 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
 
-    protected void saveInfoToFirebase(String name, String emailAddress, String role, String pass) {
-        if (crud != null) {
-
-            crud.setName(name);
-            crud.setEmail(emailAddress);
-            crud.setRole(role);
-            crud.setPass(pass);
-        } else {
-
-            Toast.makeText(this, "Database connection not initialized", Toast.LENGTH_SHORT).show();
-        }
+    //    protected void saveInfoToFirebase(String name, String emailAddress, String role, String pass) {
+//        if (crud != null) {
+//
+//            crud.setName(name);
+//            crud.setEmail(emailAddress);
+//            crud.setRole(role);
+//            crud.setPass(pass);
+//        } else {
+//
+//            Toast.makeText(this, "Database connection not initialized", Toast.LENGTH_SHORT).show();
+//        }
+//    }
+    protected void saveInfoToFirebase(String name, String email, String role, String pass) {
+        //Incomplete method, add your implementation
+        Map<String, String> user = new HashMap<>();
+        user.put("email", email);
+        user.put("name", name);
+        user.put("role", role);
+        user.put("password", pass);
+        String sanitizedEmail=email.replace(".", ",");
+        firebaseDBRef = FirebaseDatabase.getInstance().getReference("Users");
+        firebaseDBRef.child(sanitizedEmail).setValue(user).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                // Data save was successful!
+                // Handle the success (e.g., notify the user or update the UI)
+                Toast.makeText(RegisterActivity.this, "Successful", Toast.LENGTH_SHORT).show();
+            } else {
+                // Data save failed.
+                // Handle the failure (e.g., notify the user or update the UI)
+                Toast.makeText(RegisterActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
 
     protected void setStatusMessage(String option, String message) {
 
@@ -169,9 +199,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         // Allow user to register if everything is valid
         if (registrationValid) {
-            Toast.makeText(this, "Registration Successfully!", Toast.LENGTH_SHORT).show();
+            this.saveInfoToFirebase(name, email, role, password);
         }
-        this.saveInfoToFirebase( name, email, role ,password);
     }
 
     private void setupLoginButton() {
@@ -181,7 +210,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(RegisterActivity.this,"Register Clicked",Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, "Register Clicked", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
 
                 startActivity(intent);

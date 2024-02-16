@@ -126,20 +126,26 @@ public class MainActivity extends AppCompatActivity {
 
     public void verifyUserLogin(String email, String pass) {
 
+        String sanitizedEmail=email.replace(".",",");
         //incomplete method, add your implementation
-        Task<DataSnapshot> reference = FirebaseDatabase.getInstance().getReference().child("Users").child("jahid").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        Task<DataSnapshot> reference = FirebaseDatabase.getInstance().getReference().child("Users").child(sanitizedEmail).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                DataSnapshot dataSnapshot = task.getResult();
-                String DBemail = String.valueOf(dataSnapshot.child("email").getValue());
-                String DBpassword = String.valueOf(dataSnapshot.child("password").getValue());
+                if(task.isSuccessful()){
+                    DataSnapshot dataSnapshot = task.getResult();
+                    String DBemail = String.valueOf(dataSnapshot.child("email").getValue());
+                    String DBpassword = String.valueOf(dataSnapshot.child("password").getValue());
 
 
-                if (email.equals(DBemail) && pass.equals(DBpassword)) {
+                    if (email.equals(DBemail) && pass.equals(DBpassword)) {
 
-                    Toast.makeText(MainActivity.this, "Login successfull", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Login successfull", Toast.LENGTH_SHORT).show();
+                    } else{
+                        Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+
+                    }
                 } else{
-                    Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Email or Password is wrong!", Toast.LENGTH_SHORT).show();
 
                 }
 
