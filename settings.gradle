@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "QuickCash"
 include ':app'
+include ':app:androidtest'

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#CCCCCC" /> <!-- Set the color when pressed -->
+            <stroke
+                android:width="2dp"
+                android:color="#000000" /> <!-- Set the color of the border -->
+            <padding
+                android:left="0dp"
+                android:top="0dp"
+                android:right="0dp"
+                android:bottom="0dp" /> <!-- Adjust padding as needed -->
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <stroke
+                android:width="2dp"
+                android:color="#000000" /> <!-- Set the color of the border -->
+            <padding
+                android:left="0dp"
+                android:top="0dp"
+                android:right="0dp"
+                android:bottom="0dp" /> <!-- Adjust padding as needed -->
+        </shape>
+    </item>
+</selector>
