@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
+import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -55,11 +57,23 @@ public class MainActivity extends AppCompatActivity {
         String userName = getUsername();
         String password = getPassword();
 
-        // Save the username and password using Firebase CRUD operations.
-        if (crud != null) {
-            crud.setUserName(userName);
-            crud.setPassword(password);
+        // Validate if the username is an email
+        if (!isValidEmail(userName)) {
+            Toast.makeText(this, "Please enter a valid email address as username.", Toast.LENGTH_SHORT).show();
+        } else if (password.length() < 8) {
+            Toast.makeText(this, "Password must be at least 8 characters long.", Toast.LENGTH_SHORT).show();
+        } else {
+            // Assuming CRUD operations are successful
+            if (crud != null) {
+                crud.setUserName(userName);
+                crud.setPassword(password);
+                // Show a toast message for successful operation
+                Toast.makeText(this, "Bazinga! You have entered.", Toast.LENGTH_SHORT).show();
+            }
         }
+    }
+    public static boolean isValidEmail(CharSequence target) {
+        return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
     }
 
     // Method to get username from EditText.
