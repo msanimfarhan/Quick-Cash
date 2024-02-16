@@ -2,10 +2,12 @@ package com.example.quickcash;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.FirebaseDatabase;
@@ -45,22 +47,12 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveUserInfo();
+                Toast.makeText(MainActivity.this,"Login info will be matched here",Toast.LENGTH_LONG);
             }
         });
     }
 
-    // Method to save user information to Firebase.
-    protected void saveUserInfo() {
-        String userName = getUsername();
-        String password = getPassword();
 
-        // Save the username and password using Firebase CRUD operations.
-        if (crud != null) {
-            crud.setUserName(userName);
-            crud.setPassword(password);
-        }
-    }
 
     // Method to get username from EditText.
     protected String getUsername() {
@@ -72,5 +64,15 @@ public class MainActivity extends AppCompatActivity {
     protected String getPassword() {
         EditText password = findViewById(R.id.password);
         return password.getText().toString();
+    }
+
+    //// work of moving to register page when register button is clicked
+    protected void move2RegisterPage() {
+
+        //Incomplete method, add your implementation
+        Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+
+        startActivity(intent);
+
     }
 }
