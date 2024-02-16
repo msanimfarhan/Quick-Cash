@@ -21,11 +21,11 @@ import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
 public class RegisterEspressoTest {
 
-    public ActivityScenario<MainActivity> scenario;
+    public ActivityScenario<RegisterActivity> scenario;
 
     @Before
     public void setup() {
-        scenario = ActivityScenario.launch(MainActivity.class);
+        scenario = ActivityScenario.launch(RegisterActivity.class);
         scenario.onActivity(activity -> {
 
             activity.setupRegistrationButton();
