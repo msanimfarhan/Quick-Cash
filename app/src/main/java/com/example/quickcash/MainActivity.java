@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
 
                         Toast.makeText(MainActivity.this, "Login successfull", Toast.LENGTH_SHORT).show();
                     } else{
-                        Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Email or Password is wrong!", Toast.LENGTH_SHORT).show();
 
                     }
                 } else{
