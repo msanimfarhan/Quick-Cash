@@ -1,5 +1,4 @@
 package com.example.quickcash;
-
 import androidx.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
@@ -23,94 +22,44 @@ public class FirebaseCrud {
         this.initializeDatabaseRefListeners();
     }
 
-    protected void initializeDatabaseRefs() {
-        //Incomplete method, add your implementation
-        this.nameRef = getNameRef();
-        this.emailRef = getEmailRef();
-        this.roleRef = getRoleRef();
-        this.passRef = getPassRef();
+    protected void initializeDatabaseRefs(){
+        this.userNameRef= getUserNameRef();
+        this.passwordRef=getPasswordRef();
 
     }
 
-    protected void initializeDatabaseRefListeners() {
-        //Incomplete method, add your implementation
-        this.setNameListener();
-        this.setEmailListener();
-        this.setRoleListener();
-        this.setPassListener();
-
+    protected  void initializeDatabaseRefListeners(){
+        this.setUserNameListener();
+        this.setPasswordListener();
     }
 
-    private DatabaseReference nameRef = null;
-
-    private DatabaseReference emailRef = null;
-    private DatabaseReference roleRef = null;
-
-    private DatabaseReference passRef = null;
-
-    private String extractedName;
-    private String extractedEmailAddress;
-    private String extractedRole;
-    private String extractedPass;
-
-    protected DatabaseReference getNameRef() {
-        return this.database.getReference("Name");
+    protected  DatabaseReference getUserNameRef(){
+        return this.database.getReference("UserName");
     }
 
-    protected void setName(String name) {
-        //incomplete method, add your implementation
-        if (nameRef != null) {
-            nameRef.setValue(name);
+    protected  DatabaseReference getPasswordRef(){
+        return this.database.getReference("Password");
+    }
+
+    protected  void setUserName(String name){
+        if(userNameRef!=null){
+            userNameRef.setValue(name);
         }
-
     }
 
-
-    protected DatabaseReference getEmailRef() {
-        return this.database.getReference("email");
-    }
-
-    protected void setEmail(String email) {
-
-        if (emailRef != null) {
-            emailRef.setValue(email);
+    protected  void setPassword(String password){
+        if(passwordRef!=null){
+            passwordRef.setValue(password);
         }
-
     }
 
-
-    protected DatabaseReference getRoleRef() {
-        return this.database.getReference("role");
-    }
-
-    protected void setRole(String role) {
-        //incomplete method, add your implementation
-        if (roleRef != null) {
-            roleRef.setValue(role);
-        }
-
-    }
-
-
-    protected DatabaseReference getPassRef() {
-        return this.database.getReference("password");
-    }
-
-    protected void setPass(String pass) {
-        //incomplete method, add your implementation
-        if (passRef != null) {
-            passRef.setValue(pass);
-        }
-
-    }
-
-    protected void setNameListener() {
-        this.nameRef.addValueEventListener(new ValueEventListener() {
+    protected void setUserNameListener() {
+        this.userNameRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //incomplete method, add your implementation
                 if (snapshot.exists()) {
-                    extractedName = snapshot.getValue(String.class);
+                    extractedUserName = snapshot.getValue(String.class);
                 }
             }
 
@@ -121,30 +70,13 @@ public class FirebaseCrud {
         });
     }
 
-
-    protected void setEmailListener() {
-        this.emailRef.addValueEventListener(new ValueEventListener() {
+    protected void setPasswordListener() {
+        this.getPasswordRef().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //incomplete method, add your implementation
                 if (snapshot.exists()) {
-                    extractedEmailAddress = snapshot.getValue(String.class);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // Handle potential errors
-            }
-        });
-    }
-
-
-    protected void setRoleListener() {
-        this.roleRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    extractedRole = snapshot.getValue(String.class);
+                    extractedPassword = snapshot.getValue(String.class);
                 }
             }
 
@@ -153,53 +85,7 @@ public class FirebaseCrud {
 
             }
         });
+
     }
-
-
-    protected void setPassListener() {
-        this.passRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    extractedName = snapshot.getValue(String.class);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
-    public String getExtractedName() {
-        return this.extractedName;
-    }
-
-    public String getExtractedEmailAddress() {
-        return this.extractedEmailAddress;
-    }
-
-    public String getExtractedRole() {
-        return this.extractedRole;
-    }
-
-    public String getExtractedPass() {
-        return this.extractedPass;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
-
