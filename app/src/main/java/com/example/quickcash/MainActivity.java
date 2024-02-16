@@ -1,5 +1,6 @@
 package com.example.quickcash;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,10 +12,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
+    private EditText usernameEditText;
+    private EditText passwordEditText;
+    private FirebaseCrud firebaseCrud;
 
     // Initializing the FirebaseCrud object for CRUD operations.
     FirebaseCrud crud = null;
@@ -33,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         // Setup login button listener
         setupLoginButtonListener();
         setupRegisterButton();
+        setupUI();
     }
 
     // Method to initialize Firebase database access and CRUD operations.
@@ -50,30 +58,12 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"Login info will be matched here",Toast.LENGTH_LONG);
+                attemptLogin();
+
             }
         });
     }
 
-
-        // Validate if the username is an email
-        if (!isValidEmail(userName)) {
-            Toast.makeText(this, "Please enter a valid email address as username.", Toast.LENGTH_SHORT).show();
-        } else if (password.length() < 8) {
-            Toast.makeText(this, "Password must be at least 8 characters long.", Toast.LENGTH_SHORT).show();
-        } else {
-            // Assuming CRUD operations are successful
-            if (crud != null) {
-                crud.setUserName(userName);
-                crud.setPassword(password);
-                // Show a toast message for successful operation
-                Toast.makeText(this, "Bazinga! You have entered.", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-    public static boolean isValidEmail(CharSequence target) {
-        return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
-    }
 
     // Method to get username from EditText.
     protected String getUsername() {
@@ -105,9 +95,59 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"Register Clicked",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Register Clicked", Toast.LENGTH_SHORT).show();
                 move2RegisterPage();
             }
         });
     }
+
+
+    // Code FOr Login
+    private void setupUI() {
+        usernameEditText = findViewById(R.id.username);
+        passwordEditText = findViewById(R.id.password);
+    }
+
+    private void attemptLogin() {
+        String email = usernameEditText.getText().toString().trim();
+        String password = passwordEditText.getText().toString().trim();
+
+        // Ensure that the email and password fields are not empty before attempting to login
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(MainActivity.this, "Email and password must not be empty", Toast.LENGTH_LONG).show();
+            return;
+        } else {
+
+            verifyUserLogin(email, password);
+        }
+
+
+    }
+
+    public void verifyUserLogin(String email, String pass) {
+
+        //incomplete method, add your implementation
+        Task<DataSnapshot> reference = FirebaseDatabase.getInstance().getReference().child("Users").child("jahid").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                DataSnapshot dataSnapshot = task.getResult();
+                String DBemail = String.valueOf(dataSnapshot.child("email").getValue());
+                String DBpassword = String.valueOf(dataSnapshot.child("password").getValue());
+
+
+                if (email.equals(DBemail) && pass.equals(DBpassword)) {
+
+                    Toast.makeText(MainActivity.this, "Login successfull", Toast.LENGTH_SHORT).show();
+                } else{
+                    Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+
+
+        });
+    }
+
+
 }

@@ -1,7 +1,13 @@
 package com.example.quickcash;
 
+import android.content.Context;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -10,6 +16,9 @@ import com.google.firebase.database.ValueEventListener;
 
 public class FirebaseCrud {
     private FirebaseDatabase database;
+    String  result="";
+
+
 
     public FirebaseCrud(FirebaseDatabase database) {
         this.database = database;
@@ -167,7 +176,22 @@ public class FirebaseCrud {
     }
 
 
+    // Code For Login
+    protected void showResult(String data) {
 
+    }
+
+    // Additional method for user login verification
+
+
+
+
+    // Callback interface for login results
+    public interface LoginResultCallback {
+        void onSuccess(String result);
+
+        void onFailure(String errorMessage);
+    }
 
 
 }
