@@ -100,7 +100,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         return passwordBox.getText().toString();
     }
 
+    protected void move2employer(){
+        Intent emplyerIntent = new Intent(this, employer_landing.class);
+        startActivity(emplyerIntent);
+    }
 
+    protected void move2employee(){
+        Intent employeeIntent = new Intent(this, employee_landing.class);
+        startActivity(employeeIntent);
+    }
     //    protected void saveInfoToFirebase(String name, String emailAddress, String role, String pass) {
 //        if (crud != null) {
 //
@@ -213,11 +221,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         if (registrationValid) {
             this.saveInfoToFirebase(name, email, role, password);
             if(role.equals("Employee")) {
-                Intent employeeIntent = new Intent(this, employee_landing.class);
-                startActivity(employeeIntent);
+                move2employee();
             } else if (role.equals("Employer")) {
-                Intent emplyerIntent = new Intent(this, employer_landing.class);
-                startActivity(emplyerIntent);
+                move2employer();
             }
         }
     }

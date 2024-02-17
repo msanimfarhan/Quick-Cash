@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 attemptLogin();
-
             }
         });
     }
@@ -87,7 +86,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    protected void move2employer(){
+        Intent emplyerIntent = new Intent(this, employer_landing.class);
+        startActivity(emplyerIntent);
+    }
 
+    protected void move2employee(){
+        Intent employeeIntent = new Intent(this, employee_landing.class);
+        startActivity(employeeIntent);
+    }
     private void setupRegisterButton() {
         Button loginButton = findViewById(R.id.register_button);
 
@@ -117,7 +124,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "Email and password must not be empty", Toast.LENGTH_LONG).show();
             return;
         } else {
-
             verifyUserLogin(email, password);
         }
 
@@ -135,20 +141,25 @@ public class MainActivity extends AppCompatActivity {
                     DataSnapshot dataSnapshot = task.getResult();
                     String DBemail = String.valueOf(dataSnapshot.child("email").getValue());
                     String DBpassword = String.valueOf(dataSnapshot.child("password").getValue());
+                    String DBrole = String.valueOf(dataSnapshot.child("role").getValue());
 
 
                     if (email.equals(DBemail) && pass.equals(DBpassword)) {
 
                         Toast.makeText(MainActivity.this, "Login successfull", Toast.LENGTH_SHORT).show();
+                        if(DBrole.equals("Employer")){
+                            move2employer();
+                        } else if (DBrole.equals("Employee")){
+                            move2employee();
+                        }
                     } else{
                         Toast.makeText(MainActivity.this, "Email or Password is wrong!", Toast.LENGTH_SHORT).show();
 
                     }
-                } else{
+                } else {
                     Toast.makeText(MainActivity.this, "Email or Password is wrong!", Toast.LENGTH_SHORT).show();
 
                 }
-
             }
 
 
