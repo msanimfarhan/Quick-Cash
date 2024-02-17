@@ -3,6 +3,7 @@
     <string name="INVALID_EMAIL_ADDRESS">Invalid email address</string>
     <string name="VALID_EMAIL_ADDRESS"></string>
     <string name="INVALID_PASSWORD">Password has to be at least 8 characters</string>
+    <string name="INVALID_ROLE">Please select a valid role</string>
     <string name="VALID_PASSWORD"></string>
     <string name="PASSWORD_NOT_MATCHING"> Password Must Match</string>
     <string name="PASSWORD_MATCHING"> </string>
