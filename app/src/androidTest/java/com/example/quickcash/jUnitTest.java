@@ -60,4 +60,10 @@ public class jUnitTest {
     public void ifBothPasswordMatches_NullPasswords_ReturnsFalse() {
         Assert.assertFalse(register.ifBothPasswordMatches(null, null));
     }
+
+    @Test
+    public void isValidRole_invalidRole_ReturnTrue() {
+        Assert.assertTrue(register.validRole("Employer"));
+        Assert.assertTrue(register.validRole("Employee"));
+    }
 }

@@ -8,6 +8,15 @@
       <entry key="app.androidtest">
         <State />
       </entry>
+      <entry key="isValidRole_invalidRole_ReturnFalse()">
+        <State />
+      </entry>
+      <entry key="jUnitTest">
+        <State />
+      </entry>
+      <entry key="move2LandingRegister()">
+        <State />
+      </entry>
     </value>
   </component>
 </project>
