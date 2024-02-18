@@ -100,7 +100,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         return passwordBox.getText().toString();
     }
 
+    protected void move2employer(){
+        Intent emplyerIntent = new Intent(this, employer_landing.class);
+        startActivity(emplyerIntent);
+    }
 
+    protected void move2employee(){
+        Intent employeeIntent = new Intent(this, employee_landing.class);
+        startActivity(employeeIntent);
+    }
     //    protected void saveInfoToFirebase(String name, String emailAddress, String role, String pass) {
 //        if (crud != null) {
 //
@@ -150,6 +158,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             TextView statusLabel2 = findViewById(R.id.passMatchMsg);
             statusLabel2.setText(message.trim());
             // commit
+        } else if (option.equals("role")) {
+            TextView statusLabel2 = findViewById(R.id.invalidRoleMsg);
+            statusLabel2.setText(message.trim());
+
         }
     }
 
@@ -168,12 +180,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         String errorMessageForEmail = "";
         String errorMessageForStrongPass = "";
         String errorMessageForBothPass = "";
+        String errorMessageForRole = "";
 
 
         // Resetting Every error message
         setStatusMessage("email", "");
         setStatusMessage("passValid", "");
         setStatusMessage("passMatch", "");
+        setStatusMessage("role","");
 
 
         // Check if the email is valid or not
@@ -197,9 +211,20 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             setStatusMessage("passMatch", errorMessageForBothPass);
         }
 
+        if(!register.validRole(role)) {
+            errorMessageForRole = getResources().getString(R.string.INVALID_ROLE).trim();
+            registrationValid = false;
+            setStatusMessage("role", errorMessageForRole);
+        }
+
         // Allow user to register if everything is valid
         if (registrationValid) {
             this.saveInfoToFirebase(name, email, role, password);
+            if(role.equals("Employee")) {
+                move2employee();
+            } else if (role.equals("Employer")) {
+                move2employer();
+            }
         }
     }
 

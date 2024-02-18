@@ -24,6 +24,12 @@
         <activity android:name=".RegisterActivity">
 
         </activity>
+        <activity android:name=".employee_landing">
+
+        </activity>
+        <activity android:name=".employer_landing">
+
+        </activity>
     </application>
 
 </manifest>

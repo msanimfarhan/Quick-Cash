@@ -35,6 +35,9 @@ public class Register {
         }
     }
 
+    protected boolean validRole(String role) {
+        return role.equals("Employer") || role.equals("Employee");
+    }
 
 
 }
