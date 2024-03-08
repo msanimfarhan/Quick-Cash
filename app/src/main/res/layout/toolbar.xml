@@ -1,14 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#097969"
-    android:elevation="8dp">
+    android:layout_height="match_parent">
 
-    <TextView
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textColor="@color/white"/>
+        android:background="#097969"
+        android:elevation="8dp">
 
-</androidx.appcompat.widget.Toolbar>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/white" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <!-- Placeholder for Employer Status Indicator -->
+    <TextView
+        android:id="@+id/tvEmployerStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:background="#D3D3D3"
+        android:padding="16dp"
+        android:text="Logged in as Employer"
+        android:textAlignment="center"
+        android:textColor="#000" />
+
+    <!-- Button to Add a New Job -->
+    <Button
+        android:id="@+id/btnAddNewJob"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvEmployerStatus"
+        android:background="@android:color/holo_blue_dark"
+        android:text="Add a new Job"
+        android:layout_margin="16dp"
+        android:textColor="@color/white" />
+
+    <!-- Placeholder for Current Active Postings -->
+    <TextView
+        android:id="@+id/tvCurrentActivePosting"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@id/btnAddNewJob"
+        android:background="#FFFFFF"
+        android:layout_margin="16dp"
+        android:text="Current Active Posting"
+        android:padding="16dp"
+        android:gravity="center"
+        android:elevation="4dp"
+        android:textColor="#000" />
+
+    <!-- Placeholder for Previous Expired Postings -->
+    <TextView
+        android:id="@+id/tvPreviousExpiredPosting"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@id/tvCurrentActivePosting"
+        android:background="#FFFFFF"
+        android:layout_margin="16dp"
+        android:text="Previous Expired Posting"
+        android:padding="16dp"
+        android:gravity="center"
+        android:elevation="4dp"
+        android:textColor="#000"
+        android:layout_marginTop="24dp" />
+
+</RelativeLayout>
