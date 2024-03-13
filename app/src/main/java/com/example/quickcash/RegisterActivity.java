@@ -109,18 +109,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         Intent employeeIntent = new Intent(this, employee_landing.class);
         startActivity(employeeIntent);
     }
-    //    protected void saveInfoToFirebase(String name, String emailAddress, String role, String pass) {
-//        if (crud != null) {
-//
-//            crud.setName(name);
-//            crud.setEmail(emailAddress);
-//            crud.setRole(role);
-//            crud.setPass(pass);
-//        } else {
-//
-//            Toast.makeText(this, "Database connection not initialized", Toast.LENGTH_SHORT).show();
-//        }
-//    }
+
     protected void saveInfoToFirebase(String name, String email, String role, String pass) {
         //Incomplete method, add your implementation
         Map<String, String> user = new HashMap<>();

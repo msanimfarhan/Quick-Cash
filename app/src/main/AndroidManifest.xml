@@ -30,6 +30,10 @@
         <activity android:name=".employer_landing">
 
         </activity>
+        <activity android:name=".job_Posting">
+
+        </activity>
+
     </application>
 
 </manifest>

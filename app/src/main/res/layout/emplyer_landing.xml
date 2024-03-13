@@ -5,17 +5,56 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <include
-        android:id="@+id/employer_toolbar"
-        layout="@layout/toolbar" />
 
-    <TextView
-        android:id="@+id/employer_landing"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Employer Landing"
-        app:layout_constraintTop_toBottomOf="@id/employer_toolbar"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="412dp"
+        android:layout_height="732dp"
+        tools:layout_editor_absoluteX="-1dp"
+        tools:layout_editor_absoluteY="-1dp">
+
+        <TextView
+            android:id="@+id/landingPage"
+            android:layout_width="194dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="48dp"
+            android:text="Employer Landing Page"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.472"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="184dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
+            android:text="Add Jobs"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.478"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/landingPage" />
+
+        <TextView
+            android:id="@+id/currentPost"
+            android:layout_width="198dp"
+            android:layout_height="23dp"
+            android:layout_marginTop="12dp"
+            android:text="Current Posting"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.482"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/jobsRecycler"
+            android:layout_width="292dp"
+            android:layout_height="218dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/currentPost"
+            app:layout_constraintVertical_bias="0.184"
+            tools:layout_editor_absoluteX="47dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

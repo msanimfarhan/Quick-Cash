@@ -1,7 +1,5 @@
 package com.example.quickcash;
 
-import android.content.Context;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,8 +11,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FirebaseCrud {
+    private DatabaseReference userRef;
     private FirebaseDatabase database;
     String  result="";
 
@@ -34,7 +35,64 @@ public class FirebaseCrud {
         this.passRef = getPassRef();
 
     }
+    protected DatabaseReference getUserRef(String userMail) {
+        return this.database.getReference(userMail);
+    }
 
+
+    public void addJobPosting(JobPosting jobPosting, String userMail, final JobPostingResultCallback callback) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        String sanitizedEmail = userMail.replace(".", ",");
+
+//        DatabaseReference usersRef = database.getReference(sanitizedEmail);
+        DatabaseReference userRef = database.getReference("Users").child(sanitizedEmail).child("jobs");
+
+        userRef.push().setValue(jobPosting).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    callback.onSuccess("Job posted successfully!");
+                } else {
+//                    Toast.makeText(this, "Job posted successfully!", Toast.LENGTH_LONG).show();
+                    callback.onFailure(task.getException().getMessage());
+                }
+            }
+        });
+    }
+
+    public void fetchUserJobs(String userEmail, final JobPostingsResultCallback callback) {
+        String sanitizedEmail = userEmail.replace(".", ",");
+        DatabaseReference userJobsRef = database.getReference("Users").child(sanitizedEmail).child("jobs");
+
+        userJobsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<JobPosting> jobPostings = new ArrayList<>();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    JobPosting job = snapshot.getValue(JobPosting.class);
+                    jobPostings.add(job);
+                }
+                callback.onJobPostingsRetrieved(jobPostings);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                callback.onError(databaseError.toException());
+            }
+        });
+    }
+
+    // Callback interface for job posting results
+    public interface JobPostingResultCallback {
+        void onSuccess(String result);
+        void onFailure(String errorMessage);
+    }
+
+    // Callback interface for retrieving multiple job postings
+    public interface JobPostingsResultCallback {
+        void onJobPostingsRetrieved(List<JobPosting> jobPostings);
+        void onError(Exception e);
+    }
     protected void initializeDatabaseRefListeners() {
         //Incomplete method, add your implementation
         this.setNameListener();
@@ -176,22 +234,9 @@ public class FirebaseCrud {
     }
 
 
-    // Code For Login
-    protected void showResult(String data) {
-
-    }
-
-    // Additional method for user login verification
+ // job posting
 
 
-
-
-    // Callback interface for login results
-    public interface LoginResultCallback {
-        void onSuccess(String result);
-
-        void onFailure(String errorMessage);
-    }
 
 
 }
