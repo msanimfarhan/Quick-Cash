@@ -52,9 +52,7 @@ public class job_Posting extends AppCompatActivity {
         String jobLocation = editLocation.getText().toString().trim();
 
 
-      //fetch curent logged in user
-      // add job to  this user object with active job
-        // Create a JobPosting object
+
         JobPosting newJob = new JobPosting(title, description, paymentDetail, jobLocation);
 
         // Post the job to Firebase
