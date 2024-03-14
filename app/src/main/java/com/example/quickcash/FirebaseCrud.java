@@ -32,6 +32,7 @@ public class FirebaseCrud {
         this.emailRef = getEmailRef();
         this.roleRef = getRoleRef();
         this.passRef = getPassRef();
+        this.locationRef = getLocationRef();
 
     }
 
@@ -41,7 +42,7 @@ public class FirebaseCrud {
         this.setEmailListener();
         this.setRoleListener();
         this.setPassListener();
-
+        this.setLocationListener();
     }
 
     private DatabaseReference nameRef = null;
@@ -51,10 +52,38 @@ public class FirebaseCrud {
 
     private DatabaseReference passRef = null;
 
+    private DatabaseReference locationRef = null;
+    private String extractedLocation;
+
     private String extractedName;
     private String extractedEmailAddress;
     private String extractedRole;
     private String extractedPass;
+
+    protected DatabaseReference getLocationRef() {
+        return this.database.getReference("location");
+    }
+
+    protected void setLocation(String location) {
+        if (locationRef != null) {
+            locationRef.setValue(location);
+        }
+    }
+
+    protected void setLocationListener() {
+        this.locationRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    extractedLocation = snapshot.getValue(String.class);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
 
     protected DatabaseReference getNameRef() {
         return this.database.getReference("Name");
@@ -106,6 +135,9 @@ public class FirebaseCrud {
         }
 
     }
+
+
+
 
     protected void setNameListener() {
         this.nameRef.addValueEventListener(new ValueEventListener() {

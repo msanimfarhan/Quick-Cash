@@ -15,12 +15,20 @@ import androidx.core.content.ContextCompat;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class employer_landing extends AppCompatActivity {
 
     private FusedLocationProviderClient fusedLocationClient;
     private TextView locationTextView;
+    //
+    private DatabaseReference databaseReference;
+    private String userEmail = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +36,11 @@ public class employer_landing extends AppCompatActivity {
         setContentView(R.layout.emplyer_landing);
         Toolbar employeeToolbar = (Toolbar) findViewById(R.id.employee_toolbar);
         setSupportActionBar(employeeToolbar);
+
+        // Initialize Firebase
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        String sanitizedEmail = userEmail.replace(".", ",");
+        databaseReference = database.getReference("Users").child(sanitizedEmail);
 
         // Initialize FusedLocationProviderClient
         locationTextView = findViewById(R.id.location_text_view);
@@ -49,21 +62,12 @@ public class employer_landing extends AppCompatActivity {
         if (requestCode == 1 && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             getLastLocation();
         }
-        /*else {
-            //
 
-        }*/
     }
 
     private void getLastLocation() {
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+
             return;
         }
         fusedLocationClient.getLastLocation()
@@ -71,8 +75,14 @@ public class employer_landing extends AppCompatActivity {
                     @Override
                     public void onSuccess(Location location) {
                         if (location != null) {
-                            String locationStr = "Latitude: " + location.getLatitude() + "\nLongitude: " + location.getLongitude();
+                            //String locationStr = "Latitude: " + location.getLatitude() + "\nLongitude: " + location.getLongitude();
+                            String locationStr = "Latitude: " + "44.6358" + "\nLongitude: " + "-63.5952";
                             locationTextView.setText(locationStr);
+
+                            // Update location in Firebase
+                            Map<String, Object> locationUpdate = new HashMap<>();
+                            locationUpdate.put("location", locationStr);
+                            databaseReference.updateChildren(locationUpdate);
                         } else {
                             locationTextView.setText("Location not available");
                         }
