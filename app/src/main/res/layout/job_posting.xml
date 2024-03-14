@@ -7,94 +7,82 @@
 
     <TextView
         android:id="@+id/addJob"
-        android:layout_width="215dp"
-        android:layout_height="30dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="28dp"
+        android:layout_marginEnd="24dp"
         android:text="Add a new Job"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.413"
+        android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/jobTitle"
-        android:layout_width="251dp"
-        android:layout_height="57dp"
-        android:ems="10"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:hint="Job Title"
-        android:inputType="text"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:inputType="textPersonName"
         app:layout_constraintTop_toBottomOf="@+id/addJob"
-        app:layout_constraintVertical_bias="0.061" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/description"
-        android:layout_width="254dp"
-        android:layout_height="50dp"
-        android:ems="10"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:hint="Job Description"
-        android:inputType="text"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:inputType="textMultiLine"
         app:layout_constraintTop_toBottomOf="@+id/jobTitle"
-        app:layout_constraintVertical_bias="0.053" />
+        app:layout_constraintStart_toStartOf="@+id/jobTitle"
+        app:layout_constraintEnd_toEndOf="@+id/jobTitle" />
 
     <EditText
         android:id="@+id/payment"
-        android:layout_width="250dp"
-        android:layout_height="53dp"
-        android:ems="10"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:hint="Payments"
-        android:inputType="text"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:inputType="numberDecimal"
         app:layout_constraintTop_toBottomOf="@+id/description"
-        app:layout_constraintVertical_bias="0.061" />
+        app:layout_constraintStart_toStartOf="@+id/description"
+        app:layout_constraintEnd_toEndOf="@+id/description" />
 
     <EditText
         android:id="@+id/location"
-        android:layout_width="253dp"
-        android:layout_height="53dp"
-        android:ems="10"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:hint="Location"
         android:inputType="text"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/payment"
-        app:layout_constraintVertical_bias="0.057" />
+        app:layout_constraintStart_toStartOf="@+id/payment"
+        app:layout_constraintEnd_toEndOf="@+id/payment" />
+
+    <!-- Spinner for selecting Job Type -->
+    <Spinner
+        android:id="@+id/jobType"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/location"
+        app:layout_constraintStart_toStartOf="@+id/location"
+        app:layout_constraintEnd_toEndOf="@+id/location" />
 
     <Button
         android:id="@+id/post"
-        android:layout_width="218dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="121dp"
-        android:layout_marginBottom="100dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:text="Post"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/jobType"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categories"
-        app:layout_constraintVertical_bias="0.812" />
-
-    <Spinner
-        android:id="@+id/categories"
-        android:layout_width="318dp"
-        android:layout_height="55dp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/location"
-        app:layout_constraintVertical_bias="0.103" />
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

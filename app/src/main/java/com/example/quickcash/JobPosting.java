@@ -5,18 +5,21 @@ public class JobPosting {
     public String jobDescription;
     public String payments;
     public String location;
+    public String jobType; // Added field for job type
 
     public JobPosting() {
-        // Default constructor required for calls to DataSnapshot.getValue(JobPosting.class)
+        // Default constructor required for Firebase
     }
 
-    public JobPosting(String jobTitle, String jobDescription, String payments, String location) {
+    public JobPosting(String jobTitle, String jobDescription, String payments, String location, String jobType) {
         this.jobTitle = jobTitle;
         this.jobDescription = jobDescription;
         this.payments = payments;
         this.location = location;
+        this.jobType = jobType;
     }
 
+    // Getters and Setters
     public String getTitle() { return jobTitle; }
     public void setTitle(String title) { this.jobTitle = title; }
 
@@ -28,4 +31,7 @@ public class JobPosting {
 
     public String getLocation() { return location; }
     public void setLocation(String location) { this.location = location; }
+
+    public String getJobType() { return jobType; }
+    public void setJobType(String jobType) { this.jobType = jobType; }
 }
