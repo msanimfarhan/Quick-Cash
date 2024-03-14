@@ -2,25 +2,10 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="UIAutomatorTest">
-        <State />
-      </entry>
       <entry key="app">
         <State />
       </entry>
       <entry key="app.androidtest">
-        <State />
-      </entry>
-      <entry key="isValidRole_invalidRole_ReturnFalse()">
-        <State />
-      </entry>
-      <entry key="isValidRole_invalidRole_ReturnTrue()">
-        <State />
-      </entry>
-      <entry key="move2LandingRegister()">
-        <State />
-      </entry>
-      <entry key="move2LandingSignin()">
         <State />
       </entry>
     </value>
