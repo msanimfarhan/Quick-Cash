@@ -1,4 +1,5 @@
 package com.example.quickcash;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,19 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder>{
         holder.payments.setText(job.getPayment());
 
         // Set other fields as needed
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Inside here, you can reference 'job', which is the item at this position.
+                Intent intent = new Intent(view.getContext(), job_Posting.class);
+                intent.putExtra("jobTitle", job.getTitle());
+                intent.putExtra("jobDescription", job.getDescription());
+                intent.putExtra("jobLocation", job.getLocation());
+                intent.putExtra("jobPayment", job.getPayment());
+                // Add other details as needed
+                view.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
