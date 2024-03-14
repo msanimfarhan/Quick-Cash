@@ -14,11 +14,11 @@
 
         <TextView
             android:id="@+id/landingPage"
-            android:layout_width="194dp"
-            android:layout_height="36dp"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginTop="48dp"
             android:text="Employer Landing Page"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.472"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,10 +28,9 @@
             android:id="@+id/button"
             android:layout_width="184dp"
             android:layout_height="48dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="20dp"
             android:text="Add Jobs"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.478"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/landingPage" />
 
@@ -43,18 +42,17 @@
             android:text="Current Posting"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.482"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/jobsRecycler"
-            android:layout_width="292dp"
-            android:layout_height="218dp"
+            android:layout_width="306dp"
+            android:layout_height="401dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/currentPost"
-            app:layout_constraintVertical_bias="0.184"
-            tools:layout_editor_absoluteX="47dp" />
+            app:layout_constraintVertical_bias="0.113"
+            tools:layout_editor_absoluteX="53dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
