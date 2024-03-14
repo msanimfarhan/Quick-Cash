@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 public class employer_landing extends AppCompatActivity {
 
     private FusedLocationProviderClient fusedLocationClient;
+    private TextView locationTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,7 @@ public class employer_landing extends AppCompatActivity {
         setSupportActionBar(employeeToolbar);
 
         // Initialize FusedLocationProviderClient
+        locationTextView = findViewById(R.id.location_text_view);
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         checkLocationPermissionAndGetLocation();
     }
@@ -68,7 +71,10 @@ public class employer_landing extends AppCompatActivity {
                     @Override
                     public void onSuccess(Location location) {
                         if (location != null) {
-
+                            String locationStr = "Latitude: " + location.getLatitude() + "\nLongitude: " + location.getLongitude();
+                            locationTextView.setText(locationStr);
+                        } else {
+                            locationTextView.setText("Location not available");
                         }
                     }
                 });
