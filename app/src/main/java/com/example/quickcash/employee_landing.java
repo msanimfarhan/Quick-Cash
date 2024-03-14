@@ -59,7 +59,7 @@ public class employee_landing extends AppCompatActivity{
         }*/
     }
     private void getLastLocation() {
-        fusedLocationClient.getLastLocation()
+        /*fusedLocationClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
                     @Override
                     public void onSuccess(Location location) {
@@ -67,7 +67,7 @@ public class employee_landing extends AppCompatActivity{
 
                         }
                     }
-                });
+                });*/
     }
 
 
