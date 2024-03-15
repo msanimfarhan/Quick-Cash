@@ -35,30 +35,31 @@ public class employee_landing extends AppCompatActivity{
 
         // Initialize database access and Firebase CRUD operations
         initializeDatabaseAccess();
+
         fetchJobsAndUpdateUI();
     }
 
     private void fetchJobsAndUpdateUI() {
-        SharedPreferences sharedPref = getSharedPreferences("userDetails", Context.MODE_PRIVATE);
-        String userEmail = sharedPref.getString("userEmail", null);
-        String sanitizedEmail = userEmail.replace(".", ",");
 
-        crud.fetchUserJobs(sanitizedEmail, new FirebaseCrud.JobPostingsResultCallback() {
+        crud.fetchAllJobs(new FirebaseCrud.JobPostingsResultCallback() {
             @Override
             public void onJobPostingsRetrieved(List<JobPosting> jobPostings) {
-                // Use the job postings list to update the RecyclerView
+                // Update the RecyclerView with the list of jobs
                 adapter = new JobAdapter(jobPostings);
                 jobsRecyclerView.setAdapter(adapter);
             }
 
             @Override
             public void onError(Exception e) {
+                // Handle any errors
                 Toast.makeText(employee_landing.this, "Error fetching jobs: " + e.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+
     }
 
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
 
     }
 

@@ -1,0 +1,31 @@
+
+˜	java:S1170"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÌÒÊ×ùÿÿÿÿ8ÙëŸ›ä1J$2b6cfbf5-f01b-486e-a229-93eb1ad79c7e
+d
+java:S16043"(Make this anonymous inner class a lambda(ß ŒJ$9322a33f-8968-430b-88cd-0296696edd81
+p
+java:S1604>"(Make this anonymous inner class a lambda(†ïÀˆûÿÿÿÿ8ñ ¡›ä1J$f8e11489-07c7-4abd-8aa3-8f3898d51d9c
+}
+java:S1117,"<Rename "database" which hides the field declared at line 19.(–ÜÍ£ûÿÿÿÿJ$ec4d6715-2d3f-44e0-9117-b89d0f9fea69
+|	java:S125/"<This block of commented-out lines of code should be removed.(Á¸öÆùÿÿÿÿJ$2c82da0c-7567-4ba8-8f58-59740f6d17ef
+~
+java:S11171";Rename "userRef" which hides the field declared at line 18.(“šç¼8ÉÔ ›ä1J$c4b821ec-7793-48ca-a8bb-ab35a6fd1fbe
+|	java:S1259"<This block of commented-out lines of code should be removed.(îÙŞ²ıÿÿÿÿJ$b6847d9c-8657-4ac1-8d03-3333906291fd
+ƒ	java:S125D"<This block of commented-out lines of code should be removed.(îÙŞ²ıÿÿÿÿ8’¡¡›ä1J$c09e981a-d3ac-4e18-b456-af22bab22cc1
+¾
+java:S1186Ô"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ô°¤¦J$f17c4249-4a60-4888-b865-5ccf26358fb4
+Å
+java:S1186ö"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ô°¤¦8óŸ›ä1J$bcc5329f-e19e-490c-b27f-ee31938d5c09
+Å
+java:S1186‡"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ô°¤¦8õŸ›ä1J$82c20432-9f5f-42e6-8870-c5c31966f20c
+y
+java:S1128"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ8Û© ›ä1J$b38d7e7c-473f-4557-a141-d93b0c9dc7fe
+s
+java:S1068"+Remove this unused "userRef" private field.(À¾˜ôüÿÿÿÿ8˜±‰›ä1J$9820bf63-5cb2-4bbe-9a09-e456883c33bf
+t
+java:S1068‘"1Remove this unused "extractedName" private field.(¼‘Ø>8÷Ÿ›ä1J$0cd9219e-e602-4b2b-bbe6-c2db41b31489
+}
+java:S1068’"9Remove this unused "extractedEmailAddress" private field.(ìöƒÓ8øŸ›ä1J$0da523e7-2d68-485a-bcc2-7229c8205d1c
+z
+java:S1068“"1Remove this unused "extractedRole" private field.(ÙÏÇóÿÿÿÿÿ8øŸ›ä1J$136671f5-a0a0-4c51-89ad-84939a7c6c29
+z
+java:S1068”"1Remove this unused "extractedPass" private field.(íÔÌúùÿÿÿÿ8øŸ›ä1J$402e1c78-6511-4119-bac4-f94e2cb975dd

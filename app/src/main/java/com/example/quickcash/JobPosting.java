@@ -1,6 +1,7 @@
 package com.example.quickcash;
 
 public class JobPosting {
+    public String employer; //email
     public String jobTitle;
     public String jobDescription;
     public String payments;
@@ -11,13 +12,23 @@ public class JobPosting {
         // Default constructor required for Firebase
     }
 
-    public JobPosting(String jobTitle, String jobDescription, String payments, String location, String jobType) {
+    public JobPosting(String jobTitle, String jobDescription, String payments, String location, String jobType,  String employer) {
+        this.employer = employer;
         this.jobTitle = jobTitle;
         this.jobDescription = jobDescription;
         this.payments = payments;
         this.location = location;
         this.jobType = jobType;
     }
+
+    public String getEmployer() {
+        return employer;
+    }
+
+    public void setEmployer(String employer) {
+        this.employer = employer;
+    }
+
 
     // Getters and Setters
     public String getTitle() { return jobTitle; }

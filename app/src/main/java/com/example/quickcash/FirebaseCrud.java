@@ -45,6 +45,7 @@ public class FirebaseCrud {
         String sanitizedEmail = userMail.replace(".", ",");
 
 //        DatabaseReference usersRef = database.getReference(sanitizedEmail);
+        DatabaseReference Alljobsref = database.getReference("AllJobs");
         DatabaseReference userRef = database.getReference("Users").child(sanitizedEmail).child("jobs");
 
         userRef.push().setValue(jobPosting).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -56,6 +57,38 @@ public class FirebaseCrud {
 //                    Toast.makeText(this, "Job posted successfully!", Toast.LENGTH_LONG).show();
                     callback.onFailure(task.getException().getMessage());
                 }
+            }
+        });
+        Alljobsref.push().setValue(jobPosting).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    callback.onSuccess("Job posted successfully!");
+                } else {
+//                    Toast.makeText(this, "Job posted successfully!", Toast.LENGTH_LONG).show();
+                    callback.onFailure(task.getException().getMessage());
+                }
+            }
+        });
+    }
+
+    public void fetchAllJobs(final JobPostingsResultCallback callback) {
+        DatabaseReference allJobsRef = database.getReference("AllJobs");
+
+        allJobsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<JobPosting> jobPostings = new ArrayList<>();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    JobPosting job = snapshot.getValue(JobPosting.class);
+                    jobPostings.add(job);
+                }
+                callback.onJobPostingsRetrieved(jobPostings);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                callback.onError(databaseError.toException());
             }
         });
     }

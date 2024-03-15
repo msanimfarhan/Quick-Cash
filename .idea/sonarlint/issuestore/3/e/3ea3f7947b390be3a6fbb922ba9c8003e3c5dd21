@@ -1,0 +1,10 @@
+
+C
+java:S1604a"(Make this anonymous inner class a lambda(«–Âæþÿÿÿÿ
+g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(Óþ„¨ÿÿÿÿÿ
+–
+java:S1186T"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(«à¯
+œ
+java:S1186Y"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¹Æº×þÿÿÿÿ
+W
+java:S1117E"<Rename "database" which hides the field declared at line 27.(Á®¿üøÿÿÿÿ

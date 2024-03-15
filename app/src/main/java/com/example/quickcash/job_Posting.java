@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -105,7 +104,7 @@ public class job_Posting extends AppCompatActivity {
         }
 
         // Now you can use the jobType value in your JobPosting object
-        JobPosting newJob = new JobPosting(title, description, paymentDetail, jobLocation, jobType);
+        JobPosting newJob = new JobPosting(title, description, paymentDetail, jobLocation, jobType, userEmail);
 
         crud.addJobPosting(newJob, userEmail, new FirebaseCrud.JobPostingResultCallback() {
             @Override

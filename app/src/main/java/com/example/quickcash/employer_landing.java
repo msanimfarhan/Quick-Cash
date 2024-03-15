@@ -22,7 +22,7 @@ import java.util.List;
 public class employer_landing extends AppCompatActivity  implements View.OnClickListener, AdapterView.OnItemSelectedListener{
     private RecyclerView jobsRecyclerView;
     private JobAdapter adapter;
-    private FirebaseCrud firebaseCrud;
+
     FirebaseCrud crud = null;
     private FirebaseDatabase database;
 
@@ -71,9 +71,7 @@ public class employer_landing extends AppCompatActivity  implements View.OnClick
     }
 
 
-        // fetch job from user
-        // show them in a list  in a recycle view >> give chatgpt your layout// employer layout
-        //how to populate this list from backend
+
 
 
 
