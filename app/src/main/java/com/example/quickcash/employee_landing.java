@@ -2,6 +2,7 @@ package com.example.quickcash;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -23,11 +24,12 @@ public class employee_landing extends AppCompatActivity{
     private JobAdapter adapter;
     private FirebaseCrud firebaseCrud;
     FirebaseCrud crud = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.employee_landing);
-        jobsRecyclerView = findViewById(R.id.jobsRecycler);
+        jobsRecyclerView = findViewById(R.id.jobRecycler2);
         jobsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         FirebaseApp.initializeApp(this);
 
