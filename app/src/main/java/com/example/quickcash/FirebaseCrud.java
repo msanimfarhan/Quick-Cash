@@ -12,6 +12,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
+
 import java.util.List;
 
 public class FirebaseCrud {
@@ -265,9 +268,32 @@ public class FirebaseCrud {
             }
         });
     }
+    public void applyForJob(String jobId, String applicantEmail, String applicantName, String applicantPhoneNumber, final JobApplicationResultCallback callback) {
+        DatabaseReference jobApplicationRef = database.getReference("JobApplications").child(jobId);
 
+        HashMap<String, Object> application = new HashMap<>();
+        application.put("email", applicantEmail);
+        application.put("name", applicantName);
+        application.put("phoneNumber", applicantPhoneNumber);
 
- // job posting
+        jobApplicationRef.push().setValue(application)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        callback.onApplicationSuccess("Application submitted successfully!");
+                    } else {
+                        if (task.getException() != null) {
+                            callback.onApplicationFailure(task.getException().getMessage());
+                        } else {
+                            callback.onApplicationFailure("Unknown error occurred.");
+                        }
+                    }
+                });
+    }
+
+    public interface JobApplicationResultCallback {
+        void onApplicationSuccess(String result);
+        void onApplicationFailure(String errorMessage);
+    }
 
 
 

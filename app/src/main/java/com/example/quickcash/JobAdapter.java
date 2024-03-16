@@ -26,21 +26,20 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder>{
     public void onBindViewHolder(@NonNull JobViewHolder holder, int position) {
         JobPosting job = jobList.get(position);
         holder.jobTitle.setText(job.getTitle());
-        holder.jobDescription.setText(job.getDescription()); // Update the job description
-        holder.payments.setText(job.getPayment()); // Update the payment details
-        holder.location.setText(job.getLocation()); // Update the location
+        holder.jobDescription.setText(job.getDescription());
+        holder.payments.setText(job.getPayment());
+        holder.location.setText(job.getLocation());
 
-        // Set onClick listener for each job item, if necessary
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Handle the click event for the job item, if needed
-                Intent intent = new Intent(view.getContext(), job_Posting.class);
+                // Make sure the context used here is from the view which is attached to the window
+                Intent intent = new Intent(view.getContext(), ApplyJobActivity.class);
+                // Assuming 'ApplyJobActivity' is expecting extras, send them
                 intent.putExtra("jobTitle", job.getTitle());
                 intent.putExtra("jobDescription", job.getDescription());
-                intent.putExtra("jobLocation", job.getLocation());
                 intent.putExtra("jobPayment", job.getPayment());
-                // Add other details as needed
+                intent.putExtra("jobLocation", job.getLocation());
                 view.getContext().startActivity(intent);
             }
         });
