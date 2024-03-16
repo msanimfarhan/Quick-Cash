@@ -13,16 +13,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.app.AppCompatActivity;
 
-
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
-public class employer_landing extends AppCompatActivity  implements View.OnClickListener, AdapterView.OnItemSelectedListener{
+public class employer_landing extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     private RecyclerView jobsRecyclerView;
     private JobAdapter adapter;
-
     FirebaseCrud crud = null;
     private FirebaseDatabase database;
 
@@ -30,8 +28,9 @@ public class employer_landing extends AppCompatActivity  implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.emplyer_landing);
-       jobsRecyclerView = findViewById(R.id.jobsRecycler);
-       jobsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        jobsRecyclerView = findViewById(R.id.jobsRecycler);
+        jobsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Initialize Firebase
         FirebaseApp.initializeApp(this);
@@ -39,12 +38,11 @@ public class employer_landing extends AppCompatActivity  implements View.OnClick
         // Initialize database access and Firebase CRUD operations
         initializeDatabaseAccess();
 
-
         setupAddJobListener();
 
         fetchJobsAndUpdateUI();
-
     }
+
     private void fetchJobsAndUpdateUI() {
         SharedPreferences sharedPref = getSharedPreferences("userDetails", Context.MODE_PRIVATE);
         String userEmail = sharedPref.getString("userEmail", null);
@@ -64,37 +62,33 @@ public class employer_landing extends AppCompatActivity  implements View.OnClick
             }
         });
     }
+
     protected void initializeDatabaseAccess() {
         // Assuming you have a string resource named FIREBASE_DB_URL with the Firebase database URL.
         FirebaseDatabase database = FirebaseDatabase.getInstance(getResources().getString(R.string.FIREBASE_DB_URL));
         crud = new FirebaseCrud(database);
     }
 
-
-
-
-
-
-    protected void move2JobPosting(){
-        Intent emplyerIntent = new Intent(this, job_Posting.class);
-        startActivity(emplyerIntent);
+    protected void move2JobPosting() {
+        Intent employerIntent = new Intent(this, job_Posting.class);
+        startActivity(employerIntent);
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+        // If needed, implement item selection handling here
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
+        // If needed, implement action for no selection here
     }
 
     private void setupAddJobListener() {
-        Button loginButton = findViewById(R.id.button);
+        Button addButton = findViewById(R.id.button); // Ensure the button ID matches XML
 
-        // Set onClick listener for the login button.
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        // Set onClick listener for the add job button.
+        addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 move2JobPosting();
@@ -103,12 +97,8 @@ public class employer_landing extends AppCompatActivity  implements View.OnClick
     }
 
     @Override
-    public void onClick(View v){
-
-
+    public void onClick(View v) {
+        // This can be expanded if you have multiple clickable elements
         move2JobPosting();
     }
-
-
-
 }

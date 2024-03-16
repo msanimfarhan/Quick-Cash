@@ -47,12 +47,13 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/jobsRecycler"
-            android:layout_width="306dp"
-            android:layout_height="401dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/currentPost"
-            app:layout_constraintVertical_bias="0.113"
-            tools:layout_editor_absoluteX="53dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.0"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

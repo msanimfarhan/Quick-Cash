@@ -26,9 +26,8 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder>{
     public void onBindViewHolder(@NonNull JobViewHolder holder, int position) {
         JobPosting job = jobList.get(position);
         holder.jobTitle.setText(job.getTitle());
-        holder.jobDescription.setText(job.getDescription());
-        holder.location.setText(job.getLocation());
-        holder.payments.setText(job.getPayment());
+        // Set other job details in the holder
+
 
         // Set other fields as needed
         holder.itemView.setOnClickListener(new View.OnClickListener() {
