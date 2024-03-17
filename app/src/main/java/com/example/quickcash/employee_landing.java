@@ -69,7 +69,7 @@ public class employee_landing extends AppCompatActivity {
                     public void onSuccess(Location location) {
                         if (location != null) {
                             String locationStr = "Latitude: " + location.getLatitude() + "\nLongitude: " + location.getLongitude();
-                            // String locationStr = "Latitude: " + "44.6357" + "\nLongitude: " + "-63.5952"; // This seems to be a placeholder, comment it out.
+                            //String locationStr = "Latitude: " + "44.6357" + "\nLongitude: " + "-63.5952";
                             crud.setLocation(locationStr);
                             locationTextView.setText(locationStr);
                         } else {
