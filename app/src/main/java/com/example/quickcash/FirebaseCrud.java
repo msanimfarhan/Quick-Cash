@@ -129,6 +129,10 @@ public class FirebaseCrud {
         void onJobPostingsRetrieved(List<JobPosting> jobPostings);
         void onError(Exception e);
     }
+    public interface NotificationResultCallback {
+        void onNotificationRetrieved(List<JobPosting> jobPostings);
+        void onError(Exception e);
+    }
     protected void initializeDatabaseRefListeners() {
         //Incomplete method, add your implementation
         this.setNameListener();
