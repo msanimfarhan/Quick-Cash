@@ -118,6 +118,35 @@ public class FirebaseCrud {
         });
     }
 
+    public void fetchAllJobNotifications(final JobNotificationsResultCallback callback) {
+        DatabaseReference allJobsRef = database.getReference("AllJobs");
+
+        allJobsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<JobNotificationData> jobNotifications = new ArrayList<>();
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String jobID = snapshot.getKey();
+                    JobNotificationData jobNotification = snapshot.getValue(JobNotificationData.class);
+
+                    if (jobNotification != null) {
+                        jobNotification.setJobID(jobID);
+                        jobNotifications.add(jobNotification);
+                    }
+                }
+
+                callback.onJobNotificationsRetrieved(jobNotifications);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                callback.onError(databaseError.toException());
+            }
+        });
+    }
+
+
     // Callback interface for job posting results
     public interface JobPostingResultCallback {
         void onSuccess(String result);
@@ -129,6 +158,12 @@ public class FirebaseCrud {
         void onJobPostingsRetrieved(List<JobPosting> jobPostings);
         void onError(Exception e);
     }
+
+    public interface JobNotificationsResultCallback {
+        void onJobNotificationsRetrieved(List<JobNotificationData> jobNotifications);
+        void onError(Exception e);
+    }
+
     public interface NotificationResultCallback {
         void onNotificationRetrieved(List<JobPosting> jobPostings);
         void onError(Exception e);

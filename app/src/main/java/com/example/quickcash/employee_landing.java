@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,6 +25,9 @@ import java.util.List;
 public class employee_landing extends AppCompatActivity {
     private RecyclerView jobsRecyclerView;
     private JobAdapter adapter;
+    private Button Notificaion;
+
+    private Button JobBoard;
     private FirebaseCrud firebaseCrud;
     FirebaseCrud crud = null;
 
@@ -33,6 +37,26 @@ public class employee_landing extends AppCompatActivity {
         setContentView(R.layout.employee_landing);
         jobsRecyclerView = findViewById(R.id.jobRecycler2);
         jobsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        Notificaion = findViewById(R.id.notification_btn);
+        JobBoard = findViewById(R.id.job_board_btn);
+
+        Notificaion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(employee_landing.this, JobNotification.class);
+                startActivity(intent);
+            }
+        });
+
+        JobBoard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(employee_landing.this, employee_landing.class);
+                startActivity(intent);
+            }
+        });
+
         FirebaseApp.initializeApp(this);
 
         // Initialize database access and Firebase CRUD operations

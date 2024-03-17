@@ -23,11 +23,11 @@
             </intent-filter>
         </activity>
 
-        <!-- Declare all other activities without the android:name attribute in application tag -->
-        <activity android:name=".RegisterActivity" />
         <activity android:name=".employee_landing" />
         <activity android:name=".employer_landing" />
         <activity android:name=".job_Posting" />
+        <activity android:name=".JobNotification" />
+        <activity android:name=".RegisterActivity" />
         <activity android:name=".ApplyJobActivity" />
         <activity android:name=".Notification" />
 
