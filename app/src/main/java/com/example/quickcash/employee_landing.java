@@ -63,9 +63,6 @@ public class employee_landing extends AppCompatActivity{
 
     }
 
-
-
-
     protected void initializeDatabaseAccess() {
         // Assuming you have a string resource named FIREBASE_DB_URL with the Firebase database URL.
         FirebaseDatabase database = FirebaseDatabase.getInstance(getResources().getString(R.string.FIREBASE_DB_URL));
