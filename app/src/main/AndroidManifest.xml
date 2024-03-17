@@ -29,6 +29,7 @@
         <activity android:name=".employer_landing" />
         <activity android:name=".job_Posting" />
         <activity android:name=".ApplyJobActivity" />
+        <activity android:name=".Notification" />
 
     </application>
 
