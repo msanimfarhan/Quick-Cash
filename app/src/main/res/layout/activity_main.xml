@@ -6,12 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!-- Login Label -->
-
-    <!-- Username EditText -->
-
-    <!-- Password EditText -->
-
     <EditText
         android:id="@+id/username"
         android:layout_width="0dp"

@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatButton;
@@ -24,7 +25,9 @@ import java.util.List;
 public class employee_landing extends AppCompatActivity{
     private RecyclerView jobsRecyclerView;
     private JobAdapter adapter;
-    private AppCompatButton Notificaion;
+    private Button Notificaion;
+
+    private Button JobBoard;
     private FirebaseCrud firebaseCrud;
     FirebaseCrud crud = null;
 
@@ -34,7 +37,9 @@ public class employee_landing extends AppCompatActivity{
         setContentView(R.layout.employee_landing);
         jobsRecyclerView = findViewById(R.id.jobRecycler2);
         jobsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        Notificaion = findViewById(R.id.NotificationButton);
+
+        Notificaion = findViewById(R.id.notification_btn);
+        JobBoard = findViewById(R.id.job_board_btn);
 
         Notificaion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,12 +48,30 @@ public class employee_landing extends AppCompatActivity{
                 startActivity(intent);
             }
         });
+
+        JobBoard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(employee_landing.this, employee_landing.class);
+                startActivity(intent);
+            }
+        });
+
         FirebaseApp.initializeApp(this);
 
         // Initialize database access and Firebase CRUD operations
         initializeDatabaseAccess();
 
         fetchJobsAndUpdateUI();
+        Button notificationButton = findViewById(R.id.job_board_btn);
+        notificationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the new activity
+                Intent intent = new Intent(employee_landing.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void fetchJobsAndUpdateUI() {
@@ -74,9 +97,6 @@ public class employee_landing extends AppCompatActivity{
 
 
     }
-
-
-
 
     protected void initializeDatabaseAccess() {
         // Assuming you have a string resource named FIREBASE_DB_URL with the Firebase database URL.

@@ -6,12 +6,16 @@
     android:layout_height="match_parent"
     android:visibility="visible">
 
+    <include layout="@layout/toolbar"
+        android:id="@+id/notificationtoolbar"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/jobNotificationRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="80dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.961"
+        app:layout_constraintStart_toEndOf="@id/notificationtoolbar"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

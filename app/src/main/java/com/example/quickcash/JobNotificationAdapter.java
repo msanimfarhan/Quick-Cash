@@ -1,5 +1,6 @@
 package com.example.quickcash;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,14 @@ public class JobNotificationAdapter extends RecyclerView.Adapter<JobNotification
         holder.jobPayment.setText("Hourly Payment: "+jobNotification.getPayment()+" $");
         holder.jobLocation.setText("Location: "+jobNotification.getLocation());
         holder.jobType.setText("Job Type: "+jobNotification.getJobType());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), ApplyJobActivity.class);
+                view.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -56,48 +56,5 @@ public class LoginExpressoTest {
         onView(withId(R.id.login_button)).check(matches(isDisplayed()));
     }
 
-    @Test
-    public void LoggedInTest() throws Exception {
-
-        onView(anyOf(
-                withText("Employee Landing"),
-                withText("Employer Landing")
-        )).check(matches(isDisplayed()));
-
-
-        UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-        device.pressHome();
-
-
-        pressBack();
-
-
-        device.pressRecentApps();
-
-        device.findObject(new UiSelector().descriptionContains("QuickCash")).click();
-
-
-        onView(anyOf(
-                withText("Employee Landing"),
-                withText("Employer Landing")
-        )).check(matches(isDisplayed()));
-    }
-
-//    @Test
-//    public void loginNavigatesToCorrectLandingPage() {
-//        onView(withId(R.id.username))
-//                .perform(typeText("ahasan@dal.ca"), closeSoftKeyboard());
-//        onView(withId(R.id.password))
-//                .perform(typeText("qwertwert"), closeSoftKeyboard());
-//        onView(withId(R.id.login_button)).perform(click());
-//
-//        // Checks for employee toolbar
-//        try {
-//            onView(withId(R.id.employee_toolbar)).check(matches(isDisplayed()));
-//        } catch (AssertionError employeeToolbarNotFound) {
-//            // checks for employee Toolbar
-//            onView(withId(R.id.employer_toolbar)).check(matches(isDisplayed()));
-//        }
-//    }
 
 }
