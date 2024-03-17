@@ -3,25 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:visibility="visible">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/NotificationButton"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="Notifications"/>
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/jobRecycler2"
-        android:layout_width="407dp"
-        android:layout_height="420dp"
-        android:layout_marginTop="124dp"
+        android:id="@+id/jobNotificationRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-

@@ -33,6 +33,9 @@
         <activity android:name=".job_Posting">
 
         </activity>
+        <activity android:name=".JobNotification">
+
+        </activity>
 
     </application>
 
