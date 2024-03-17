@@ -7,6 +7,19 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import org.junit.Test;
+
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 public class jUnitTest {
 
     private Register register;
@@ -65,5 +78,37 @@ public class jUnitTest {
     public void isValidRole_invalidRole_ReturnTrue() {
         Assert.assertTrue(register.validRole("Employer"));
         Assert.assertTrue(register.validRole("Employee"));
+    }
+    @Test
+    public void testLocationDataExists() throws InterruptedException {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference userRef = database.getReference("Users").child("a@dal,ca");
+
+        final CountDownLatch latch = new CountDownLatch(1);
+
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.exists()) {
+                    fail("User does not exist in the database");
+                } else {
+                    String location = dataSnapshot.child("location").getValue(String.class);
+                    assertNotNull("Location data exists", location);
+                    assertTrue("Location contains Latitude", location.contains("Latitude"));
+                    assertTrue("Location contains Longitude", location.contains("Longitude"));
+                }
+                latch.countDown();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                fail("Database error: " + databaseError.getMessage());
+                latch.countDown();
+            }
+        });
+
+        if (!latch.await(5, TimeUnit.SECONDS)) {
+            fail("Firebase response timed out.");
+        }
     }
 }

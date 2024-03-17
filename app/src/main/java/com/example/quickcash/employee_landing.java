@@ -2,6 +2,8 @@ package com.example.quickcash;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import android.Manifest;
+
 
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -12,27 +14,18 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-
-//
-import android.Manifest;
-
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.FirebaseDatabase;
 
 import android.location.Location;
 import android.widget.TextView;
 
-
 public class employee_landing extends AppCompatActivity {
 
     private FusedLocationProviderClient fusedLocationClient;
     private TextView locationTextView;
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://quick-cash-c28b9-default-rtdb.firebaseio.com/");
-    FirebaseCrud crud = new FirebaseCrud(database);
-
-    private FirebaseCrud firebaseCrud;
+    private FirebaseCrud crud = new FirebaseCrud(database);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +38,8 @@ public class employee_landing extends AppCompatActivity {
         locationTextView = findViewById(R.id.location_text_view);
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         checkLocationPermissionAndGetLocation();
-        FirebaseCrud firebaseCrud = new FirebaseCrud(FirebaseDatabase.getInstance());
+        // Removed the unnecessary Object declaration and re-declaration of firebaseCrud
+        crud = new FirebaseCrud(FirebaseDatabase.getInstance());
     }
 
     //
@@ -63,12 +57,10 @@ public class employee_landing extends AppCompatActivity {
         if (requestCode == 1 && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             getLastLocation();
         }
-
     }
 
     private void getLastLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
             return;
         }
         fusedLocationClient.getLastLocation()
@@ -76,8 +68,8 @@ public class employee_landing extends AppCompatActivity {
                     @Override
                     public void onSuccess(Location location) {
                         if (location != null) {
-                            //String locationStr = "Latitude: " + location.getLatitude() + "\nLongitude: " + location.getLongitude();
-                            String locationStr = "Latitude: " + "44.6357" + "\nLongitude: " + "-63.5952";
+                            String locationStr = "Latitude: " + location.getLatitude() + "\nLongitude: " + location.getLongitude();
+                            // String locationStr = "Latitude: " + "44.6357" + "\nLongitude: " + "-63.5952"; // This seems to be a placeholder, comment it out.
                             crud.setLocation(locationStr);
                             locationTextView.setText(locationStr);
                         } else {
@@ -86,7 +78,4 @@ public class employee_landing extends AppCompatActivity {
                     }
                 });
     }
-
-
-
 }

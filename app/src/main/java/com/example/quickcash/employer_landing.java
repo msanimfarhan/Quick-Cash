@@ -75,8 +75,8 @@ public class employer_landing extends AppCompatActivity {
                     @Override
                     public void onSuccess(Location location) {
                         if (location != null) {
-                            //String locationStr = "Latitude: " + location.getLatitude() + "\nLongitude: " + location.getLongitude();
-                            String locationStr = "Latitude: " + "44.6358" + "\nLongitude: " + "-63.5952";
+                            String locationStr = "Latitude: " + location.getLatitude() + "\nLongitude: " + location.getLongitude();
+                            //String locationStr = "Latitude: " + "44.6358" + "\nLongitude: " + "-63.5952";
                             locationTextView.setText(locationStr);
 
                             // Update location in Firebase
