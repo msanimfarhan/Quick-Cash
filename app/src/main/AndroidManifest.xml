@@ -29,8 +29,7 @@
         <activity android:name=".JobNotification" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ApplyJobActivity" />
-        <activity android:name=".JobNotification" />
-        <!-- Declare all other activities without the android:name attribute in application tag -->
+        <activity android:name=".Notification" />
 
     </application>
 
