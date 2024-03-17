@@ -13,3 +13,7 @@ i
 9app/src/main/java/com/example/quickcash/RecyclerView.java,8\0\8050cd5dc3ebd273cb9d775f1dd1ff92f7ea04ae
 m
 =app/src/main/java/com/example/quickcash/employer_landing.java,3\e\3ea3f7947b390be3a6fbb922ba9c8003e3c5dd21
+z
+Japp/src/androidTest/java/com/example/quickcash/jobPostingEspressoTest.java,b\e\beaf1c4dfca74a66d922b1fa043d20aab4358ba9
+u
+Eapp/src/androidTest/java/com/example/quickcash/LoginExpressoTest.java,e\5\e5ef55011337481a052e3f9c623bf26d0ec138f2

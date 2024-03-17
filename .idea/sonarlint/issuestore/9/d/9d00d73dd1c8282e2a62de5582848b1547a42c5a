@@ -1,0 +1,20 @@
+
+’	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶Öæ…ıÿÿÿÿJ$9721aefe-b519-4439-8565-ff5262081466
+’	java:S117‘"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(öô±òûÿÿÿÿJ$375f4480-47ba-4ccd-a3f2-578254123048
+	java:S117’"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰ò£³J$7c64d1f1-e092-45e2-b1e0-e67164809401
+i
+java:S1604<"(Make this anonymous inner class a lambda(«–ÂæşÿÿÿÿJ$6346fde9-9171-4d1e-98d4-db2b22932d29
+i
+java:S1604h"(Make this anonymous inner class a lambda(«–ÂæşÿÿÿÿJ$8bea58c4-a584-4902-85db-af8e1277c4d6
+j
+java:S1604‹"(Make this anonymous inner class a lambda(¿åëıÿÿÿÿÿJ$8712422b-e6cc-476f-bc6b-017b191f6b76
+W
+java:S3626"Remove this redundant jump.(ûÁİ…J$24bc923a-d68c-4630-9f49-4aa2dd42b18e
+
+java:S1854‹"=Remove this useless assignment to local variable "reference".(¿åëıÿÿÿÿÿJ$c8ec7578-d0a9-4b88-a649-070c20797299
+p
+java:S1481‹".Remove this unused "reference" local variable.(¿åëıÿÿÿÿÿJ$baa95ce6-6c4e-4024-ae9a-7ba227db8453
+_
+java:S1128"Remove this duplicated import.(©›ïÍúÿÿÿÿJ$d348b1d6-d9a5-48f8-bff9-33bf033f8f7b
+k
+java:S1068"0Remove this unused "firebaseCrud" private field.(‰ËÆqJ$e73eb7f6-4729-4b1d-ba21-88e3e2b221f2
