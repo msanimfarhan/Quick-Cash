@@ -2,10 +2,19 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="LoggedInTest()">
+        <State />
+      </entry>
+      <entry key="LoginExpressoTest">
+        <State />
+      </entry>
       <entry key="app">
         <State />
       </entry>
       <entry key="group10-csci3130-se-project-w24.QuickCash.app.androidtest">
+        <State />
+      </entry>
+      <entry key="jobPostingEspressoTest">
         <State />
       </entry>
     </value>
