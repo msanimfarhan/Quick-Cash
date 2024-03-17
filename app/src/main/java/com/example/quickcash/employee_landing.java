@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
@@ -37,6 +39,15 @@ public class employee_landing extends AppCompatActivity{
         initializeDatabaseAccess();
 
         fetchJobsAndUpdateUI();
+        Button notificationButton = findViewById(R.id.job_board_btn);
+        notificationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the new activity
+                Intent intent = new Intent(employee_landing.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void fetchJobsAndUpdateUI() {
