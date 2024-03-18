@@ -109,6 +109,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         Intent employeeIntent = new Intent(this, employee_landing.class);
         startActivity(employeeIntent);
     }
+
     //    protected void saveInfoToFirebase(String name, String emailAddress, String role, String pass) {
 //        if (crud != null) {
 //
@@ -122,6 +123,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 //        }
 //    }
     protected void saveInfoToFirebase(String name, String email, String role, String pass, String locationString) {
+
         //Incomplete method, add your implementation
         Map<String, String> user = new HashMap<>();
         user.put("email", email);

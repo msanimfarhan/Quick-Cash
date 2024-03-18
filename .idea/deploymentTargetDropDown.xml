@@ -2,25 +2,7 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="LoginEspressoTest">
-        <State />
-      </entry>
       <entry key="app">
-        <State />
-      </entry>
-      <entry key="app.androidtest">
-        <State />
-      </entry>
-      <entry key="jUnitTest">
-        <State />
-      </entry>
-      <entry key="testLocationDataExists()">
-        <State />
-      </entry>
-      <entry key="testLocationDisplayedOnEmployeeLandingPage()">
-        <State />
-      </entry>
-      <entry key="testLocationDisplayedOnEmployerLandingPage()">
         <State />
       </entry>
     </value>

@@ -21,8 +21,30 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.Toast;
 
-public class employer_landing extends AppCompatActivity {
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
+
+
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.List;
+
+public class employer_landing extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+    private RecyclerView jobsRecyclerView;
+    private JobAdapter adapter;
+    FirebaseCrud crud = null;
+    private FirebaseDatabase database;
 
     private FusedLocationProviderClient fusedLocationClient;
     private TextView locationTextView;
@@ -34,8 +56,9 @@ public class employer_landing extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.emplyer_landing);
-        Toolbar employeeToolbar = (Toolbar) findViewById(R.id.employee_toolbar);
-        setSupportActionBar(employeeToolbar);
+
+//        Toolbar employeeToolbar = (Toolbar) findViewById(R.id.employee_toolbar);
+//        setSupportActionBar(employeeToolbar);
 
         // Initialize Firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -88,5 +111,79 @@ public class employer_landing extends AppCompatActivity {
                         }
                     }
                 });
+
+
+        jobsRecyclerView = findViewById(R.id.jobsRecycler);
+        jobsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // Initialize Firebase
+        FirebaseApp.initializeApp(this);
+
+        // Initialize database access and Firebase CRUD operations
+        initializeDatabaseAccess();
+
+        setupAddJobListener();
+
+        fetchJobsAndUpdateUI();
+    }
+
+    private void fetchJobsAndUpdateUI() {
+        SharedPreferences sharedPref = getSharedPreferences("userDetails", Context.MODE_PRIVATE);
+        String userEmail = sharedPref.getString("userEmail", null);
+        String sanitizedEmail = userEmail.replace(".", ",");
+
+        crud.fetchUserJobs(sanitizedEmail, new FirebaseCrud.JobPostingsResultCallback() {
+            @Override
+            public void onJobPostingsRetrieved(List<JobPosting> jobPostings) {
+                // Use the job postings list to update the RecyclerView
+                adapter = new JobAdapter(jobPostings);
+                jobsRecyclerView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onError(Exception e) {
+                Toast.makeText(employer_landing.this, "Error fetching jobs: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    protected void initializeDatabaseAccess() {
+        // Assuming you have a string resource named FIREBASE_DB_URL with the Firebase database URL.
+        FirebaseDatabase database = FirebaseDatabase.getInstance(getResources().getString(R.string.FIREBASE_DB_URL));
+        crud = new FirebaseCrud(database);
+    }
+
+    protected void move2JobPosting() {
+        Intent employerIntent = new Intent(this, job_Posting.class);
+        startActivity(employerIntent);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        // If needed, implement item selection handling here
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        // If needed, implement action for no selection here
+    }
+
+    private void setupAddJobListener() {
+        Button addButton = findViewById(R.id.button); // Ensure the button ID matches XML
+
+        // Set onClick listener for the add job button.
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                move2JobPosting();
+            }
+        });
+    }
+
+    @Override
+    public void onClick(View v) {
+        // This can be expanded if you have multiple clickable elements
+        move2JobPosting();
+
     }
 }

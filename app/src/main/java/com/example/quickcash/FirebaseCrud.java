@@ -1,7 +1,5 @@
 package com.example.quickcash;
 
-import android.content.Context;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,8 +11,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
+
+import java.util.List;
 
 public class FirebaseCrud {
+    private DatabaseReference userRef;
     private FirebaseDatabase database;
     String  result="";
 
@@ -35,7 +39,136 @@ public class FirebaseCrud {
         this.locationRef = getLocationRef();
 
     }
+    protected DatabaseReference getUserRef(String userMail) {
+        return this.database.getReference(userMail);
+    }
 
+
+    public void addJobPosting(JobPosting jobPosting, String userMail, final JobPostingResultCallback callback) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        String sanitizedEmail = userMail.replace(".", ",");
+
+//        DatabaseReference usersRef = database.getReference(sanitizedEmail);
+        DatabaseReference Alljobsref = database.getReference("AllJobs");
+        DatabaseReference userRef = database.getReference("Users").child(sanitizedEmail).child("jobs");
+
+        userRef.push().setValue(jobPosting).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    callback.onSuccess("Job posted successfully!");
+                } else {
+//                    Toast.makeText(this, "Job posted successfully!", Toast.LENGTH_LONG).show();
+                    callback.onFailure(task.getException().getMessage());
+                }
+            }
+        });
+        Alljobsref.push().setValue(jobPosting).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    callback.onSuccess("Job posted successfully!");
+                } else {
+//                    Toast.makeText(this, "Job posted successfully!", Toast.LENGTH_LONG).show();
+                    callback.onFailure(task.getException().getMessage());
+                }
+            }
+        });
+    }
+
+    public void fetchAllJobs(final JobPostingsResultCallback callback) {
+        DatabaseReference allJobsRef = database.getReference("AllJobs");
+
+        allJobsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<JobPosting> jobPostings = new ArrayList<>();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    JobPosting job = snapshot.getValue(JobPosting.class);
+                    jobPostings.add(job);
+                }
+                callback.onJobPostingsRetrieved(jobPostings);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                callback.onError(databaseError.toException());
+            }
+        });
+    }
+
+    public void fetchUserJobs(String userEmail, final JobPostingsResultCallback callback) {
+        String sanitizedEmail = userEmail.replace(".", ",");
+        DatabaseReference userJobsRef = database.getReference("Users").child(sanitizedEmail).child("jobs");
+
+        userJobsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<JobPosting> jobPostings = new ArrayList<>();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    JobPosting job = snapshot.getValue(JobPosting.class);
+                    jobPostings.add(job);
+                }
+                callback.onJobPostingsRetrieved(jobPostings);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                callback.onError(databaseError.toException());
+            }
+        });
+    }
+
+    public void fetchAllJobNotifications(final JobNotificationsResultCallback callback) {
+        DatabaseReference allJobsRef = database.getReference("AllJobs");
+
+        allJobsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<JobNotificationData> jobNotifications = new ArrayList<>();
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String jobID = snapshot.getKey();
+                    JobNotificationData jobNotification = snapshot.getValue(JobNotificationData.class);
+
+                    if (jobNotification != null) {
+                        jobNotification.setJobID(jobID);
+                        jobNotifications.add(jobNotification);
+                    }
+                }
+
+                callback.onJobNotificationsRetrieved(jobNotifications);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                callback.onError(databaseError.toException());
+            }
+        });
+    }
+
+
+    // Callback interface for job posting results
+    public interface JobPostingResultCallback {
+        void onSuccess(String result);
+        void onFailure(String errorMessage);
+    }
+
+    // Callback interface for retrieving multiple job postings
+    public interface JobPostingsResultCallback {
+        void onJobPostingsRetrieved(List<JobPosting> jobPostings);
+        void onError(Exception e);
+    }
+
+    public interface JobNotificationsResultCallback {
+        void onJobNotificationsRetrieved(List<JobNotificationData> jobNotifications);
+        void onError(Exception e);
+    }
+
+    public interface NotificationResultCallback {
+        void onNotificationRetrieved(List<JobPosting> jobPostings);
+        void onError(Exception e);
+    }
     protected void initializeDatabaseRefListeners() {
         //Incomplete method, add your implementation
         this.setNameListener();
@@ -206,24 +339,34 @@ public class FirebaseCrud {
             }
         });
     }
+    public void applyForJob(String jobId, String applicantEmail, String applicantName, String applicantPhoneNumber, final JobApplicationResultCallback callback) {
+        DatabaseReference jobApplicationRef = database.getReference("JobApplications").child(jobId);
 
+        HashMap<String, Object> application = new HashMap<>();
+        application.put("email", applicantEmail);
+        application.put("name", applicantName);
+        application.put("phoneNumber", applicantPhoneNumber);
 
-    // Code For Login
-    protected void showResult(String data) {
-
+        jobApplicationRef.push().setValue(application)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        callback.onApplicationSuccess("Application submitted successfully!");
+                    } else {
+                        if (task.getException() != null) {
+                            callback.onApplicationFailure(task.getException().getMessage());
+                        } else {
+                            callback.onApplicationFailure("Unknown error occurred.");
+                        }
+                    }
+                });
     }
 
-    // Additional method for user login verification
-
-
-
-
-    // Callback interface for login results
-    public interface LoginResultCallback {
-        void onSuccess(String result);
-
-        void onFailure(String errorMessage);
+    public interface JobApplicationResultCallback {
+        void onApplicationSuccess(String result);
+        void onApplicationFailure(String errorMessage);
     }
+
+
 
 
 }

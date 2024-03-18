@@ -79,11 +79,16 @@ public class LoginEspressoTest {
         onView(withId(R.id.login_button)).perform(click());
 
 
+
+        // Check that the login button is not displayed, which indicates we have navigated away from the login screen
+
         onView(withId(R.id.login_button)).check(doesNotExist());
     }
 
     @Test
+
     public void Test3_LoginFailed() {
+
         // Use known incorrect credentials
         onView(withId(R.id.username))
                 .perform(typeText("wrong.email@dal.ca"), closeSoftKeyboard());
@@ -93,6 +98,7 @@ public class LoginEspressoTest {
 
         onView(withId(R.id.login_button)).check(matches(isDisplayed()));
     }
+
 
     @Test
     public void testLocationDisplayedOnEmployeeLandingPage() {
@@ -113,7 +119,6 @@ public class LoginEspressoTest {
                 .check(matches(withText(containsString("Latitude:"))))
                 .check(matches(withText(containsString("Longitude:"))));
     }
-
 
 }
 
