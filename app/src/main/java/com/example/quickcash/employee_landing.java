@@ -69,7 +69,7 @@ public class employee_landing extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Start the new activity
-                Intent intent = new Intent(employee_landing.this, Notification.class);
+                Intent intent = new Intent(employee_landing.this, JobNotification.class);
                 startActivity(intent);
             }
         });

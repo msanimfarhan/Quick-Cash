@@ -2,8 +2,13 @@ package com.example.quickcash;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,6 +39,31 @@ public class JobNotification extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
 
         fetchJobNotifications();
+        Button jobBoardBtn = findViewById(R.id.job_board_btn);
+        Button notificationButton = findViewById(R.id.notification_btn);
+        notificationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the new activity
+                Intent intent = new Intent(JobNotification.this, JobNotification.class);
+                startActivity(intent);
+            }
+        });
+        jobBoardBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the new activity
+                SharedPreferences sharedPref = getSharedPreferences("userDetails", Context.MODE_PRIVATE);
+                String userRole = sharedPref.getString("userRole", "");
+                Intent intent;
+                if (userRole.equals("Employee")) {
+                    intent = new Intent(JobNotification.this, employee_landing.class);
+                } else{
+                    intent = new Intent(JobNotification.this, employer_landing.class);
+                }
+                startActivity(intent);
+            }
+        });
     }
 
     private void fetchJobNotifications() {
