@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,9 +22,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
-public class employee_landing extends AppCompatActivity{
+public class employee_landing extends AppCompatActivity {
     private RecyclerView jobsRecyclerView;
     private JobAdapter adapter;
+    private Button Notificaion;
+
+    private Button JobBoard;
     private FirebaseCrud firebaseCrud;
     FirebaseCrud crud = null;
 
@@ -33,18 +37,54 @@ public class employee_landing extends AppCompatActivity{
         setContentView(R.layout.employee_landing);
         jobsRecyclerView = findViewById(R.id.jobRecycler2);
         jobsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        Notificaion = findViewById(R.id.notification_btn);
+        JobBoard = findViewById(R.id.job_board_btn);
+
+        Notificaion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(employee_landing.this, JobNotification.class);
+                startActivity(intent);
+            }
+        });
+
+        JobBoard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(employee_landing.this, employee_landing.class);
+                startActivity(intent);
+            }
+        });
+
         FirebaseApp.initializeApp(this);
 
         // Initialize database access and Firebase CRUD operations
         initializeDatabaseAccess();
 
         fetchJobsAndUpdateUI();
-        Button notificationButton = findViewById(R.id.job_board_btn);
+        Button jobBoardBtn = findViewById(R.id.job_board_btn);
+        Button notificationButton = findViewById(R.id.notification_btn);
         notificationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Start the new activity
-                Intent intent = new Intent(employee_landing.this, MainActivity.class);
+                Intent intent = new Intent(employee_landing.this, JobNotification.class);
+                startActivity(intent);
+            }
+        });
+        jobBoardBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the new activity
+                SharedPreferences sharedPref = getSharedPreferences("userDetails", Context.MODE_PRIVATE);
+                String userRole = sharedPref.getString("userRole", "");
+                Intent intent;
+                if (userRole.equals("Employee")) {
+                    intent = new Intent(employee_landing.this, employee_landing.class);
+                } else{
+                    intent = new Intent(employee_landing.this, employer_landing.class);
+                }
                 startActivity(intent);
             }
         });
@@ -79,7 +119,6 @@ public class employee_landing extends AppCompatActivity{
         FirebaseDatabase database = FirebaseDatabase.getInstance(getResources().getString(R.string.FIREBASE_DB_URL));
         crud = new FirebaseCrud(database);
     }
-
 
 
 }

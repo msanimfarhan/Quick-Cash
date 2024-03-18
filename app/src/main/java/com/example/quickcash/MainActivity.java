@@ -43,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
         setupLoginButtonListener();
         setupRegisterButton();
         setupUI();
-
-
     }
 
     // Method to initialize Firebase database access and CRUD operations.
@@ -182,8 +180,6 @@ public class MainActivity extends AppCompatActivity {
 
         });
     }
-
-
 
 
 }
