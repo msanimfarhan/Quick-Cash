@@ -3,7 +3,9 @@ package com.example.quickcash;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -146,10 +148,23 @@ public class MainActivity extends AppCompatActivity {
 
                     if (email.equals(DBemail) && pass.equals(DBpassword)) {
 
+
                         Toast.makeText(MainActivity.this, "Login successfull", Toast.LENGTH_SHORT).show();
                         if(DBrole.equals("Employer")){
+                            SharedPreferences sharedPref = getSharedPreferences("userDetails", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPref.edit();
+                            editor.putString("userEmail", sanitizedEmail);
+                            editor.putString("userRole", DBrole);
+                            editor.apply();
+
                             move2employer();
                         } else if (DBrole.equals("Employee")){
+                            SharedPreferences sharedPref = getSharedPreferences("userDetails", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPref.edit();
+                            editor.putString("userEmail", sanitizedEmail);
+                            editor.putString("userRole", DBrole);
+                            editor.apply();
+
                             move2employee();
                         }
                     } else{

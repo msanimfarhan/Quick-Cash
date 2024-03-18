@@ -3,19 +3,54 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:visibility="visible">
 
-    <include
-        android:id="@+id/employee_toolbar"
-        layout="@layout/toolbar" />
+    <include layout="@layout/toolbar"/>
+
+
+
 
     <TextView
-        android:id="@+id/employee_landing"
-        android:layout_width="match_parent"
+        android:id="@+id/tvCurrentJobPostings"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Employee Landing"
-        app:layout_constraintTop_toBottomOf="@id/employee_toolbar"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        android:layout_marginTop="80dp"
+        android:text="Current Job Postings"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/jobRecycler2"
+        android:layout_width="408dp"
+        android:layout_height="538dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCurrentJobPostings" />
+
+    <TextView
+        android:id="@+id/location_text_view"
+        android:layout_width="386dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="49dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="1dp"
+        android:text="Location"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/jobRecycler2"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="MissingConstraints" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

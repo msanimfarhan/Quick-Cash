@@ -3,6 +3,19 @@
   <component name="AndroidTestResultsUserPreferences">
     <option name="androidTestResultsTableState">
       <map>
+        <entry key="-2137501244">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Pixel_8_API_30_2" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
         <entry key="-2049809091">
           <value>
             <AndroidTestResultsTableState>
@@ -22,6 +35,11 @@
               <option name="preferredColumnWidths">
                 <map>
                   <entry key="Duration" value="90" />
+<<<<<<< HEAD
+                  <entry key="Pixel_6_API_34" value="120" />
+=======
+                  <entry key="Pixel_3a_API_34_extension_level_7_arm64-v8a" value="120" />
+>>>>>>> user3
                   <entry key="Pixel_7_Pro_API_34" value="120" />
                   <entry key="Tests" value="360" />
                 </map>
@@ -55,6 +73,27 @@
             </AndroidTestResultsTableState>
           </value>
         </entry>
+<<<<<<< HEAD
+        <entry key="-1738711497">
+=======
+        <entry key="-1418573743">
+>>>>>>> user3
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+<<<<<<< HEAD
+                  <entry key="Pixel_6_API_34" value="120" />
+=======
+                  <entry key="Pixel_8_API_30_2" value="120" />
+>>>>>>> user3
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
         <entry key="-727942448">
           <value>
             <AndroidTestResultsTableState>
@@ -81,12 +120,68 @@
             </AndroidTestResultsTableState>
           </value>
         </entry>
+        <entry key="-493827697">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+<<<<<<< HEAD
+                  <entry key="Pixel_6_API_34" value="120" />
+=======
+                  <entry key="Pixel_3a_API_34_extension_level_7_arm64-v8a" value="120" />
+>>>>>>> user3
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+<<<<<<< HEAD
+        <entry key="-428481959">
+=======
+        <entry key="-78500924">
+>>>>>>> user3
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+<<<<<<< HEAD
+                  <entry key="Pixel_6_API_34" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="52246246">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Pixel_6_API_34" value="120" />
+=======
+                  <entry key="Pixel_3a_API_34_extension_level_7_arm64-v8a" value="120" />
+>>>>>>> user3
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
         <entry key="802446050">
           <value>
             <AndroidTestResultsTableState>
               <option name="preferredColumnWidths">
                 <map>
                   <entry key="Duration" value="90" />
+<<<<<<< HEAD
+                  <entry key="Pixel_6_API_34" value="120" />
+=======
+                  <entry key="Pixel_3a_API_34_extension_level_7_arm64-v8a" value="120" />
+>>>>>>> user3
                   <entry key="Pixel_7_Pro_API_34" value="120" />
                   <entry key="Tests" value="360" />
                 </map>
@@ -113,7 +208,9 @@
               <option name="preferredColumnWidths">
                 <map>
                   <entry key="Duration" value="90" />
+                  <entry key="Pixel_3a_API_34_extension_level_7_arm64-v8a" value="120" />
                   <entry key="Pixel_6_API_34" value="120" />
+                  <entry key="Pixel_8_API_30_2" value="120" />
                   <entry key="Tests" value="360" />
                 </map>
               </option>
@@ -127,6 +224,19 @@
                 <map>
                   <entry key="Duration" value="90" />
                   <entry key="Pixel_3a_API_30" value="120" />
+                  <entry key="Pixel_6_API_34" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="1144486294">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
                   <entry key="Pixel_6_API_34" value="120" />
                   <entry key="Tests" value="360" />
                 </map>
@@ -155,6 +265,19 @@
                 <map>
                   <entry key="Duration" value="90" />
                   <entry key="Pixel_7_Pro_API_34" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="2036126708">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Pixel_6_API_34" value="120" />
                   <entry key="Tests" value="360" />
                 </map>
               </option>

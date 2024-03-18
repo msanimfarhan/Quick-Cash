@@ -109,6 +109,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         Intent employeeIntent = new Intent(this, employee_landing.class);
         startActivity(employeeIntent);
     }
+
     //    protected void saveInfoToFirebase(String name, String emailAddress, String role, String pass) {
 //        if (crud != null) {
 //
@@ -121,13 +122,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 //            Toast.makeText(this, "Database connection not initialized", Toast.LENGTH_SHORT).show();
 //        }
 //    }
-    protected void saveInfoToFirebase(String name, String email, String role, String pass) {
+    protected void saveInfoToFirebase(String name, String email, String role, String pass, String locationString) {
+
         //Incomplete method, add your implementation
         Map<String, String> user = new HashMap<>();
         user.put("email", email);
         user.put("name", name);
         user.put("role", role);
         user.put("password", pass);
+        user.put("location", locationString);
         String sanitizedEmail=email.replace(".", ",");
         firebaseDBRef = FirebaseDatabase.getInstance().getReference("Users");
         firebaseDBRef.child(sanitizedEmail).setValue(user).addOnCompleteListener(task -> {
@@ -219,7 +222,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         // Allow user to register if everything is valid
         if (registrationValid) {
-            this.saveInfoToFirebase(name, email, role, password);
+            String locationString = "Latitude: 44.6357, Longitude: -63.5952";
+            this.saveInfoToFirebase(name, email, role, password, locationString);
             if(role.equals("Employee")) {
                 move2employee();
             } else if (role.equals("Employer")) {

@@ -1,14 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#097969"
-    android:elevation="8dp">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textColor="@color/white"/>
 
-</androidx.appcompat.widget.Toolbar>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#1468B2">
+
+            <TextView
+                android:id="@+id/AppHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#0c68b5"
+                android:paddingEnd="10dp"
+                android:text="Quick Cash"
+                android:textColor="@color/white"
+                android:textSize="19sp" />
+
+            <Button
+                android:id="@+id/job_board_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="49dp"
+                android:backgroundTint="#0c68b5"
+                android:text="Job Board"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/notification_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="49dp"
+                android:backgroundTint="#0c68b5"
+                android:text="Notification"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+
+<!--        </androidx.appcompat.widget.Toolbar>-->
+
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+
+
+
+
+
+</RelativeLayout>
