@@ -4,7 +4,7 @@ public class JobPosting {
     public String employer; //email
     public String jobTitle;
     public String jobDescription;
-    public String payments;
+    public String payment;
     public String location;
     public String jobTags;
     public String jobType; // Added field for job type
@@ -17,7 +17,7 @@ public class JobPosting {
         this.employer = employer;
         this.jobTitle = jobTitle;
         this.jobDescription = jobDescription;
-        this.payments = payments;
+        this.payment = payments;
         this.location = location;
         this.jobType = jobType;
         this.jobTags = jobTags;
@@ -39,8 +39,8 @@ public class JobPosting {
     public String getDescription() { return jobDescription; }
     public void setDescription(String description) { this.jobDescription = description; }
 
-    public String getPayment() { return payments; }
-    public void setPayment(String payment) { this.payments = payment; }
+    public String getPayment() { return payment; }
+    public void setPayment(String payment) { this.payment = payment; }
 
     public String getLocation() { return location; }
     public void setLocation(String location) { this.location = location; }
