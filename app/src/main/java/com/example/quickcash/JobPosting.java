@@ -1,13 +1,15 @@
 package com.example.quickcash;
 
 public class JobPosting {
-    public String employer; //email
-    public String jobTitle;
-    public String jobDescription;
-    public String payment;
-    public String location;
-    public String jobTags;
-    public String jobType; // Added field for job type
+    private String employer; //email
+    private String jobTitle;
+    private String jobDescription;
+    private String payment;
+    private String location;
+    private String jobTags;
+    private String jobType; // Added field for job type
+    private String jobId;
+
 
     public JobPosting() {
         // Default constructor required for Firebase
@@ -47,4 +49,11 @@ public class JobPosting {
 
     public String getJobType() { return jobType; }
     public void setJobType(String jobType) { this.jobType = jobType; }
+    public String getJobId(){
+        return this.jobId;
+    }
+
+    public void setJobId(String id){
+        this.jobId=id;
+    }
 }

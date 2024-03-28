@@ -52,18 +52,11 @@ public class FirebaseCrud {
         DatabaseReference Alljobsref = database.getReference("AllJobs");
         DatabaseReference userRef = database.getReference("Users").child(sanitizedEmail).child("jobs");
 
-        userRef.push().setValue(jobPosting).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    callback.onSuccess("Job posted successfully!");
-                } else {
-//                    Toast.makeText(this, "Job posted successfully!", Toast.LENGTH_LONG).show();
-                    callback.onFailure(task.getException().getMessage());
-                }
-            }
-        });
-        Alljobsref.push().setValue(jobPosting).addOnCompleteListener(new OnCompleteListener<Void>() {
+        DatabaseReference jobIdRef=Alljobsref.push();
+        String key= jobIdRef.getKey();
+        jobPosting.setJobId(key);
+
+        jobIdRef.setValue(jobPosting).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
