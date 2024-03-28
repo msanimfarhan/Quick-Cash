@@ -17,10 +17,10 @@ public class jobDetails extends AppCompatActivity {
         setContentView(R.layout.job_details); // Ensure this matches your XML file name
 
         // Initialize TextViews by finding them in the layout
-        jobTitleTextView = findViewById(R.id.jobTitleTextView);
+        jobTitleTextView = findViewById(R.id.employerTextView);
         jobDescriptionTextView = findViewById(R.id.jobDescriptionTextView);
         jobPaymentTextView = findViewById(R.id.jobPaymentTextView);
-        jobLocationTextView = findViewById(R.id.jobLocationTextView);
+        jobLocationTextView = findViewById(R.id.jobTypeTextView);
 
         // Get the job details passed from the previous activity
         Intent intent = getIntent();

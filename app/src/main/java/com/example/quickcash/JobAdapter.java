@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -72,10 +71,10 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
 
         JobViewHolder(View view) {
             super(view);
-            jobTitle = view.findViewById(R.id.jobTitleTextView); // Make sure this ID matches your layout
+            jobTitle = view.findViewById(R.id.employerTextView); // Make sure this ID matches your layout
             jobDescription = view.findViewById(R.id.jobDescriptionTextView);
             payments = view.findViewById(R.id.jobPaymentTextView);
-            location = view.findViewById(R.id.jobLocationTextView);
+            location = view.findViewById(R.id.jobTypeTextView);
 
         }
     }

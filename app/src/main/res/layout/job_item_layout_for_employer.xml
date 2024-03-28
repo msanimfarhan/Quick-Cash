@@ -15,7 +15,7 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/jobTitleTextView"
+            android:id="@+id/employerTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Job Title"
@@ -35,7 +35,7 @@
             android:text="Payment Details" />
 
         <TextView
-            android:id="@+id/jobLocationTextView"
+            android:id="@+id/jobTypeTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Location" />
