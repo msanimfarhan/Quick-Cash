@@ -6,19 +6,21 @@ public class JobPosting {
     public String jobDescription;
     public String payments;
     public String location;
+    public String jobTags;
     public String jobType; // Added field for job type
 
     public JobPosting() {
         // Default constructor required for Firebase
     }
 
-    public JobPosting(String jobTitle, String jobDescription, String payments, String location, String jobType,  String employer) {
+    public JobPosting(String jobTitle, String jobDescription, String payments, String location, String jobType,  String employer,String jobTags) {
         this.employer = employer;
         this.jobTitle = jobTitle;
         this.jobDescription = jobDescription;
         this.payments = payments;
         this.location = location;
         this.jobType = jobType;
+        this.jobTags = jobTags;
     }
 
     public String getEmployer() {
