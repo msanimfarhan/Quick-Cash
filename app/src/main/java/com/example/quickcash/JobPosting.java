@@ -33,13 +33,13 @@ public class JobPosting {
 
 
     // Getters and Setters
-    public String getTitle() { return jobTitle; }
-    public void setTitle(String title) { this.jobTitle = title; }
+    public String getTitle() { return this.jobTitle; }
+    public void setTitle(String jobTitle) { this.jobTitle = jobTitle; }
 
-    public String getDescription() { return jobDescription; }
-    public void setDescription(String description) { this.jobDescription = description; }
+    public String getDescription() { return this.jobDescription; }
+    public void setDescription(String jobDescription) { this.jobDescription = jobDescription; }
 
-    public String getPayment() { return payment; }
+    public String getPayment() { return this.payment; }
     public void setPayment(String payment) { this.payment = payment; }
 
     public String getLocation() { return location; }

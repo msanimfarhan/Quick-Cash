@@ -136,7 +136,7 @@ public class employer_landing extends AppCompatActivity implements View.OnClickL
             @Override
             public void onJobPostingsRetrieved(List<JobPosting> jobPostings) {
                 // Use the job postings list to update the RecyclerView
-                adapter = new JobAdapter(jobPostings);
+                adapter = new JobAdapter(jobPostings,employer_landing.this);
                 jobsRecyclerView.setAdapter(adapter);
             }
 

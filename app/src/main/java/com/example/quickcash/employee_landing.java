@@ -138,7 +138,7 @@ public class employee_landing extends AppCompatActivity {
             @Override
             public void onJobPostingsRetrieved(List<JobPosting> jobPostings) {
                 // Update the RecyclerView with the list of jobs
-                adapter = new JobAdapter(jobPostings);
+                adapter = new JobAdapter(jobPostings,employee_landing.this);
                 jobsRecyclerView.setAdapter(adapter);
             }
 

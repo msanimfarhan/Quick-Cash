@@ -1,25 +1,41 @@
 package com.example.quickcash;
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 
-public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder>{
+public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
     private List<JobPosting> jobList;
+    private Context context;
 
-    public JobAdapter(List<JobPosting> jobList) {
+    public JobAdapter(List<JobPosting> jobList, Context context) {
         this.jobList = jobList;
+        this.context=context;
     }
 
     @NonNull
     @Override
     public JobViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.job_item_layout, parent, false);
-        return new JobViewHolder(itemView);
+        SharedPreferences sharedPref = context.getSharedPreferences("userDetails", Context.MODE_PRIVATE);
+        if (sharedPref.getString("userRole", "").equals("Employee")) {
+            View itemViewForEmployee = LayoutInflater.from(parent.getContext()).inflate(R.layout.job_item_layout, parent, false);
+            return new JobViewHolder(itemViewForEmployee);
+
+        } else {
+
+            View itemViewForEmployer = LayoutInflater.from(parent.getContext()).inflate(R.layout.job_item_layout_for_employer, parent, false);
+            return new JobViewHolder(itemViewForEmployer);
+        }
     }
 
     @Override
