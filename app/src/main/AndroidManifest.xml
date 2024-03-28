@@ -41,7 +41,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".jobDetails" />
         <activity android:name=".employee_landing" />
         <activity android:name=".employer_landing" />
         <activity android:name=".job_Posting" />

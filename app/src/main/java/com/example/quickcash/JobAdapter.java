@@ -34,7 +34,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder>{
             @Override
             public void onClick(View view) {
                 // Make sure the context used here is from the view which is attached to the window
-                Intent intent = new Intent(view.getContext(), ApplyJobActivity.class);
+                Intent intent = new Intent(view.getContext(), jobDetails.class);
                 // Assuming 'ApplyJobActivity' is expecting extras, send them
                 intent.putExtra("jobTitle", job.getTitle());
                 intent.putExtra("jobDescription", job.getDescription());
