@@ -1,11 +1,14 @@
 
-	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(É€¹§8ÜË‹Êç1J$60c5677f-52ae-4254-a72f-f16b886d3851
-§
-java:S1450
-"eRemove the "jobDescriptionTextView" field and declare it as a local variable in the relevant methods.(ÅòÀW8¦­­Êç1J$2141639b-3923-40a4-8a26-0952197c1a8d
-¥
-java:S1450"bRemove the "jobLocationTextView" field and declare it as a local variable in the relevant methods.(•ÏÔª8§­­Êç1J$aff12be5-5322-4ef5-89a4-913e4ddff2ae
-©
-java:S1450"aRemove the "jobPaymentTextView" field and declare it as a local variable in the relevant methods.(œ·ºúÿÿÿÿ8§­­Êç1J$bf81a23d-f1a4-49bc-aac1-338048e6901e
-¢
-java:S1450	"_Remove the "jobTitleTextView" field and declare it as a local variable in the relevant methods.(¥‚€Ù8§­­Êç1J$9edd9bf0-0618-4e68-824e-4e116f307e75
+J
+java:S1604-"(Make this anonymous inner class a lambda(¤âöÎüÿÿÿÿ8ü Æ«è1
+i	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(É€¹§8†¡Æ«è1
+w
+java:S1450"ZRemove the "applyButton" field and declare it as a local variable in the relevant methods.(²¼ª¶8á¡Æ«è1
+
+java:S1450"eRemove the "jobDescriptionTextView" field and declare it as a local variable in the relevant methods.(ÅòÀW8ë¡Æ«è1
+
+java:S1450"bRemove the "jobLocationTextView" field and declare it as a local variable in the relevant methods.(•ÏÔª8ë¡Æ«è1
+ƒ
+java:S1450"aRemove the "jobPaymentTextView" field and declare it as a local variable in the relevant methods.(œ·ºúÿÿÿÿ8ë¡Æ«è1
+|
+java:S1450"_Remove the "jobTitleTextView" field and declare it as a local variable in the relevant methods.(¥‚€Ù8ë¡Æ«è1
