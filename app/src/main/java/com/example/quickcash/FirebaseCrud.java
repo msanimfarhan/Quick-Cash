@@ -10,6 +10,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Map;
@@ -92,9 +93,10 @@ public class FirebaseCrud {
 
     public void fetchUserJobs(String userEmail, final JobPostingsResultCallback callback) {
         String sanitizedEmail = userEmail.replace(".", ",");
-        DatabaseReference userJobsRef = database.getReference("Users").child(sanitizedEmail).child("jobs");
+        Query userJobsQuery = database.getReference("AllJobs").orderByChild("employer")
+                .equalTo(sanitizedEmail);
 
-        userJobsRef.addValueEventListener(new ValueEventListener() {
+        userJobsQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<JobPosting> jobPostings = new ArrayList<>();
