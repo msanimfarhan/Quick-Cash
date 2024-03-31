@@ -90,7 +90,7 @@ public class FirebaseCrud {
             }
         });
     }
-
+//
     public void fetchUserJobs(String userEmail, final JobPostingsResultCallback callback) {
         String sanitizedEmail = userEmail.replace(".", ",");
         Query userJobsQuery = database.getReference("AllJobs").orderByChild("employer")
