@@ -56,6 +56,8 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
                 intent.putExtra("jobDescription", job.getDescription());
                 intent.putExtra("jobPayment", job.getPayment());
                 intent.putExtra("jobLocation", job.getLocation());
+                intent.putExtra("jobType", job.getJobType());
+                intent.putExtra("jobId", job.getJobId());
                 view.getContext().startActivity(intent);
             }
         });
@@ -71,10 +73,10 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
 
         JobViewHolder(View view) {
             super(view);
-            jobTitle = view.findViewById(R.id.employerTextView); // Make sure this ID matches your layout
+            jobTitle = view.findViewById(R.id.title_jobDetails); // Make sure this ID matches your layout
             jobDescription = view.findViewById(R.id.jobDescriptionTextView);
-            payments = view.findViewById(R.id.jobPaymentTextView);
-            location = view.findViewById(R.id.jobTypeTextView);
+            payments = view.findViewById(R.id.jobPayment_jobDetails);
+            location = view.findViewById(R.id.jobType_jobDetails);
 
         }
     }

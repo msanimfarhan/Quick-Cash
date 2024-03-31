@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -26,7 +27,9 @@ public class ApplyJobActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apply_job);
-
+//        Toast.makeText(ApplyJobActivity.this,getIntent().getStringExtra("jobId"),Toast.LENGTH_SHORT).show();
+        Intent intent=getIntent();
+ ""
         // Initialize Firebase
         FirebaseApp.initializeApp(this);
 
