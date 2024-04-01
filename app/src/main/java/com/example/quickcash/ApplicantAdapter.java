@@ -1,4 +1,5 @@
 package com.example.quickcash;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +10,11 @@ import java.util.List;
 
 public class ApplicantAdapter extends RecyclerView.Adapter<ApplicantAdapter.ApplicantViewHolder> {
     private List<Applicant> applicantsList;
+    private final Context mContext;
 
-
-    public ApplicantAdapter(List<Applicant> applicantsList) {
+    public ApplicantAdapter(List<Applicant> applicantsList, Context mContext) {
         this.applicantsList = applicantsList;
+        this.mContext = mContext;
     }
 
     @NonNull

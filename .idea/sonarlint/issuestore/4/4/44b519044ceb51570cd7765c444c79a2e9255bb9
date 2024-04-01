@@ -1,5 +1,7 @@
 
 
-java:S1450"[Remove the "firebaseCrud" field and declare it as a local variable in the relevant methods.(‰ËÆq8óÉÔé1J$afc9f445-fa2b-4173-8e92-cfebe37950f7
+java:S1450"[Remove the "firebaseCrud" field and declare it as a local variable in the relevant methods.(‰ËÆq8’¡êÙé1J$290def87-3fb2-4f65-9ae0-c686d9f61a14
 ­
-java:S1450"eRemove the "recyclerViewApplicants" field and declare it as a local variable in the relevant methods.(Àâˆ˜ûÿÿÿÿ8–ÚşÓé1J$2ce9179e-7de9-477d-9c51-ff3ff2369b8f
+java:S1450"eRemove the "recyclerViewApplicants" field and declare it as a local variable in the relevant methods.(Àâˆ˜ûÿÿÿÿ8“¡êÙé1J$2789eb5c-cf91-41c1-a36f-7027412af528
+u
+java:S1068"2Remove this unused "applicantsList" private field.(õ¸í8£¡êÙé1J$11b42870-40dc-440e-bbf9-d9267a1d9050

@@ -1,40 +1,40 @@
 
 ‹
-java:S11921"HDefine a constant instead of duplicating this literal "AllJobs" 6 times.(ã¼¦¨8Þ¢™×é1J$02e3d007-5315-484d-8f93-e3211c09f986
-˜	java:S117N"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÌÒÊ×ùÿÿÿÿ8ß¢™×é1J$639e8e11-7804-4e0f-8177-c0075c0c3bd7
+java:S11921"HDefine a constant instead of duplicating this literal "AllJobs" 6 times.(ã¼¦¨8Þ¢™×é1J$a334bce7-1c05-417f-bd21-7d29dc6a17da
+˜	java:S117N"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÌÒÊ×ùÿÿÿÿ8ß¢™×é1J$fd4b3224-7667-4f99-8123-e6ed202bfe3a
 k
-java:S1604U"(Make this anonymous inner class a lambda(°Ãö÷8á¢™×é1J$5a24e8c8-37b7-4f74-ab54-935143cf52a9
+java:S1604U"(Make this anonymous inner class a lambda(°Ãö÷8á¢™×é1J$5f4d58d6-f6ff-4d72-8b3d-8b3688e2993b
 ~
-java:S1854O";Remove this useless assignment to local variable "userRef".(“šç¼8Š£™×é1J$dc036894-7468-47bb-b329-6068bed5f38d
+java:S1854O";Remove this useless assignment to local variable "userRef".(“šç¼8Š£™×é1J$3078dc9f-ffbd-4897-9d95-2dfb88df079b
 „
-java:S1117J"<Rename "database" which hides the field declared at line 23.(–ÜÍ£ûÿÿÿÿ8‹£™×é1J$98a4b2a1-d475-4084-93bd-1cc03d9fdc9e
-ƒ	java:S125M"<This block of commented-out lines of code should be removed.(Á¸öÆùÿÿÿÿ8Œ£™×é1J$165d9b0e-9818-4e0d-818c-3a0b5fc4acc8
+java:S1117J"<Rename "database" which hides the field declared at line 23.(–ÜÍ£ûÿÿÿÿ8‹£™×é1J$a055e158-7071-4241-b04a-aa2684b6af71
+ƒ	java:S125M"<This block of commented-out lines of code should be removed.(Á¸öÆùÿÿÿÿ8Œ£™×é1J$4537b4b5-4636-49ee-991c-7ad8aa40e2b0
 ~
-java:S1117O";Rename "userRef" which hides the field declared at line 22.(“šç¼8Œ£™×é1J$fe5e7fc8-18ab-43b7-967c-1b129d4b9cbe
+java:S1117O";Rename "userRef" which hides the field declared at line 22.(“šç¼8Œ£™×é1J$21f9f154-7009-481a-8518-1c302e436dbb
 o
-java:S1481O",Remove this unused "userRef" local variable.(“šç¼8£™×é1J$90442bd3-ef70-4624-bacc-8e15b6ed64be
-ƒ	java:S125["<This block of commented-out lines of code should be removed.(îÙÞ²ýÿÿÿÿ8Ž£™×é1J$41818bda-0b5e-4c08-8d38-86031257163c
+java:S1481O",Remove this unused "userRef" local variable.(“šç¼8£™×é1J$537bba31-c359-419d-9bcf-6423c1e56afb
+ƒ	java:S125["<This block of commented-out lines of code should be removed.(îÙÞ²ýÿÿÿÿ8Ž£™×é1J$de84767c-5a04-419e-85cd-9e01ad1bc919
 Å
-java:S1186ˆ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ô°¤¦8š£™×é1J$0fd0119a-6f11-4570-8fb9-df29f329ff6c
+java:S1186ï"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ô°¤¦8š£™×é1J$32160efa-f078-4b20-aa67-b0fdb990a2e0
 Å
-java:S1186Î"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ô°¤¦8ž£™×é1J$b6f1bd07-6ae0-48c8-878a-96cc3702d727
+java:S1186µ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ô°¤¦8ž£™×é1J$60827a6a-8894-4336-9cef-3114f6cedec5
 Å
-java:S1186ð"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ô°¤¦8¢£™×é1J$52e0ea99-7dd3-4f2a-bd45-0372b144bc0d
+java:S1186×"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ô°¤¦8¢£™×é1J$ad2db4e7-b471-41c5-85d6-fbad6ad358ec
 Å
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ô°¤¦8££™×é1J$c28db9d1-2061-4d24-888a-da539208c6f2
+java:S1186è"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ô°¤¦8££™×é1J$5346b7f9-0d5a-4548-ba10-26cc133dc8ed
 y
-java:S1128"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ8¨£™×é1J$404fb412-c972-4c12-8f83-9d7331f2a899
+java:S1128"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ8¨£™×é1J$7dfa86c0-9c15-408b-8b71-62a349414bc8
 r
-java:S1128"*Remove this unused import 'java.util.Map'.(¼è½Òþÿÿÿÿ8¨£™×é1J$102a7588-a3e5-4968-a723-485cdd1823f1
+java:S1128"*Remove this unused import 'java.util.Map'.(¼è½Òþÿÿÿÿ8¨£™×é1J$fbc569d8-8a06-4b40-a004-758ca1506f6e
 s
-java:S1068"+Remove this unused "userRef" private field.(À¾˜ôüÿÿÿÿ8©£™×é1J$2f8df234-7b96-431b-b37f-c3be0e707da3
+java:S1068"+Remove this unused "userRef" private field.(À¾˜ôüÿÿÿÿ8©£™×é1J$6f060e73-73d9-4186-a0fd-a8c10ef27f6b
 y
-java:S1068í"5Remove this unused "extractedLocation" private field.(¹ø§Ú8ª£™×é1J$1a0bb6b1-b40d-475e-82ad-1597e959b4b9
+java:S1068Ô"5Remove this unused "extractedLocation" private field.(¹ø§Ú8ª£™×é1J$c0250a6b-6988-4d1d-bca3-1e91ef489ea0
 t
-java:S1068ï"1Remove this unused "extractedName" private field.(¼‘Ø>8ª£™×é1J$71db8839-b413-4ec3-9169-1c0f8b2a55fa
+java:S1068Ö"1Remove this unused "extractedName" private field.(¼‘Ø>8ª£™×é1J$f415f1d9-db6b-42e9-9583-fc609665f130
 }
-java:S1068ð"9Remove this unused "extractedEmailAddress" private field.(ìöƒÓ8ª£™×é1J$18b306e7-9c31-4eac-8767-2dc4411eca8b
+java:S1068×"9Remove this unused "extractedEmailAddress" private field.(ìöƒÓ8ª£™×é1J$1ce3d5ac-ddc7-4371-8a0d-c696919543ad
 z
-java:S1068ñ"1Remove this unused "extractedRole" private field.(ÙÏÇóÿÿÿÿÿ8ª£™×é1J$fad5cfad-fa5a-496d-a4db-2c115fab57b1
+java:S1068Ø"1Remove this unused "extractedRole" private field.(ÙÏÇóÿÿÿÿÿ8ª£™×é1J$1e2155a7-68cb-442a-9ff2-51fbb4e8756a
 z
-java:S1068ò"1Remove this unused "extractedPass" private field.(íÔÌúùÿÿÿÿ8ª£™×é1J$7df2c0f7-6c1d-4cee-b0c6-f29e6a66a9fa
+java:S1068Ù"1Remove this unused "extractedPass" private field.(íÔÌúùÿÿÿÿ8ª£™×é1J$6330e875-e28a-4d66-851a-e59b3c331790

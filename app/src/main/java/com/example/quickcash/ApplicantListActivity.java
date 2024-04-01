@@ -18,6 +18,9 @@ public class ApplicantListActivity extends AppCompatActivity {
     private RecyclerView recyclerViewApplicants;
     private ApplicantAdapter applicantAdapter;
     private FirebaseCrud firebaseCrud;
+    private List<Applicant> applicantsList = new ArrayList<>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +30,7 @@ public class ApplicantListActivity extends AppCompatActivity {
         recyclerViewApplicants.setLayoutManager(new LinearLayoutManager(this));
         // The adapter will be set once the data is fetched
         // Initialize the adapter with an empty list
-         applicantAdapter = new ApplicantAdapter(new ArrayList<>());
+         applicantAdapter = new ApplicantAdapter(new ArrayList<>(), this);
         recyclerViewApplicants.setAdapter(applicantAdapter);
 
         // Now, fetch the applicants

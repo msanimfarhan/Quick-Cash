@@ -184,32 +184,32 @@ public class employer_landing extends AppCompatActivity implements View.OnClickL
         Intent intent = new Intent(this, ApplicantListActivity.class);
         intent.putExtra("jobId", jobId);
         startActivity(intent);
-//        FirebaseCrud firebaseCrud = new FirebaseCrud(FirebaseDatabase.getInstance());
-//
-//        firebaseCrud.fetchApplicantsForJob(jobId, new FirebaseCrud.ApplicantsResultCallback() {
-//            @Override
-//            public void onApplicantsRetrieved(List<Applicant> applicants) {
-//                // For simplicity, let's just log the applicants' names
-//                for (Applicant applicant : applicants) {
-//                    Log.d("Applicant Name", applicant.getName());
-//                }
-//                for (Applicant applicant : applicants) {
-//                    Log.d("Applicant email", applicant.getEmail());
-//                }
-//                for (Applicant applicant : applicants) {
-//                    Log.d("Applicant phonenumber", applicant.getPhoneNumber());
-//                }
-//
-//
-//                // Here you would normally update the RecyclerView with the list of applicants
-//                // For now, you can just check the log to confirm that applicant names are being printed
-//            }
-//
-//            @Override
-//            public void onError(Exception e) {
-//                Log.e("Firebase Error", "Error fetching applicants", e);
-//            }
-//        });
+        FirebaseCrud firebaseCrud = new FirebaseCrud(FirebaseDatabase.getInstance());
+
+        firebaseCrud.fetchApplicantsForJob(jobId, new FirebaseCrud.ApplicantsResultCallback() {
+            @Override
+            public void onApplicantsRetrieved(List<Applicant> applicants) {
+                // For simplicity, let's just log the applicants' names
+                for (Applicant applicant : applicants) {
+                    Log.d("Applicant Name", applicant.getName());
+                }
+                for (Applicant applicant : applicants) {
+                    Log.d("Applicant email", applicant.getEmail());
+                }
+                for (Applicant applicant : applicants) {
+                    Log.d("Applicant phonenumber", applicant.getPhoneNumber());
+                }
+
+
+                // Here you would normally update the RecyclerView with the list of applicants
+                // For now, you can just check the log to confirm that applicant names are being printed
+            }
+
+            @Override
+            public void onError(Exception e) {
+                Log.e("Firebase Error", "Error fetching applicants", e);
+            }
+        });
     }
 
     @Override

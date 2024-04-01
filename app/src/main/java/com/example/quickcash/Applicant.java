@@ -4,6 +4,8 @@ public class Applicant {
     private String email;
     private String name;
     private String phoneNumber;
+    public Applicant() {
+    }
 
     public Applicant(String email, String name, String phoneNumber) {
         this.email = email;
