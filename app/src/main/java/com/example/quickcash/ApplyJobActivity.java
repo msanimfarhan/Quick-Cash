@@ -27,9 +27,8 @@ public class ApplyJobActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apply_job);
-//        Toast.makeText(ApplyJobActivity.this,getIntent().getStringExtra("jobId"),Toast.LENGTH_SHORT).show();
         Intent intent=getIntent();
- ""
+
         // Initialize Firebase
         FirebaseApp.initializeApp(this);
 
@@ -84,7 +83,7 @@ public class ApplyJobActivity extends AppCompatActivity {
         String phoneNumber = editTextPhoneNumber.getText().toString().trim();
 
         // Replace "jobId" with the actual job ID you're applying for
-        String jobId = "someJobId"; // This should be retrieved from the Intent or other sources
+        String jobId = getIntent().getStringExtra("jobId"); // This should be retrieved from the Intent or other sources
 
         if (email.isEmpty() || name.isEmpty() || phoneNumber.isEmpty()) {
             Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show();

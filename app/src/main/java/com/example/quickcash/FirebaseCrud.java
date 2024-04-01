@@ -335,7 +335,7 @@ public class FirebaseCrud {
         });
     }
     public void applyForJob(String jobId, String applicantEmail, String applicantName, String applicantPhoneNumber, final JobApplicationResultCallback callback) {
-        DatabaseReference jobApplicationRef = database.getReference("JobApplications").child(jobId);
+        DatabaseReference jobApplicationRef = database.getReference("AllJobs").child(jobId).child("applicants");
 
         HashMap<String, Object> application = new HashMap<>();
         application.put("email", applicantEmail);
