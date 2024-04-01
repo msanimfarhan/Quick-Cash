@@ -45,6 +45,31 @@ public class FirebaseCrud {
     }
 
 
+    public void fetchApplicantsForJob(String jobId, final ApplicantsResultCallback callback) {
+        DatabaseReference jobApplicantsRef = database.getReference("AllJobs").child(jobId).child("applicants");
+
+        jobApplicantsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<Applicant> applicants = new ArrayList<>();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Applicant applicant = snapshot.getValue(Applicant.class);
+                    applicants.add(applicant);
+                }
+                callback.onApplicantsRetrieved(applicants);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                callback.onError(databaseError.toException());
+            }
+        });
+    }
+    public interface ApplicantsResultCallback {
+        void onApplicantsRetrieved(List<Applicant> applicants);
+        void onError(Exception e);
+    }
+
     public void addJobPosting(JobPosting jobPosting, String userMail, final JobPostingResultCallback callback) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         String sanitizedEmail = userMail.replace(".", ",");
@@ -91,6 +116,34 @@ public class FirebaseCrud {
         });
     }
 //
+public void getUserRole(String userEmail, final UserRoleResultCallback callback) {
+    String sanitizedEmail = userEmail.replace(".", ",");
+    DatabaseReference userRoleRef = database.getReference("Users").child(sanitizedEmail).child("role");
+
+    userRoleRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            if (dataSnapshot.exists()) {
+                String role = dataSnapshot.getValue(String.class);
+                callback.onUserRoleRetrieved(role);
+            } else {
+                callback.onError("Role not found for user: " + userEmail);
+            }
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+            callback.onError(databaseError.toException().getMessage());
+        }
+    });
+}
+
+    public interface UserRoleResultCallback {
+        void onUserRoleRetrieved(String role);
+        void onError(String errorMessage);
+    }
+
+
     public void fetchUserJobs(String userEmail, final JobPostingsResultCallback callback) {
         String sanitizedEmail = userEmail.replace(".", ",");
         Query userJobsQuery = database.getReference("AllJobs").orderByChild("employer")

@@ -50,6 +50,7 @@
         <activity android:name=".ApplyJobActivity" />
         <activity android:name=".Notification" />
         <activity android:name=".JobNotification" />
+        <activity android:name=".ApplicantListActivity" />
 
     </application>
 
