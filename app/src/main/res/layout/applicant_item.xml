@@ -1,46 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/seeJobApplicantsBtn"
+    android:layout_margin="4dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="8dp"
+    app:cardCornerRadius="4dp"
     app:cardElevation="4dp">
 
     <LinearLayout
-        android:layout_width="384dp"
-        android:layout_height="178dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/title_jobDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Job Title"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="Applicants"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/applicantName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:text="Name Placeholder" />
 
         <TextView
-            android:id="@+id/jobDescriptionTextView"
+            android:id="@+id/applicantEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Job Description" />
+            android:text="Email Placeholder" />
 
         <TextView
-            android:id="@+id/jobPayment_jobDetails"
+            android:id="@+id/applicantPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Payment Details" />
-
-        <TextView
-            android:id="@+id/jobType_jobDetails"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Location" />
-
-
-
+            android:text="Phone Placeholder" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

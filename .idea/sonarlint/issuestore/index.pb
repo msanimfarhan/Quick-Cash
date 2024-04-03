@@ -23,3 +23,11 @@ g
 7app/src/main/java/com/example/quickcash/jobDetails.java,6\6\66e9a7b8ecd613b89767ac82355c890c29010388
 P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+f
+6app/src/main/java/com/example/quickcash/Applicant.java,a\f\afac650d7d6ad97852247135ad358474c904ae5a
+r
+Bapp/src/main/java/com/example/quickcash/ApplicantListActivity.java,4\4\44b519044ceb51570cd7765c444c79a2e9255bb9
+j
+:app/src/main/java/com/example/quickcash/JobApplicants.java,0\b\0b71c9e73d11b1647641380d7b3a59672ffba642
+m
+=app/src/main/java/com/example/quickcash/ApplicantAdapter.java,d\5\d58397e0f948ef0b950aa054da2e56dceace316d

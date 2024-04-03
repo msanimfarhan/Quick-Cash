@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -47,20 +48,32 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                // Make sure the context used here is from the view which is attached to the window
-                Intent intent = new Intent(view.getContext(), jobDetails.class);
-                // Assuming 'ApplyJobActivity' is expecting extras, send them
-                intent.putExtra("jobTitle", job.getTitle());
-                intent.putExtra("jobDescription", job.getDescription());
-                intent.putExtra("jobPayment", job.getPayment());
-                intent.putExtra("jobLocation", job.getLocation());
-                intent.putExtra("jobType", job.getJobType());
-                intent.putExtra("jobId", job.getJobId());
-                view.getContext().startActivity(intent);
+                SharedPreferences sharedPref = context.getSharedPreferences("userDetails", Context.MODE_PRIVATE);
+                String role = sharedPref.getString("userRole", "");
+                if(role.equals("Employee") ) {
+                    // Make sure the context used here is from the view which is attached to the window
+                    Intent intent = new Intent(view.getContext(), jobDetails.class);
+                    // Assuming 'ApplyJobActivity' is expecting extras, send them
+                    intent.putExtra("jobTitle", job.getTitle());
+                    intent.putExtra("jobDescription", job.getDescription());
+                    intent.putExtra("jobPayment", job.getPayment());
+                    intent.putExtra("jobLocation", job.getLocation());
+                    intent.putExtra("jobType", job.getJobType());
+                    intent.putExtra("jobId", job.getJobId());
+                    view.getContext().startActivity(intent);
+                }
+                else {
+                    if (context instanceof employer_landing) {
+                        ((employer_landing) context).showApplicants(job.getJobId());
+                    }
+
+                }
             }
         });
+
     }
 
     @Override

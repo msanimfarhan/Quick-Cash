@@ -1,10 +1,27 @@
 
-C
-java:S1604a"(Make this anonymous inner class a lambda(«–Âæþÿÿÿÿ
-g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(Óþ„¨ÿÿÿÿÿ
-–
-java:S1186T"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(«à¯
-œ
-java:S1186Y"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¹Æº×þÿÿÿÿ
-W
-java:S1117E"<Rename "database" which hides the field declared at line 27.(Á®¿üøÿÿÿÿ
+k
+java:S1604b"(Make this anonymous inner class a lambda(«Ø‹ú8´…ÕÖé1J$98f527a5-bb83-4864-9ba4-b99b42325377
+l
+java:S1604°"(Make this anonymous inner class a lambda(Ò„‡¬8µ…ÕÖé1J$ea20a1b6-a770-4336-9193-292c7b682408
+”	java:S101,"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(Óþ„¨ÿÿÿÿÿ8¶…ÕÖé1J$bff529c8-a253-4e6f-b371-cbeaff453584
+„
+java:S1117A"<Rename "database" which hides the field declared at line 48.(–ÜÍ£ûÿÿÿÿ8ð…ÕÖé1J$2defc7b0-b23e-49a2-979c-8e2212fb05fb
+ƒ	java:S125="<This block of commented-out lines of code should be removed.(¤ü´þÿÿÿÿ8ò…ÕÖé1J$5307d081-5a6b-4910-9673-6f4b4d01a4c4
+’
+java:S1874T"JDon't override a deprecated method or explicitly mark it as "@Deprecated".(Ó»×¶þÿÿÿÿ8÷…ÕÖé1J$3791809c-aa81-46fa-9bb4-a462b52255f8
+Ÿ
+java:S3252]"WUse static access with "androidx.core.content.ContextCompat" for "checkSelfPermission".(ÂÃ„‰ÿÿÿÿÿ8û…ÕÖé1J$1b098e63-b253-41d0-b27d-b4dd26112d67
+Ÿ
+java:S3252]"WUse static access with "androidx.core.content.ContextCompat" for "checkSelfPermission".(ÂÃ„‰ÿÿÿÿÿ8ü…ÕÖé1J$76718a50-3065-45cb-ad4d-83fc695f5532
+~	java:S125g"<This block of commented-out lines of code should be removed.(²“þÓ8þ…ÕÖé1J$fb1b6fac-08a9-4c41-8c9a-47c690a76574
+
+java:S1117…"=Rename "userEmail" which hides the field declared at line 54.(Ñ°ÓÊ8††ÕÖé1J$7e027684-00d6-4f0e-b44a-6a8546a02ad6
+s	java:S106‡"+Replace this use of System.out by a logger.(éÈ­Áûÿÿÿÿ8à„öÖé1J$b84a6d3c-13bc-481e-98f5-15fd8bd837bd
+…
+java:S1117™"<Rename "database" which hides the field declared at line 48.(Á®¿üøÿÿÿÿ8‹†ÕÖé1J$18001689-e6c2-46be-8a08-f5498538e081
+f
+java:S1128"Remove this duplicated import.(°þÊóøÿÿÿÿ8˜†ÕÖé1J$af1e901b-3af0-492b-8a9e-27f2af9405d0
+a
+java:S1128$"Remove this duplicated import.(€¶£î8˜†ÕÖé1J$3ea8f771-7d6b-40a0-92e2-926395dc2705
+a
+java:S1128("Remove this duplicated import.(×Ë—8˜†ÕÖé1J$bf4ba09e-3afb-4859-965b-a303ce497a80
