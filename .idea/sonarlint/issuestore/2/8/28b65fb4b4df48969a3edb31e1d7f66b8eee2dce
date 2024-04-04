@@ -1,13 +1,3 @@
 
-œ
-java:S1104"TMake employer a static final constant or non-public and provide accessors if needed.(±Í”œüÿÿÿÿ8„ıîšä1J$12876769-79ce-42b4-9088-298e62e08e25
-–
-java:S1104"TMake jobTitle a static final constant or non-public and provide accessors if needed.(°ĞùI8…ıîšä1J$a06a7094-2217-4344-8e30-e6b9c6b46f46
-¢
-java:S1104"ZMake jobDescription a static final constant or non-public and provide accessors if needed.(îÄÏşÿÿÿÿ8…ıîšä1J$b2542f89-ed9f-4ce2-8883-5a333360bf40
-œ
-java:S1104"TMake payments a static final constant or non-public and provide accessors if needed.(–»ä©ıÿÿÿÿ8…ıîšä1J$6da21a68-cbf1-4b77-9382-9f9758f067fc
-œ
-java:S1104"TMake location a static final constant or non-public and provide accessors if needed.(û³Ş¿şÿÿÿÿ8…ıîšä1J$484ca2bb-f910-4a15-be80-a1c6c862688a
-›
-java:S1104	"SMake jobType a static final constant or non-public and provide accessors if needed.(ÜŸöÆûÿÿÿÿ8…ıîšä1J$001cf485-ac4f-4603-abc2-09b7dda15f9b
+M
+java:S1068	"+Remove this unused "jobTags" private field.(¾ø¯úıÿÿÿÿ8É¤«è1
