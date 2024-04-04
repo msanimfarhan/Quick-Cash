@@ -18,6 +18,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.FirebaseDatabase;
 
 import android.location.Location;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.annotation.SuppressLint;
@@ -133,6 +135,32 @@ public class employee_landing extends AppCompatActivity {
         });
 
         Button searchBtn=findViewById(R.id.searchBtn);
+        EditText searchBox=findViewById(R.id.searchBox);
+        searchBox.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.toString().isEmpty()) {
+                    EditText searchBox=findViewById(R.id.searchBox);
+                    String searchText=searchBox.getText().toString();
+                    fetchJobsAndUpdateUI(searchText);
+                } else if(s.toString().contains(" ")){
+                    EditText searchBox=findViewById(R.id.searchBox);
+                    String searchText=searchBox.getText().toString().trim();
+                    fetchJobsAndUpdateUI(searchText);
+                }
+            }
+        });
+
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

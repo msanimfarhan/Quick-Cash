@@ -101,7 +101,6 @@ public class FirebaseCrud {
     public void fetchAllJobs(String search,final JobPostingsResultCallback callback) {
         DatabaseReference allJobsRef = database.getReference("AllJobs");
         String searchText=search.toLowerCase();
-//        
         allJobsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
