@@ -12,6 +12,41 @@ import android.view.ViewGroup;
 public class JobApplicants extends AppCompatActivity {
 
 
+        private String name;
+        private String skills;
+        private int experience;
+
+        public JobApplicants(String name, String skills, int experience) {
+            this.name = name;
+            this.skills = skills;
+            this.experience = experience;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getSkills() {
+            return skills;
+        }
+
+        public void setSkills(String skills) {
+            this.skills = skills;
+        }
+
+        public int getExperience() {
+            return experience;
+        }
+
+        public void setExperience(int experience) {
+            this.experience = experience;
+        }
+
+
     public JobApplicants() {
         // Required empty public constructor
     }
