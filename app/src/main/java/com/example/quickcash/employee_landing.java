@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.FirebaseDatabase;
 
 import android.location.Location;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -104,7 +105,7 @@ public class employee_landing extends AppCompatActivity {
         // Initialize database access and Firebase CRUD operations
         initializeDatabaseAccess();
 
-        fetchJobsAndUpdateUI();
+        fetchJobsAndUpdateUI("");
         Button jobBoardBtn = findViewById(R.id.job_board_btn);
         Button notificationButton = findViewById(R.id.notification_btn);
         notificationButton.setOnClickListener(new View.OnClickListener() {
@@ -130,11 +131,22 @@ public class employee_landing extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button searchBtn=findViewById(R.id.searchBtn);
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText searchBox=findViewById(R.id.searchBox);
+                String searchText=searchBox.getText().toString();
+
+                fetchJobsAndUpdateUI(searchText);
+            }
+        });
     }
 
-    private void fetchJobsAndUpdateUI() {
+    private void fetchJobsAndUpdateUI(String searchText) {
 
-        crud.fetchAllJobs(new FirebaseCrud.JobPostingsResultCallback() {
+        crud.fetchAllJobs(searchText,new FirebaseCrud.JobPostingsResultCallback() {
             @Override
             public void onJobPostingsRetrieved(List<JobPosting> jobPostings) {
                 // Update the RecyclerView with the list of jobs

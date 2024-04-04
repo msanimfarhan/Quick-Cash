@@ -56,4 +56,10 @@ public class JobPosting {
     public void setJobId(String id){
         this.jobId=id;
     }
+    public void setJobTags(String tags){
+        this.jobTags=tags;
+    }
+    public String getJobTags(){
+        return this.jobTags;
+    }
 }
