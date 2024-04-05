@@ -1,4 +1,4 @@
-package com.example.quickcash.JobPosting;
+package com.example.quickcash;
 
 public class JobPosting {
     private String employer; //email
