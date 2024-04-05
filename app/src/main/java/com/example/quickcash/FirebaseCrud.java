@@ -1,9 +1,8 @@
 package com.example.quickcash;
 
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 
+import com.example.quickcash.JobPosting.JobPosting;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -14,7 +13,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.HashMap;
 
 import java.util.List;

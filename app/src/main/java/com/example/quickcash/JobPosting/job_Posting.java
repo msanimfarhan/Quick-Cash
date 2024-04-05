@@ -1,4 +1,4 @@
-package com.example.quickcash;
+package com.example.quickcash.JobPosting;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.quickcash.FirebaseCrud;
+import com.example.quickcash.R;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.FirebaseDatabase;
 
