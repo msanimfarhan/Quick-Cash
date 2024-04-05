@@ -41,7 +41,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".jobDetails" />
         <activity android:name=".employee_landing" />
         <activity android:name=".employer_landing" />
         <activity android:name=".job_Posting" />
@@ -50,6 +50,7 @@
         <activity android:name=".ApplyJobActivity" />
         <activity android:name=".Notification" />
         <activity android:name=".JobNotification" />
+        <activity android:name=".ApplicantListActivity" />
 
     </application>
 

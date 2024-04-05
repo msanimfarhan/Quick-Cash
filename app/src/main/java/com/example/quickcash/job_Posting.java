@@ -23,6 +23,7 @@ public class job_Posting extends AppCompatActivity {
     private EditText editJobDescription;
     private EditText editPayments;
     private EditText editLocation;
+    private EditText jobTags;
     private Spinner spinnerJobType; // Spinner for job type
     private String userEmail;
     private FirebaseCrud crud;
@@ -44,6 +45,7 @@ public class job_Posting extends AppCompatActivity {
         editJobDescription = findViewById(R.id.description);
         editPayments = findViewById(R.id.payment);
         editLocation = findViewById(R.id.location);
+        jobTags = findViewById(R.id.jobTags);
         spinnerJobType = findViewById(R.id.jobType); // Initialize Spinner
 
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -91,12 +93,12 @@ public class job_Posting extends AppCompatActivity {
     }
 
     private void postJob() {
-        String title = editJobTitle.getText().toString().trim();
-        String description = editJobDescription.getText().toString().trim();
+        String jobTitle = editJobTitle.getText().toString().trim();
+        String jobDescription = editJobDescription.getText().toString().trim();
         String paymentDetail = editPayments.getText().toString().trim();
         String jobLocation = editLocation.getText().toString().trim();
         String jobType = spinnerJobType.getSelectedItem().toString();
-
+        String tags= jobTags.getText().toString().trim();
         if (spinnerJobType.getSelectedItemPosition() == 0) {
             // User did not select a job type, show an error message
             Toast.makeText(job_Posting.this, "Please select a job type.", Toast.LENGTH_LONG).show();
@@ -104,7 +106,7 @@ public class job_Posting extends AppCompatActivity {
         }
 
         // Now you can use the jobType value in your JobPosting object
-        JobPosting newJob = new JobPosting(title, description, paymentDetail, jobLocation, jobType, userEmail);
+        JobPosting newJob = new JobPosting(jobTitle, jobDescription, paymentDetail, jobLocation, jobType, userEmail,tags);
 
         crud.addJobPosting(newJob, userEmail, new FirebaseCrud.JobPostingResultCallback() {
             @Override

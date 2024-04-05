@@ -15,5 +15,19 @@ m
 =app/src/main/java/com/example/quickcash/employer_landing.java,3\e\3ea3f7947b390be3a6fbb922ba9c8003e3c5dd21
 z
 Japp/src/androidTest/java/com/example/quickcash/jobPostingEspressoTest.java,b\e\beaf1c4dfca74a66d922b1fa043d20aab4358ba9
-u
-Eapp/src/androidTest/java/com/example/quickcash/LoginExpressoTest.java,e\5\e5ef55011337481a052e3f9c623bf26d0ec138f2
+s
+Capp/src/main/java/com/example/quickcash/JobNotificationAdapter.java,4\5\458580d0d66ff4e2d43926f78f96946b45c1f518
+m
+=app/src/main/java/com/example/quickcash/ApplyJobActivity.java,5\2\527f0fce9ac0f3c67198701be815108bc63251ea
+g
+7app/src/main/java/com/example/quickcash/jobDetails.java,6\6\66e9a7b8ecd613b89767ac82355c890c29010388
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+f
+6app/src/main/java/com/example/quickcash/Applicant.java,a\f\afac650d7d6ad97852247135ad358474c904ae5a
+r
+Bapp/src/main/java/com/example/quickcash/ApplicantListActivity.java,4\4\44b519044ceb51570cd7765c444c79a2e9255bb9
+j
+:app/src/main/java/com/example/quickcash/JobApplicants.java,0\b\0b71c9e73d11b1647641380d7b3a59672ffba642
+m
+=app/src/main/java/com/example/quickcash/ApplicantAdapter.java,d\5\d58397e0f948ef0b950aa054da2e56dceace316d

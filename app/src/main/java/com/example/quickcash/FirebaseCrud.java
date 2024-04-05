@@ -10,6 +10,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Map;
@@ -44,6 +45,31 @@ public class FirebaseCrud {
     }
 
 
+    public void fetchApplicantsForJob(String jobId, final ApplicantsResultCallback callback) {
+        DatabaseReference jobApplicantsRef = database.getReference("AllJobs").child(jobId).child("applicants");
+
+        jobApplicantsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<Applicant> applicants = new ArrayList<>();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Applicant applicant = snapshot.getValue(Applicant.class);
+                    applicants.add(applicant);
+                }
+                callback.onApplicantsRetrieved(applicants);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                callback.onError(databaseError.toException());
+            }
+        });
+    }
+    public interface ApplicantsResultCallback {
+        void onApplicantsRetrieved(List<Applicant> applicants);
+        void onError(Exception e);
+    }
+
     public void addJobPosting(JobPosting jobPosting, String userMail, final JobPostingResultCallback callback) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         String sanitizedEmail = userMail.replace(".", ",");
@@ -52,18 +78,11 @@ public class FirebaseCrud {
         DatabaseReference Alljobsref = database.getReference("AllJobs");
         DatabaseReference userRef = database.getReference("Users").child(sanitizedEmail).child("jobs");
 
-        userRef.push().setValue(jobPosting).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    callback.onSuccess("Job posted successfully!");
-                } else {
-//                    Toast.makeText(this, "Job posted successfully!", Toast.LENGTH_LONG).show();
-                    callback.onFailure(task.getException().getMessage());
-                }
-            }
-        });
-        Alljobsref.push().setValue(jobPosting).addOnCompleteListener(new OnCompleteListener<Void>() {
+        DatabaseReference jobIdRef=Alljobsref.push();
+        String key= jobIdRef.getKey();
+        jobPosting.setJobId(key);
+
+        jobIdRef.setValue(jobPosting).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
@@ -96,12 +115,16 @@ public class FirebaseCrud {
             }
         });
     }
+//
+
+
 
     public void fetchUserJobs(String userEmail, final JobPostingsResultCallback callback) {
         String sanitizedEmail = userEmail.replace(".", ",");
-        DatabaseReference userJobsRef = database.getReference("Users").child(sanitizedEmail).child("jobs");
+        Query userJobsQuery = database.getReference("AllJobs").orderByChild("employer")
+                .equalTo(sanitizedEmail);
 
-        userJobsRef.addValueEventListener(new ValueEventListener() {
+        userJobsQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<JobPosting> jobPostings = new ArrayList<>();
@@ -340,7 +363,7 @@ public class FirebaseCrud {
         });
     }
     public void applyForJob(String jobId, String applicantEmail, String applicantName, String applicantPhoneNumber, final JobApplicationResultCallback callback) {
-        DatabaseReference jobApplicationRef = database.getReference("JobApplications").child(jobId);
+        DatabaseReference jobApplicationRef = database.getReference("AllJobs").child(jobId).child("applicants");
 
         HashMap<String, Object> application = new HashMap<>();
         application.put("email", applicantEmail);

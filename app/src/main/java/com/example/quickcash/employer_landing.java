@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -131,12 +132,12 @@ public class employer_landing extends AppCompatActivity implements View.OnClickL
         SharedPreferences sharedPref = getSharedPreferences("userDetails", Context.MODE_PRIVATE);
         String userEmail = sharedPref.getString("userEmail", null);
         String sanitizedEmail = userEmail.replace(".", ",");
-
+        System.out.println(userEmail + "i am in epm land");
         crud.fetchUserJobs(sanitizedEmail, new FirebaseCrud.JobPostingsResultCallback() {
             @Override
             public void onJobPostingsRetrieved(List<JobPosting> jobPostings) {
                 // Use the job postings list to update the RecyclerView
-                adapter = new JobAdapter(jobPostings);
+                adapter = new JobAdapter(jobPostings,employer_landing.this);
                 jobsRecyclerView.setAdapter(adapter);
             }
 
@@ -176,6 +177,37 @@ public class employer_landing extends AppCompatActivity implements View.OnClickL
             @Override
             public void onClick(View v) {
                 move2JobPosting();
+            }
+        });
+    }
+    public void showApplicants(String jobId) {
+        Intent intent = new Intent(this, ApplicantListActivity.class);
+        intent.putExtra("jobId", jobId);
+        startActivity(intent);
+        FirebaseCrud firebaseCrud = new FirebaseCrud(FirebaseDatabase.getInstance());
+
+        firebaseCrud.fetchApplicantsForJob(jobId, new FirebaseCrud.ApplicantsResultCallback() {
+            @Override
+            public void onApplicantsRetrieved(List<Applicant> applicants) {
+                // For simplicity, let's just log the applicants' names
+                for (Applicant applicant : applicants) {
+                    Log.d("Applicant Name", applicant.getName());
+                }
+                for (Applicant applicant : applicants) {
+                    Log.d("Applicant email", applicant.getEmail());
+                }
+                for (Applicant applicant : applicants) {
+                    Log.d("Applicant phonenumber", applicant.getPhoneNumber());
+                }
+
+
+                // Here you would normally update the RecyclerView with the list of applicants
+                // For now, you can just check the log to confirm that applicant names are being printed
+            }
+
+            @Override
+            public void onError(Exception e) {
+                Log.e("Firebase Error", "Error fetching applicants", e);
             }
         });
     }

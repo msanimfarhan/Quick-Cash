@@ -5,18 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include
+        android:id="@+id/include2"
+        layout="@layout/toolbar" />
+
     <TextView
         android:id="@+id/addJob"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="24dp"
         android:text="Add a new Job"
         android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/jobTitle"
@@ -78,11 +83,26 @@
         android:id="@+id/post"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="84dp"
         android:layout_marginEnd="24dp"
         android:text="Post"
-        app:layout_constraintTop_toBottomOf="@+id/jobType"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/jobType" />
+
+    <EditText
+        android:id="@+id/jobTags"
+        android:layout_width="367dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:hint="Tags e.g: outdoor, lawn, summer"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/include2"
+        app:layout_constraintTop_toBottomOf="@+id/jobType" />
 </androidx.constraintlayout.widget.ConstraintLayout>

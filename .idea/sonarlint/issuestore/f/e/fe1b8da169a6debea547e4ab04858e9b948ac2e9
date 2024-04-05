@@ -1,6 +1,36 @@
 
-	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ûî±Û8¿¨­›ä1J$5b759063-d1a4-4b0b-a36a-f118e8331a38
-Ã
-java:S1186="€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(«à¯8Ê¨­›ä1J$063a6185-623f-44e9-bae4-2572a9002e59
+k
+java:S1604V"(Make this anonymous inner class a lambda(÷Õå”8À±ÕÉç1J$f64bed4b-8353-467b-9558-6ae33424dcb2
+p
+java:S1604^"(Make this anonymous inner class a lambda(‚Å€£øÿÿÿÿ8Â±ÕÉç1J$68b3d4cc-cd10-4c6e-b590-6263678ec7a1
+p
+java:S1604n"(Make this anonymous inner class a lambda(‡Æ„»ÿÿÿÿÿ8Â±ÕÉç1J$9b70a5fa-1e98-433a-8906-cd5182aaccea
+k
+java:S1604v"(Make this anonymous inner class a lambda(‘Ûê™8Â±ÕÉç1J$0abb6681-5aeb-4864-bd68-ed307c996da7
+l
+java:S1604³"(Make this anonymous inner class a lambda(«Ø‹ú8Â±ÕÉç1J$f8c5763a-7876-4367-87e6-3947eacff4a4
+	java:S101,"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ûî±Û8¿¨­›ä1J$96f905a2-f6dd-4bc6-add2-077d2fb02464
+	java:S1161"VRename this field "Notificaion" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•ş•¤ıÿÿÿÿ8“²ÕÉç1J$fcb562ef-2eca-41d3-a30e-305c8c6d6bde
+•	java:S1163"SRename this field "JobBoard" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Äî˜²8“²ÕÉç1J$a77b8f01-f4e6-45d9-bb8f-82f89ca92655
+Ä
+java:S1186š"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(«à¯8Ê¨­›ä1J$a836a4f8-d6cd-4007-a6f9-1031ff0e2512
+š
+java:S14503"WRemove the "JobBoard" field and declare it as a local variable in the relevant methods.(Äî˜²8 ²ÕÉç1J$8691633a-3d99-48be-aa47-e78789be27b0
+¢
+java:S14501"ZRemove the "Notificaion" field and declare it as a local variable in the relevant methods.(•ş•¤ıÿÿÿÿ8¡²ÕÉç1J$961e919e-8c07-4446-9c33-64db7b0e8af2
+ƒ	java:S125="<This block of commented-out lines of code should be removed.(¤ü´şÿÿÿÿ8°²ÕÉç1J$3073e084-1bec-4103-aac2-9e9f12af7967
+“
+java:S1874§"JDon't override a deprecated method or explicitly mark it as "@Deprecated".(Ó»×¶şÿÿÿÿ8Ô²ÕÉç1J$010d0e02-bdca-4b69-b135-728c8c69423b
+›
+java:S3252¯"WUse static access with "androidx.core.content.ContextCompat" for "checkSelfPermission".(¥êêí8Ù²ÕÉç1J$3f664bcf-31f7-49da-a90a-e22f28a87677
+›
+java:S3252¯"WUse static access with "androidx.core.content.ContextCompat" for "checkSelfPermission".(¥êêí8Ú²ÕÉç1J$df38bd07-37d5-45d5-ac20-11659fb3eb5e
+„	java:S125¸"<This block of commented-out lines of code should be removed.(ûıµíıÿÿÿÿ8ß²ÕÉç1J$ed695ed2-f7aa-463a-88a0-c93ebe44c3e9
+f
+java:S1128"Remove this duplicated import.(°şÊóøÿÿÿÿ8â²ÕÉç1J$3db65d49-1dd2-4220-8358-4882383b1422
+f
+java:S1128!"Remove this duplicated import.(ÔËûİùÿÿÿÿ8â²ÕÉç1J$ae9b8a62-944e-4a86-bb00-12828e331403
+a
+java:S1128&"Remove this duplicated import.(×Ë—8â²ÕÉç1J$bc5cb0a4-dfb8-48b0-8795-8ab40fa09611
 r
-java:S1068"0Remove this unused "firebaseCrud" private field.(‰ËÆq8Ø¨­›ä1J$7124a8ad-7811-40d9-ba4f-d683487d97e8
+java:S10684"0Remove this unused "firebaseCrud" private field.(‰ËÆq8Ø¨­›ä1J$cc08f4e3-2371-4cd8-b9ce-ee38518c5dda
