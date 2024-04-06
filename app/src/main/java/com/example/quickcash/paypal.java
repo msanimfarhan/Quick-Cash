@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatTextView;
 
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalPayment;
@@ -30,6 +31,7 @@ public class paypal extends AppCompatActivity {
     private ActivityResultLauncher<Intent> activityResultLauncher;
     private AppCompatEditText payamount;
     private AppCompatButton paypalpaybtn;
+    private AppCompatTextView paymentStatus;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +45,7 @@ public class paypal extends AppCompatActivity {
     private void init(){
         payamount = findViewById(R.id.amount);
         paypalpaybtn = findViewById(R.id.paypalpaybtn);
+        paymentStatus = findViewById(R.id.PaymentStatus);
     }
 
     private void configpaypal() {
@@ -66,7 +69,7 @@ public class paypal extends AppCompatActivity {
                                 JSONObject payObj = new JSONObject(paymentDetails);
                                 String payID = payObj.getJSONObject("response").getString("id");
                                 String state = payObj.getJSONObject("response").getString("state");
-                                Log.d("PaymentStatus", String.format("Payment %s%n with payment id is %s", state, payID));
+                                paymentStatus.setText(String.format("Payment %s%n with payment id is %s", state, payID));
                             } catch (JSONException e) {
                                 Log.e("Error", "an extremely unlikely failure occurred: ", e);
                             }
