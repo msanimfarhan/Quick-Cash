@@ -1,8 +1,10 @@
 package com.example.quickcash;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,16 +45,25 @@ public class ApplicantAdapter extends RecyclerView.Adapter<ApplicantAdapter.Appl
         return applicantsList.size();
     }
 
-    public static class ApplicantViewHolder extends RecyclerView.ViewHolder {
+    public class ApplicantViewHolder extends RecyclerView.ViewHolder {
         TextView nameTextView;
         TextView emailTextView;
         TextView phoneTextView;
-
+        Button Paybtn;
         public ApplicantViewHolder(View itemView) {
             super(itemView);
             nameTextView = itemView.findViewById(R.id.applicantName);
             emailTextView = itemView.findViewById(R.id.applicantEmail);
             phoneTextView = itemView.findViewById(R.id.applicantPhone);
+            Paybtn = itemView.findViewById(R.id.Pay);
+
+            Paybtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, paypal.class);
+                    mContext.startActivity(intent);
+                }
+            });
         }
     }
 }

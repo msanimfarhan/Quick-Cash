@@ -40,5 +40,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Phone Placeholder" />
+
+        <Button
+            android:id="@+id/Pay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pay" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>
