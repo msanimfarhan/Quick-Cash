@@ -6,7 +6,9 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.uiautomator.UiDevice;
+import androidx.test.uiautomator.UiObject;
 import androidx.test.uiautomator.UiObjectNotFoundException;
+import androidx.test.uiautomator.UiScrollable;
 import androidx.test.uiautomator.UiSelector;
 
 import org.junit.Rule;
@@ -48,7 +50,18 @@ public class PayPalPaymentTest {
                 .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
 
         // Assume the job posting detail page includes a pay button for initiating payment
-        onView(withId(R.id.Pay)).perform(click());
+        UiScrollable recyclerview = new UiScrollable(new UiSelector().resourceId("com.example.quickcash:id/recyclerViewApplicants"));
+
+        if (recyclerview.exists() && recyclerview.getChildCount() > 0) {
+            UiObject viewHolder = recyclerview.getChild(new UiSelector().index(0));
+
+            UiObject paybtn = viewHolder.getChild(new UiSelector().text("Pay"));
+
+            paybtn.clickAndWaitForNewWindow();
+
+            onView(withId(R.id.amount)).perform(typeText("100"), closeSoftKeyboard());
+            onView(withId(R.id.paypalpaybtn)).perform(click());
+        }
 //
 //        // Fill in the payment details
 //        onView(withId(R.id.amount)).perform(typeText("100"), closeSoftKeyboard());
