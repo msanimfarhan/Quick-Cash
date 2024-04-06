@@ -24,6 +24,10 @@ android {
         buildConfigField "String", "PAYPAL_CLIENT_ID", ("\"".concat(credentialsProperties["PAYPAL_CLIENT_ID"]).concat("\""))
     }
 
+    buildFeatures {
+        buildConfig true
+    }
+
     buildTypes {
         release {
             minifyEnabled false

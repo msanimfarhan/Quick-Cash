@@ -1,7 +1,5 @@
 package com.example.quickcash;
 
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -12,8 +10,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.HashMap;
 
 import java.util.List;
@@ -21,8 +19,7 @@ import java.util.List;
 public class FirebaseCrud {
     private DatabaseReference userRef;
     private FirebaseDatabase database;
-    String  result="";
-
+    String result = "";
 
 
     public FirebaseCrud(FirebaseDatabase database) {
@@ -40,6 +37,7 @@ public class FirebaseCrud {
         this.locationRef = getLocationRef();
 
     }
+
     protected DatabaseReference getUserRef(String userMail) {
         return this.database.getReference(userMail);
     }
@@ -65,8 +63,10 @@ public class FirebaseCrud {
             }
         });
     }
+
     public interface ApplicantsResultCallback {
         void onApplicantsRetrieved(List<Applicant> applicants);
+
         void onError(Exception e);
     }
 
@@ -78,8 +78,8 @@ public class FirebaseCrud {
         DatabaseReference Alljobsref = database.getReference("AllJobs");
         DatabaseReference userRef = database.getReference("Users").child(sanitizedEmail).child("jobs");
 
-        DatabaseReference jobIdRef=Alljobsref.push();
-        String key= jobIdRef.getKey();
+        DatabaseReference jobIdRef = Alljobsref.push();
+        String key = jobIdRef.getKey();
         jobPosting.setJobId(key);
 
         jobIdRef.setValue(jobPosting).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -95,16 +95,25 @@ public class FirebaseCrud {
         });
     }
 
-    public void fetchAllJobs(final JobPostingsResultCallback callback) {
+    public void fetchAllJobs(String search,final JobPostingsResultCallback callback) {
         DatabaseReference allJobsRef = database.getReference("AllJobs");
-
+        String searchText=search.toLowerCase();
         allJobsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<JobPosting> jobPostings = new ArrayList<>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     JobPosting job = snapshot.getValue(JobPosting.class);
-                    jobPostings.add(job);
+                   if(!searchText.equals("")){
+                       if ((job.getTitle() != null && job.getTitle().toLowerCase().contains(searchText)) ||
+                               job.getDescription() != null && job.getDescription().toLowerCase().contains(searchText) ||
+                               job.getJobTags() != null && job.getJobTags().toLowerCase().contains(searchText)
+                       ) {
+                           jobPostings.add(job);
+                       }
+                   } else{
+                       jobPostings.add(job);
+                   }
                 }
                 callback.onJobPostingsRetrieved(jobPostings);
             }
@@ -115,8 +124,8 @@ public class FirebaseCrud {
             }
         });
     }
-//
 
+//
 
 
     public void fetchUserJobs(String userEmail, final JobPostingsResultCallback callback) {
@@ -174,24 +183,29 @@ public class FirebaseCrud {
     // Callback interface for job posting results
     public interface JobPostingResultCallback {
         void onSuccess(String result);
+
         void onFailure(String errorMessage);
     }
 
     // Callback interface for retrieving multiple job postings
     public interface JobPostingsResultCallback {
         void onJobPostingsRetrieved(List<JobPosting> jobPostings);
+
         void onError(Exception e);
     }
 
     public interface JobNotificationsResultCallback {
         void onJobNotificationsRetrieved(List<JobNotificationData> jobNotifications);
+
         void onError(Exception e);
     }
 
     public interface NotificationResultCallback {
         void onNotificationRetrieved(List<JobPosting> jobPostings);
+
         void onError(Exception e);
     }
+
     protected void initializeDatabaseRefListeners() {
         //Incomplete method, add your implementation
         this.setNameListener();
@@ -293,8 +307,6 @@ public class FirebaseCrud {
     }
 
 
-
-
     protected void setNameListener() {
         this.nameRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -362,6 +374,7 @@ public class FirebaseCrud {
             }
         });
     }
+
     public void applyForJob(String jobId, String applicantEmail, String applicantName, String applicantPhoneNumber, final JobApplicationResultCallback callback) {
         DatabaseReference jobApplicationRef = database.getReference("AllJobs").child(jobId).child("applicants");
 
@@ -386,10 +399,9 @@ public class FirebaseCrud {
 
     public interface JobApplicationResultCallback {
         void onApplicationSuccess(String result);
+
         void onApplicationFailure(String errorMessage);
     }
-
-
 
 
 }
