@@ -116,37 +116,7 @@ public class ApplicantAdapter extends RecyclerView.Adapter<ApplicantAdapter.Appl
 
         }
 
-        public  HashMap<String,String> fetchHiringInfo(String jobId) {
-            HashMap<String,String> returnVal=new HashMap<>();
-            Query databaseReference = FirebaseDatabase.getInstance().getReference("AllJobs").child(jobId).child("applicants").orderByChild("email").equalTo(getApplicantsEmail());
 
-            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        for (DataSnapshot applicantSnapshot : dataSnapshot.getChildren()) {
-                            // Retrieve the value of "isHired" for each applicant
-                            Boolean isHired = applicantSnapshot.child("isHired").getValue(Boolean.class);
-                            String applicantsEmail = applicantSnapshot.child("email").getValue(String.class);
-                            if(applicantsEmail != null){
-                                returnVal.put("email",applicantsEmail);
-                            }
-                            if (isHired == null) {
-                                returnVal.put("isHired","falseStr");
-                            } else if (isHired == true) {
-                                returnVal.put("isHired","trueStr");
-                            }
-                        }
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    // Handle error
-                }
-            });
-            return returnVal;
-        }
 
     }
 }
