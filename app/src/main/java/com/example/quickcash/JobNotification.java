@@ -56,9 +56,9 @@ public class JobNotification extends AppCompatActivity {
                 String userRole = sharedPref.getString("userRole", "");
                 Intent intent;
                 if (userRole.equals("Employee")) {
-                    intent = new Intent(JobNotification.this, employee_landing.class);
+                    intent = new Intent(JobNotification.this, EmployeeLanding.class);
                 } else{
-                    intent = new Intent(JobNotification.this, employer_landing.class);
+                    intent = new Intent(JobNotification.this, EmployerLanding.class);
                 }
                 startActivity(intent);
             }

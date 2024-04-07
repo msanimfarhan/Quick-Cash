@@ -38,7 +38,7 @@ import java.util.List;
 
 
 
-public class employee_landing extends AppCompatActivity {
+public class EmployeeLanding extends AppCompatActivity {
     private TextView locationTextView;
     private FusedLocationProviderClient fusedLocationClient;
     private RecyclerView jobsRecyclerView;
@@ -83,7 +83,7 @@ public class employee_landing extends AppCompatActivity {
         Notificaion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(employee_landing.this, JobNotification.class);
+                Intent intent = new Intent(EmployeeLanding.this, JobNotification.class);
                 startActivity(intent);
             }
         });
@@ -91,7 +91,7 @@ public class employee_landing extends AppCompatActivity {
         JobBoard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(employee_landing.this, employee_landing.class);
+                Intent intent = new Intent(EmployeeLanding.this, EmployeeLanding.class);
                 startActivity(intent);
             }
         });
@@ -108,7 +108,7 @@ public class employee_landing extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Start the new activity
-                Intent intent = new Intent(employee_landing.this, JobNotification.class);
+                Intent intent = new Intent(EmployeeLanding.this, JobNotification.class);
                 startActivity(intent);
             }
         });
@@ -120,9 +120,9 @@ public class employee_landing extends AppCompatActivity {
                 String userRole = sharedPref.getString("userRole", "");
                 Intent intent;
                 if (userRole.equals("Employee")) {
-                    intent = new Intent(employee_landing.this, employee_landing.class);
+                    intent = new Intent(EmployeeLanding.this, EmployeeLanding.class);
                 } else{
-                    intent = new Intent(employee_landing.this, employer_landing.class);
+                    intent = new Intent(EmployeeLanding.this, EmployerLanding.class);
                 }
                 startActivity(intent);
             }
@@ -172,14 +172,14 @@ public class employee_landing extends AppCompatActivity {
             @Override
             public void onJobPostingsRetrieved(List<JobPosting> jobPostings) {
                 // Update the RecyclerView with the list of jobs
-                adapter = new JobAdapter(jobPostings,employee_landing.this);
+                adapter = new JobAdapter(jobPostings, EmployeeLanding.this);
                 jobsRecyclerView.setAdapter(adapter);
             }
 
             @Override
             public void onError(Exception e) {
                 // Handle any errors
-                Toast.makeText(employee_landing.this, "Error fetching jobs: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(EmployeeLanding.this, "Error fetching jobs: " + e.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
 

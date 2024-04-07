@@ -18,7 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class job_Posting extends AppCompatActivity {
+public class JobPostingActivity extends AppCompatActivity {
     private EditText editJobTitle;
     private EditText editJobDescription;
     private EditText editPayments;
@@ -101,7 +101,7 @@ public class job_Posting extends AppCompatActivity {
         String tags= jobTags.getText().toString().trim();
         if (spinnerJobType.getSelectedItemPosition() == 0) {
             // User did not select a job type, show an error message
-            Toast.makeText(job_Posting.this, "Please select a job type.", Toast.LENGTH_LONG).show();
+            Toast.makeText(JobPostingActivity.this, "Please select a job type.", Toast.LENGTH_LONG).show();
             return; // Do not proceed further
         }
 
@@ -111,13 +111,13 @@ public class job_Posting extends AppCompatActivity {
         crud.addJobPosting(newJob, userEmail, new FirebaseCrud.JobPostingResultCallback() {
             @Override
             public void onSuccess(String result) {
-                Toast.makeText(job_Posting.this, "Job posted successfully!", Toast.LENGTH_LONG).show();
+                Toast.makeText(JobPostingActivity.this, "Job posted successfully!", Toast.LENGTH_LONG).show();
                 finish(); // Close the activity if you want to
             }
 
             @Override
             public void onFailure(String errorMessage) {
-                Toast.makeText(job_Posting.this, "Failed to post job: " + errorMessage, Toast.LENGTH_LONG).show();
+                Toast.makeText(JobPostingActivity.this, "Failed to post job: " + errorMessage, Toast.LENGTH_LONG).show();
             }
         });
     }

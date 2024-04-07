@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -40,6 +39,15 @@ public class ApplyJobActivity extends AppCompatActivity {
         editTextPhoneNumber = findViewById(R.id.editTextPhoneNumber);
         buttonApply = findViewById(R.id.buttonApply);
 
+        SharedPreferences sharedPref = getSharedPreferences("userDetails", Context.MODE_PRIVATE);
+
+        editTextEmail.setText(sharedPref.getString("userEmail","").replace(",","."));
+        editTextName.setText(sharedPref.getString("name",""));
+
+        editTextEmail.setEnabled(false);
+        editTextEmail.setFocusable(false);
+        editTextName.setEnabled(false);
+        editTextName.setFocusable(false);
         buttonApply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,9 +76,9 @@ public class ApplyJobActivity extends AppCompatActivity {
                 String userRole = sharedPref.getString("userRole", "");
                 Intent intent;
                 if (userRole.equals("Employee")) {
-                    intent = new Intent(ApplyJobActivity.this, employee_landing.class);
+                    intent = new Intent(ApplyJobActivity.this, EmployeeLanding.class);
                 } else{
-                    intent = new Intent(ApplyJobActivity.this, employer_landing.class);
+                    intent = new Intent(ApplyJobActivity.this, EmployerLanding.class);
                 }
                 startActivity(intent);
             }

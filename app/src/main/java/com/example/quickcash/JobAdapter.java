@@ -46,7 +46,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
             String role = sharedPref.getString("userRole", "");
             if (role.equals("Employee")) {
                 // Navigate to Job Details Activity
-                Intent intent = new Intent(view.getContext(), jobDetails.class); // Corrected class name
+                Intent intent = new Intent(view.getContext(), JobDetails.class); // Corrected class name
                 intent.putExtra("jobTitle", job.getTitle());
                 intent.putExtra("jobDescription", job.getDescription());
                 intent.putExtra("jobPayment", job.getPayment());
@@ -54,10 +54,10 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
                 intent.putExtra("jobType", job.getJobType());
                 intent.putExtra("jobId", job.getJobId());
                 view.getContext().startActivity(intent);
-            } else if (context instanceof employer_landing) { // Corrected class name
+            } else if (context instanceof EmployerLanding) { // Corrected class name
                 // This is a placeholder for your existing logic to show applicants
                 // Assuming EmployerLandingActivity has a method showApplicants()
-                ((employer_landing) context).showApplicants(job.getJobId(), job.getPayment());
+                ((EmployerLanding) context).showApplicants(job.getJobId(), job.getPayment());
             }
         });
     }

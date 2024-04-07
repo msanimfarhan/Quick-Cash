@@ -37,7 +37,7 @@ import com.google.firebase.FirebaseApp;
 
 import java.util.List;
 
-public class employer_landing extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+public class EmployerLanding extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     private RecyclerView jobsRecyclerView;
     private JobAdapter adapter;
     FirebaseCrud crud = null;
@@ -66,6 +66,31 @@ public class employer_landing extends AppCompatActivity implements View.OnClickL
         locationTextView = findViewById(R.id.location_text_view);
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         checkLocationPermissionAndGetLocation();
+        Button jobBoardBtn = findViewById(R.id.job_board_btn);
+        Button notificationButton = findViewById(R.id.notification_btn);
+        notificationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the new activity
+                Intent intent = new Intent(EmployerLanding.this, JobNotification.class);
+                startActivity(intent);
+            }
+        });
+        jobBoardBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the new activity
+                SharedPreferences sharedPref = getSharedPreferences("userDetails", Context.MODE_PRIVATE);
+                String userRole = sharedPref.getString("userRole", "");
+                Intent intent;
+                if (userRole.equals("Employee")) {
+                    intent = new Intent(EmployerLanding.this, EmployeeLanding.class);
+                } else{
+                    intent = new Intent(EmployerLanding.this, EmployerLanding.class);
+                }
+                startActivity(intent);
+            }
+        });
     }
 
     private void checkLocationPermissionAndGetLocation() {
@@ -131,13 +156,13 @@ public class employer_landing extends AppCompatActivity implements View.OnClickL
             @Override
             public void onJobPostingsRetrieved(List<JobPosting> jobPostings) {
                 // Use the job postings list to update the RecyclerView
-                adapter = new JobAdapter(jobPostings,employer_landing.this);
+                adapter = new JobAdapter(jobPostings, EmployerLanding.this);
                 jobsRecyclerView.setAdapter(adapter);
             }
 
             @Override
             public void onError(Exception e) {
-                Toast.makeText(employer_landing.this, "Error fetching jobs: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(EmployerLanding.this, "Error fetching jobs: " + e.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -149,7 +174,7 @@ public class employer_landing extends AppCompatActivity implements View.OnClickL
     }
 
     protected void move2JobPosting() {
-        Intent employerIntent = new Intent(this, job_Posting.class);
+        Intent employerIntent = new Intent(this, JobPostingActivity.class);
         startActivity(employerIntent);
     }
 

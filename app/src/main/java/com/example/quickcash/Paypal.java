@@ -1,7 +1,9 @@
 package com.example.quickcash;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,7 +23,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalPayment;
@@ -34,8 +35,8 @@ import org.json.JSONObject;
 
 import java.math.BigDecimal;
 
-public class paypal extends AppCompatActivity {
-    private static final String TAG = paypal.class.getName();
+public class Paypal extends AppCompatActivity {
+    private static final String TAG = Paypal.class.getName();
 
     private PayPalConfiguration payPalconfig;
     private ActivityResultLauncher<Intent> activityResultLauncher;
@@ -74,6 +75,31 @@ public class paypal extends AppCompatActivity {
         amountbox.setEnabled(false);
         amountbox.setFocusable(false);
 
+        Button jobBoardBtn = findViewById(R.id.job_board_btn);
+        Button notificationButton = findViewById(R.id.notification_btn);
+        notificationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the new activity
+                Intent intent = new Intent(Paypal.this, JobNotification.class);
+                startActivity(intent);
+            }
+        });
+        jobBoardBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the new activity
+                SharedPreferences sharedPref = getSharedPreferences("userDetails", Context.MODE_PRIVATE);
+                String userRole = sharedPref.getString("userRole", "");
+                Intent intent;
+                if (userRole.equals("Employee")) {
+                    intent = new Intent(Paypal.this, EmployeeLanding.class);
+                } else{
+                    intent = new Intent(Paypal.this, EmployerLanding.class);
+                }
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -123,7 +149,7 @@ public class paypal extends AppCompatActivity {
     }
 
     protected void move2JobPosting() {
-        Intent paypalIntent = new Intent(this, job_Posting.class);
+        Intent paypalIntent = new Intent(this, JobPostingActivity.class);
         startActivity(paypalIntent);
     }
 
@@ -201,10 +227,10 @@ public class paypal extends AppCompatActivity {
                             if (dataSnapshot.exists()) {
                                 long currentBalance = dataSnapshot.getValue(Long.class);
                                 accountBalanceRef.setValue(currentBalance + Integer.parseInt(payment));
-                                Toast.makeText(paypal.this, "Account Balance updated", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Paypal.this, "Account Balance updated", Toast.LENGTH_SHORT).show();
                             } else {
                                 accountBalanceRef.setValue(Integer.parseInt(payment));
-                                Toast.makeText(paypal.this, "Account Balance created and updated", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Paypal.this, "Account Balance created and updated", Toast.LENGTH_SHORT).show();
                             }
                         }
 

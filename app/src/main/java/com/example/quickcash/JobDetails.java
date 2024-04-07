@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-public class jobDetails extends AppCompatActivity {
+public class JobDetails extends AppCompatActivity {
     // Define TextViews to show job details
     private TextView jobTitleTextView;
     private TextView jobDescriptionTextView;
@@ -29,10 +29,10 @@ public class jobDetails extends AppCompatActivity {
         applyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent applyIntent=new Intent(jobDetails.this,ApplyJobActivity.class);
+                Intent applyIntent=new Intent(JobDetails.this,ApplyJobActivity.class);
                 applyIntent.putExtra("jobId",intent.getStringExtra("jobId"));
                 startActivity(applyIntent);
-                Toast.makeText(jobDetails.this,"Job ID: "+intent.getStringExtra("jobId"),Toast.LENGTH_SHORT).show();
+                Toast.makeText(JobDetails.this,"Job ID: "+intent.getStringExtra("jobId"),Toast.LENGTH_SHORT).show();
             }
         });
         // Initialize TextViews by finding them in the layout
