@@ -9,6 +9,7 @@ public class JobPosting {
     private String jobTags;
     private String jobType; // Added field for job type
     private String jobId;
+    private Boolean isHired;
 
 
     public JobPosting() {
@@ -61,5 +62,13 @@ public class JobPosting {
     }
     public String getJobTags(){
         return this.jobTags;
+    }
+
+    public Boolean getHired() {
+        return isHired;
+    }
+
+    public void setHired(Boolean hired) {
+        isHired = hired;
     }
 }
