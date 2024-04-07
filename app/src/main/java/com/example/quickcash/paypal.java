@@ -57,10 +57,9 @@ public class paypal extends AppCompatActivity {
         //Setting the payment
         EditText amountbox=findViewById(R.id.amount);
         amountbox.setText(payment);
-        amountbox.setActivated(false);
-        Toast.makeText(paypal.this, getIntent().getStringExtra("applicantsEmail"),Toast.LENGTH_LONG).show();
-        Toast.makeText(paypal.this, getIntent().getStringExtra("payment"),Toast.LENGTH_LONG).show();
-        Toast.makeText(paypal.this, getIntent().getStringExtra("jobId"),Toast.LENGTH_LONG).show();
+        amountbox.setEnabled(false);
+        amountbox.setFocusable(false);
+
     }
 
     private void init(){
