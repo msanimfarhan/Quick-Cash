@@ -38,12 +38,13 @@ public class ApplicantListActivity extends AppCompatActivity {
 
         // Now, fetch the applicants
         String jobId = getIntent().getStringExtra("jobId");
+        String payment = getIntent().getStringExtra("payment");
         if (jobId != null) {
             firebaseCrud.fetchApplicantsForJob(jobId, new FirebaseCrud.ApplicantsResultCallback() {
                 @Override
                 public void onApplicantsRetrieved(List<Applicant> applicants) {
                     // Update the adapter with the list of applicants
-                    applicantAdapter.setApplicantsList(applicants);
+                    applicantAdapter.setApplicantsList(applicants,jobId,payment);
                     applicantAdapter.notifyDataSetChanged();
                 }
 

@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
@@ -13,10 +15,17 @@ import java.util.List;
 public class ApplicantAdapter extends RecyclerView.Adapter<ApplicantAdapter.ApplicantViewHolder> {
     private List<Applicant> applicantsList;
     private final Context mContext;
+    private String jobId;
+    private String payment;
 
     public ApplicantAdapter(List<Applicant> applicantsList, Context mContext) {
         this.applicantsList = applicantsList;
         this.mContext = mContext;
+    }
+    public String getJobId(){
+        return this.jobId;
+    }public String getPayment(){
+        return this.payment;
     }
 
     @NonNull
@@ -26,10 +35,13 @@ public class ApplicantAdapter extends RecyclerView.Adapter<ApplicantAdapter.Appl
                 .inflate(R.layout.applicant_item, parent, false);
         return new ApplicantViewHolder(itemView);
     }
-    public void setApplicantsList(List<Applicant> newApplicantsList) {
+    public void setApplicantsList(List<Applicant> newApplicantsList,String jobId,String payment) {
         this.applicantsList.clear(); // Clear the existing data
         this.applicantsList.addAll(newApplicantsList); // Add the new data
+        this.jobId=jobId;
+        this.payment=payment;
         notifyDataSetChanged(); // Notify the adapter that the data has changed
+
     }
 
     @Override
@@ -61,6 +73,9 @@ public class ApplicantAdapter extends RecyclerView.Adapter<ApplicantAdapter.Appl
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, paypal.class);
+                    intent.putExtra("applicantsEmail",emailTextView.getText());
+                    intent.putExtra("jobId",getJobId());
+                    intent.putExtra("payment",getPayment());
                     mContext.startActivity(intent);
                 }
             });

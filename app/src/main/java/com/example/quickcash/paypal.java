@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -46,6 +48,19 @@ public class paypal extends AppCompatActivity {
         setListeners();
         setupjobBoardListener();
         setupNotificationListener();
+
+        //Retrieving Data From intent
+        String applicantsEmail=getIntent().getStringExtra("applicantsEmail");
+        String payment=getIntent().getStringExtra("payment");
+        String jobid=getIntent().getStringExtra("jobId");
+
+        //Setting the payment
+        EditText amountbox=findViewById(R.id.amount);
+        amountbox.setText(payment);
+        amountbox.setActivated(false);
+        Toast.makeText(paypal.this, getIntent().getStringExtra("applicantsEmail"),Toast.LENGTH_LONG).show();
+        Toast.makeText(paypal.this, getIntent().getStringExtra("payment"),Toast.LENGTH_LONG).show();
+        Toast.makeText(paypal.this, getIntent().getStringExtra("jobId"),Toast.LENGTH_LONG).show();
     }
 
     private void init(){
@@ -102,9 +117,11 @@ public class paypal extends AppCompatActivity {
                                 Log.i(TAG, paymentDetails);
                                 // Extract json response and display it in a text view.
                                 JSONObject payObj = new JSONObject(paymentDetails);
+                                Log.i(TAG, "Complete Payment Object: " + payObj);
+
                                 String payID = payObj.getJSONObject("response").getString("id");
                                 String state = payObj.getJSONObject("response").getString("state");
-                                paymentStatus.setText(String.format("Payment %s%n with payment id is %s", state, payID));
+                                paymentStatus.setText(String.format("Payment %s%n with payment id is %s", payObj, payID));
                             } catch (JSONException e) {
                                 Log.e("Error", "an extremely unlikely failure occurred: ", e);
                             }

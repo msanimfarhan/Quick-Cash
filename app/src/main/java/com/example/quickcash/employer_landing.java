@@ -176,9 +176,10 @@ public class employer_landing extends AppCompatActivity implements View.OnClickL
             }
         });
     }
-    public void showApplicants(String jobId) {
+    public void showApplicants(String jobId,String payment) {
         Intent intent = new Intent(this, ApplicantListActivity.class);
         intent.putExtra("jobId", jobId);
+        intent.putExtra("payment", payment);
         startActivity(intent);
         FirebaseCrud firebaseCrud = new FirebaseCrud(FirebaseDatabase.getInstance());
 

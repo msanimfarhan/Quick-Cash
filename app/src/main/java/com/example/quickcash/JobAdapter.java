@@ -66,7 +66,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
                 }
                 else {
                     if (context instanceof employer_landing) {
-                        ((employer_landing) context).showApplicants(job.getJobId());
+                        ((employer_landing) context).showApplicants(job.getJobId(),job.getPayment());
                     }
 
                 }
