@@ -104,6 +104,16 @@ public class EmployeeLanding extends AppCompatActivity {
         fetchJobsAndUpdateUI("");
         Button jobBoardBtn = findViewById(R.id.job_board_btn);
         Button notificationButton = findViewById(R.id.notification_btn);
+        Button profileBtn = findViewById(R.id.profile_btn);
+
+        profileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the new activity
+                Intent intent = new Intent(EmployeeLanding.this, EmployeeProfile.class);
+                startActivity(intent);
+            }
+        });
         notificationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

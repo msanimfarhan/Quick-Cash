@@ -59,7 +59,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/profile"
+            android:id="@+id/profile_btn"
             android:layout_width="85dp"
             android:layout_height="40dp"
             android:backgroundTint="#0c68b5"

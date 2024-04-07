@@ -52,6 +52,7 @@
         <activity android:name=".ApplicantListActivity" />
         <activity android:name=".Paypal"/>
         <activity android:name=".JobApplicantsDetails"></activity>
+        <activity android:name=".EmployeeProfile"></activity>
 
 
     </application>

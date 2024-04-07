@@ -1,5 +1,8 @@
 package com.example.quickcash;
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 public class JobDetails extends AppCompatActivity {
     // Define TextViews to show job details
     private TextView jobTitleTextView;
@@ -23,16 +27,16 @@ public class JobDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.job_details); // Ensure this matches your XML file name
 
-        Button applyBtn= findViewById(R.id.applyBtn);
+        Button applyBtn = findViewById(R.id.applyBtn);
         Intent intent = getIntent();
 
         applyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent applyIntent=new Intent(JobDetails.this,ApplyJobActivity.class);
-                applyIntent.putExtra("jobId",intent.getStringExtra("jobId"));
+                Intent applyIntent = new Intent(JobDetails.this, ApplyJobActivity.class);
+                applyIntent.putExtra("jobId", intent.getStringExtra("jobId"));
                 startActivity(applyIntent);
-                Toast.makeText(JobDetails.this,"Job ID: "+intent.getStringExtra("jobId"),Toast.LENGTH_SHORT).show();
+                Toast.makeText(JobDetails.this, "Job ID: " + intent.getStringExtra("jobId"), Toast.LENGTH_SHORT).show();
             }
         });
         // Initialize TextViews by finding them in the layout
@@ -55,6 +59,41 @@ public class JobDetails extends AppCompatActivity {
         jobPaymentTextView.setText(jobPayment);
         jobLocationTextView.setText(jobLocation);
         jobTypeTextView.setText(jobType);
+
+        Button jobBoardBtn = findViewById(R.id.job_board_btn);
+        Button notificationButton = findViewById(R.id.notification_btn);
+        Button profileBtn = findViewById(R.id.profile_btn);
+        profileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the new activity
+                Intent intent = new Intent(JobDetails.this, EmployeeProfile.class);
+                startActivity(intent);
+            }
+        });
+        notificationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the new activity
+                Intent intent = new Intent(JobDetails.this, JobNotification.class);
+                startActivity(intent);
+            }
+        });
+        jobBoardBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the new activity
+                SharedPreferences sharedPref = getSharedPreferences("userDetails", Context.MODE_PRIVATE);
+                String userRole = sharedPref.getString("userRole", "");
+                Intent intent;
+                if (userRole.equals("Employee")) {
+                    intent = new Intent(JobDetails.this, EmployeeLanding.class);
+                } else {
+                    intent = new Intent(JobDetails.this, EmployerLanding.class);
+                }
+                startActivity(intent);
+            }
+        });
     }
 
 }

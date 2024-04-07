@@ -40,6 +40,15 @@ public class JobNotification extends AppCompatActivity {
         fetchJobNotifications();
         Button jobBoardBtn = findViewById(R.id.job_board_btn);
         Button notificationButton = findViewById(R.id.notification_btn);
+        Button profileBtn = findViewById(R.id.profile_btn);
+        profileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the new activity
+                Intent intent = new Intent(JobNotification.this, EmployeeProfile.class);
+                startActivity(intent);
+            }
+        });
         notificationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
