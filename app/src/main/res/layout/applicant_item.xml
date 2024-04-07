@@ -7,27 +7,22 @@
     app:cardCornerRadius="4dp"
     app:cardElevation="4dp">
 
+
     <LinearLayout
+        android:id="@+id/singleApplicant"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:text="Applicants"
-            android:gravity="center"/>
 
         <TextView
             android:id="@+id/applicantName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Name Placeholder"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:text="Name Placeholder" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/applicantEmail"
@@ -41,17 +36,6 @@
             android:layout_height="wrap_content"
             android:text="Phone Placeholder" />
 
-        <Button
-            android:id="@+id/hireBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Hire" />
 
-        <Button
-            android:id="@+id/payBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:text="Pay" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

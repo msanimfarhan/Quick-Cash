@@ -118,9 +118,7 @@ public class employer_landing extends AppCompatActivity implements View.OnClickL
 
         // Initialize database access and Firebase CRUD operations
         initializeDatabaseAccess();
-
         setupAddJobListener();
-
         fetchJobsAndUpdateUI();
     }
 

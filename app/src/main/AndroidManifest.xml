@@ -51,6 +51,8 @@
         <activity android:name=".Notification" />
         <activity android:name=".ApplicantListActivity" />
         <activity android:name=".paypal"/>
+        <activity android:name=".JobApplicantsDetails"></activity>
+
 
     </application>
 

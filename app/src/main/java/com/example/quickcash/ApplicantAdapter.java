@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -75,6 +76,18 @@ public class ApplicantAdapter extends RecyclerView.Adapter<ApplicantAdapter.Appl
         holder.nameTextView.setText(applicant.getName());
         holder.emailTextView.setText(applicant.getEmail());
         holder.phoneTextView.setText(applicant.getPhoneNumber());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, JobApplicantsDetails.class);
+                intent.putExtra("name", holder.nameTextView.getText());
+                intent.putExtra("applicantsEmail", holder.emailTextView.getText());
+                intent.putExtra("phone", holder.phoneTextView.getText());
+                intent.putExtra("jobId", getJobId());
+                intent.putExtra("payment", getPayment());
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -88,6 +101,7 @@ public class ApplicantAdapter extends RecyclerView.Adapter<ApplicantAdapter.Appl
         TextView phoneTextView;
         Button hireBtn;
         Button paybtn;
+        LinearLayout singleApplicant;
         FirebaseCrud crud;
 
         public ApplicantViewHolder(View itemView) {
@@ -96,45 +110,10 @@ public class ApplicantAdapter extends RecyclerView.Adapter<ApplicantAdapter.Appl
             emailTextView = itemView.findViewById(R.id.applicantEmail);
             phoneTextView = itemView.findViewById(R.id.applicantPhone);
             setApplicantsEmail(emailTextView.getText().toString());
-            HashMap<String,String> hiringInfo = fetchHiringInfo(getJobId());
 
-            hireBtn = itemView.findViewById(R.id.hireBtn);
-            paybtn = itemView.findViewById(R.id.payBtn);
-            Log.i("Info","email: "+hiringInfo.get("email")+"\n"+
-            "IsHired: "+ hiringInfo.get("isHired")
+            singleApplicant = itemView.findViewById(R.id.singleApplicant);
 
-            );
 
-            Log.i("Info",emailTextView.getText().toString());
-            if (emailTextView.getText().toString().equals("jahid@gmail.com")
-            ) {
-                hireBtn.setVisibility(View.GONE);
-                paybtn.setVisibility(View.VISIBLE);
-            } else{
-                hireBtn.setVisibility(View.VISIBLE);
-                paybtn.setVisibility(View.GONE);
-            }
-
-            hireBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(mContext, "Applicant Hired Successfully!", Toast.LENGTH_SHORT).show();
-                    hireBtn.setVisibility(View.GONE);
-                    paybtn.setVisibility(View.VISIBLE);
-
-                }
-            });
-
-            paybtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(mContext, paypal.class);
-                    intent.putExtra("applicantsEmail", emailTextView.getText());
-                    intent.putExtra("jobId", getJobId());
-                    intent.putExtra("payment", getPayment());
-                    mContext.startActivity(intent);
-                }
-            });
         }
 
         public  HashMap<String,String> fetchHiringInfo(String jobId) {

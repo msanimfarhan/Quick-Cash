@@ -9,7 +9,7 @@
         android:id="@+id/include6"
         layout="@layout/toolbar"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="29dp" />
+        tools:layout_editor_absoluteY="-16dp" />
 
     <TextView
         android:id="@+id/textView"
@@ -92,16 +92,17 @@
         android:id="@+id/hireBtn_applicantDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="152dp"
         android:layout_marginTop="20dp"
         android:text="Hire"
-        app:layout_constraintTop_toBottomOf="@+id/applicantsPhone"
-        tools:layout_editor_absoluteX="144dp" />
+        app:layout_constraintStart_toStartOf="@+id/include6"
+        app:layout_constraintTop_toBottomOf="@+id/applicantsPhone" />
 
     <Button
         android:id="@+id/paybtn_applicantDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="144dp"
+        android:layout_marginStart="152dp"
         android:layout_marginTop="20dp"
         android:text="Pay"
         app:layout_constraintStart_toStartOf="@+id/include6"
