@@ -10,6 +10,7 @@ public class JobPosting {
     private String jobType; // Added field for job type
     private String jobId;
     private Boolean isHired;
+    private Boolean isCompleted;
 
 
     public JobPosting() {
@@ -24,6 +25,7 @@ public class JobPosting {
         this.location = location;
         this.jobType = jobType;
         this.jobTags = jobTags;
+
     }
 
     public String getEmployer() {
@@ -70,5 +72,13 @@ public class JobPosting {
 
     public void setHired(Boolean hired) {
         isHired = hired;
+    }
+
+    public Boolean getCompleted() {
+        return isCompleted;
+    }
+
+    public void setCompleted(Boolean completed) {
+        isCompleted = completed;
     }
 }

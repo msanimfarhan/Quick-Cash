@@ -99,25 +99,37 @@ public class FirebaseCrud {
         });
     }
 
-    public void fetchAllJobs(String search,final JobPostingsResultCallback callback) {
+    public void fetchAllJobs(String search, final JobPostingsResultCallback callback) {
         DatabaseReference allJobsRef = database.getReference("AllJobs");
-        String searchText=search.toLowerCase();
+        String searchText = search.toLowerCase();
         allJobsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<JobPosting> jobPostings = new ArrayList<>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     JobPosting job = snapshot.getValue(JobPosting.class);
-                   if(!searchText.equals("")){
-                       if ((job.getTitle() != null && job.getTitle().toLowerCase().contains(searchText)) ||
-                               job.getDescription() != null && job.getDescription().toLowerCase().contains(searchText) ||
-                               job.getJobTags() != null && job.getJobTags().toLowerCase().contains(searchText)
-                       ) {
-                           jobPostings.add(job);
-                       }
-                   } else{
-                       jobPostings.add(job);
-                   }
+                    boolean isCompleted = Boolean.TRUE.equals(snapshot.child("isCompleted").getValue(Boolean.class));
+                    Log.i("isCom", String.valueOf(isCompleted));
+                    if (!searchText.equals("")) {
+                        Log.i("email", job.getEmployer());
+                        Log.i("isCom", String.valueOf(job.getCompleted()));
+
+                        if ((job.getTitle() != null &&
+                                ((job.getTitle().toLowerCase().contains(searchText)) ||
+                                        job.getDescription() != null && job.getDescription().toLowerCase().contains(searchText) ||
+                                        job.getJobTags() != null && job.getJobTags().toLowerCase().contains(searchText)))
+                        ) {
+                            jobPostings.add(job);
+                        }
+                    } else {
+                        if (!isCompleted) {
+
+                            jobPostings.add(job);
+                        }
+
+
+                    }
+
                 }
                 callback.onJobPostingsRetrieved(jobPostings);
             }
@@ -406,8 +418,6 @@ public class FirebaseCrud {
 
         void onApplicationFailure(String errorMessage);
     }
-
-
 
 
 }
