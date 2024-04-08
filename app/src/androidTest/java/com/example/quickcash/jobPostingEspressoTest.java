@@ -18,8 +18,8 @@ import static org.hamcrest.Matchers.anything;
 public class jobPostingEspressoTest {
 
     @Rule
-    public ActivityScenarioRule<job_Posting> activityRule =
-            new ActivityScenarioRule<>(job_Posting.class);
+    public ActivityScenarioRule<JobPostingActivity> activityRule =
+            new ActivityScenarioRule<>(JobPostingActivity.class);
 
     @Test
     public void testJobPosting() {

@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,6 +40,15 @@ public class JobNotification extends AppCompatActivity {
         fetchJobNotifications();
         Button jobBoardBtn = findViewById(R.id.job_board_btn);
         Button notificationButton = findViewById(R.id.notification_btn);
+        Button profileBtn = findViewById(R.id.profile_btn);
+        profileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the new activity
+                Intent intent = new Intent(JobNotification.this, EmployeeProfile.class);
+                startActivity(intent);
+            }
+        });
         notificationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,9 +65,9 @@ public class JobNotification extends AppCompatActivity {
                 String userRole = sharedPref.getString("userRole", "");
                 Intent intent;
                 if (userRole.equals("Employee")) {
-                    intent = new Intent(JobNotification.this, employee_landing.class);
+                    intent = new Intent(JobNotification.this, EmployeeLanding.class);
                 } else{
-                    intent = new Intent(JobNotification.this, employer_landing.class);
+                    intent = new Intent(JobNotification.this, EmployerLanding.class);
                 }
                 startActivity(intent);
             }

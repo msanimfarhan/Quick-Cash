@@ -8,7 +8,6 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -18,30 +17,28 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.FirebaseDatabase;
 
 import android.location.Location;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 import android.widget.TextView;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Toast;
 
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
 
 
-public class employee_landing extends AppCompatActivity {
+public class EmployeeLanding extends AppCompatActivity {
     private TextView locationTextView;
     private FusedLocationProviderClient fusedLocationClient;
     private RecyclerView jobsRecyclerView;
@@ -86,7 +83,7 @@ public class employee_landing extends AppCompatActivity {
         Notificaion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(employee_landing.this, JobNotification.class);
+                Intent intent = new Intent(EmployeeLanding.this, JobNotification.class);
                 startActivity(intent);
             }
         });
@@ -94,7 +91,7 @@ public class employee_landing extends AppCompatActivity {
         JobBoard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(employee_landing.this, employee_landing.class);
+                Intent intent = new Intent(EmployeeLanding.this, EmployeeLanding.class);
                 startActivity(intent);
             }
         });
@@ -104,14 +101,24 @@ public class employee_landing extends AppCompatActivity {
         // Initialize database access and Firebase CRUD operations
         initializeDatabaseAccess();
 
-        fetchJobsAndUpdateUI();
+        fetchJobsAndUpdateUI("");
         Button jobBoardBtn = findViewById(R.id.job_board_btn);
         Button notificationButton = findViewById(R.id.notification_btn);
+        Button profileBtn = findViewById(R.id.profile_btn);
+
+        profileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the new activity
+                Intent intent = new Intent(EmployeeLanding.this, EmployeeProfile.class);
+                startActivity(intent);
+            }
+        });
         notificationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Start the new activity
-                Intent intent = new Intent(employee_landing.this, JobNotification.class);
+                Intent intent = new Intent(EmployeeLanding.this, JobNotification.class);
                 startActivity(intent);
             }
         });
@@ -123,29 +130,66 @@ public class employee_landing extends AppCompatActivity {
                 String userRole = sharedPref.getString("userRole", "");
                 Intent intent;
                 if (userRole.equals("Employee")) {
-                    intent = new Intent(employee_landing.this, employee_landing.class);
+                    intent = new Intent(EmployeeLanding.this, EmployeeLanding.class);
                 } else{
-                    intent = new Intent(employee_landing.this, employer_landing.class);
+                    intent = new Intent(EmployeeLanding.this, EmployerLanding.class);
                 }
                 startActivity(intent);
             }
         });
+
+        Button searchBtn=findViewById(R.id.searchBtn);
+        EditText searchBox=findViewById(R.id.searchBox);
+        searchBox.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.toString().isEmpty()) {
+                    EditText searchBox=findViewById(R.id.searchBox);
+                    String searchText=searchBox.getText().toString();
+                    fetchJobsAndUpdateUI(searchText);
+                } else if(s.toString().contains(" ")){
+                    EditText searchBox=findViewById(R.id.searchBox);
+                    String searchText=searchBox.getText().toString().trim();
+                    fetchJobsAndUpdateUI(searchText);
+                }
+            }
+        });
+
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText searchBox=findViewById(R.id.searchBox);
+                String searchText=searchBox.getText().toString();
+
+                fetchJobsAndUpdateUI(searchText);
+            }
+        });
     }
 
-    private void fetchJobsAndUpdateUI() {
+    private void fetchJobsAndUpdateUI(String searchText) {
 
-        crud.fetchAllJobs(new FirebaseCrud.JobPostingsResultCallback() {
+        crud.fetchAllJobs(searchText,new FirebaseCrud.JobPostingsResultCallback() {
             @Override
             public void onJobPostingsRetrieved(List<JobPosting> jobPostings) {
                 // Update the RecyclerView with the list of jobs
-                adapter = new JobAdapter(jobPostings);
+                adapter = new JobAdapter(jobPostings, EmployeeLanding.this);
                 jobsRecyclerView.setAdapter(adapter);
             }
 
             @Override
             public void onError(Exception e) {
                 // Handle any errors
-                Toast.makeText(employee_landing.this, "Error fetching jobs: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(EmployeeLanding.this, "Error fetching jobs: " + e.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
 

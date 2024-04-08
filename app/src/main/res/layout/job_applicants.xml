@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".JobApplicants">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textViewApplicant1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="A1: 1 - Dev1 - 3years"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"/>
+
+    <TextView
+        android:id="@+id/textViewApplicant2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="A2: 2 - Dev2 - 5years"
+        android:layout_below="@id/textViewApplicant1"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"/>
+
+    <TextView
+        android:id="@+id/textViewApplicant3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="A3: 3 - Dev3 - 2years"
+        android:layout_below="@id/textViewApplicant2"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

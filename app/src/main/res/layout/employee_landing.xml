@@ -6,16 +6,16 @@
     android:layout_height="wrap_content"
     android:visibility="visible">
 
-    <include layout="@layout/toolbar"/>
-
-
+    <include
+        android:id="@+id/include5"
+        layout="@layout/toolbar_employee" />
 
 
     <TextView
         android:id="@+id/tvCurrentJobPostings"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="132dp"
         android:text="Current Job Postings"
         android:textAlignment="center"
         android:textSize="24sp"
@@ -24,7 +24,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/jobRecycler2"
@@ -51,6 +50,31 @@
         app:layout_constraintTop_toBottomOf="@+id/jobRecycler2"
         app:layout_constraintVertical_bias="1.0"
         tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/searchBox"
+        android:layout_width="293dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="80dp"
+        android:hint="Search Job"
+        android:gravity="left"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:background="@drawable/textview_border"
+        android:padding="8dp"
+        app:layout_constraintStart_toStartOf="@+id/include5"
+        app:layout_constraintTop_toTopOf="@+id/include5" />
+
+
+    <Button
+        android:id="@+id/searchBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="77dp"
+        android:text="Search"
+        app:layout_constraintStart_toEndOf="@+id/searchBox"
+        app:layout_constraintTop_toTopOf="@+id/include5" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

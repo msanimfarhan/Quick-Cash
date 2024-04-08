@@ -11,11 +11,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -101,12 +98,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     protected void move2employer(){
-        Intent emplyerIntent = new Intent(this, employer_landing.class);
+        Intent emplyerIntent = new Intent(this, EmployerLanding.class);
         startActivity(emplyerIntent);
     }
 
     protected void move2employee(){
-        Intent employeeIntent = new Intent(this, employee_landing.class);
+        Intent employeeIntent = new Intent(this, EmployeeLanding.class);
         startActivity(employeeIntent);
     }
 

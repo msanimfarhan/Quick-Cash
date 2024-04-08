@@ -1,5 +1,6 @@
 package com.example.quickcash;
 
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -10,9 +11,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.security.cert.PolicyNode;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.HashMap;
 
 import java.util.List;
@@ -20,8 +23,7 @@ import java.util.List;
 public class FirebaseCrud {
     private DatabaseReference userRef;
     private FirebaseDatabase database;
-    String  result="";
-
+    String result = "";
 
 
     public FirebaseCrud(FirebaseDatabase database) {
@@ -39,10 +41,38 @@ public class FirebaseCrud {
         this.locationRef = getLocationRef();
 
     }
+
     protected DatabaseReference getUserRef(String userMail) {
         return this.database.getReference(userMail);
     }
 
+
+    public void fetchApplicantsForJob(String jobId, final ApplicantsResultCallback callback) {
+        DatabaseReference jobApplicantsRef = database.getReference("AllJobs").child(jobId).child("applicants");
+
+        jobApplicantsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<Applicant> applicants = new ArrayList<>();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Applicant applicant = snapshot.getValue(Applicant.class);
+                    applicants.add(applicant);
+                }
+                callback.onApplicantsRetrieved(applicants);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                callback.onError(databaseError.toException());
+            }
+        });
+    }
+
+    public interface ApplicantsResultCallback {
+        void onApplicantsRetrieved(List<Applicant> applicants);
+
+        void onError(Exception e);
+    }
 
     public void addJobPosting(JobPosting jobPosting, String userMail, final JobPostingResultCallback callback) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -52,18 +82,11 @@ public class FirebaseCrud {
         DatabaseReference Alljobsref = database.getReference("AllJobs");
         DatabaseReference userRef = database.getReference("Users").child(sanitizedEmail).child("jobs");
 
-        userRef.push().setValue(jobPosting).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    callback.onSuccess("Job posted successfully!");
-                } else {
-//                    Toast.makeText(this, "Job posted successfully!", Toast.LENGTH_LONG).show();
-                    callback.onFailure(task.getException().getMessage());
-                }
-            }
-        });
-        Alljobsref.push().setValue(jobPosting).addOnCompleteListener(new OnCompleteListener<Void>() {
+        DatabaseReference jobIdRef = Alljobsref.push();
+        String key = jobIdRef.getKey();
+        jobPosting.setJobId(key);
+
+        jobIdRef.setValue(jobPosting).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
@@ -76,16 +99,39 @@ public class FirebaseCrud {
         });
     }
 
-    public void fetchAllJobs(final JobPostingsResultCallback callback) {
+    public void fetchAllJobs(String search, final JobPostingsResultCallback callback) {
         DatabaseReference allJobsRef = database.getReference("AllJobs");
-
+        String searchText = search.toLowerCase();
         allJobsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<JobPosting> jobPostings = new ArrayList<>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     JobPosting job = snapshot.getValue(JobPosting.class);
-                    jobPostings.add(job);
+
+                    // Checking if the job is already completed or not
+                    boolean isCompleted = Boolean.TRUE.equals(snapshot.child("isCompleted").getValue(Boolean.class));
+
+                    if (!searchText.equals("")) {
+                        Log.i("email", job.getEmployer());
+                        Log.i("isCom", String.valueOf(job.getCompleted()));
+
+                        if ((job.getTitle() != null &&
+                                ((job.getTitle().toLowerCase().contains(searchText)) ||
+                                        job.getDescription() != null && job.getDescription().toLowerCase().contains(searchText) ||
+                                        job.getJobTags() != null && job.getJobTags().toLowerCase().contains(searchText)))
+                        ) {
+                            jobPostings.add(job);
+                        }
+                    } else {
+                        if (!isCompleted) {
+
+                            jobPostings.add(job);
+                        }
+
+
+                    }
+
                 }
                 callback.onJobPostingsRetrieved(jobPostings);
             }
@@ -97,17 +143,28 @@ public class FirebaseCrud {
         });
     }
 
+//
+
+
     public void fetchUserJobs(String userEmail, final JobPostingsResultCallback callback) {
         String sanitizedEmail = userEmail.replace(".", ",");
-        DatabaseReference userJobsRef = database.getReference("Users").child(sanitizedEmail).child("jobs");
+        Query userJobsQuery = database.getReference("AllJobs").orderByChild("employer")
+                .equalTo(sanitizedEmail);
 
-        userJobsRef.addValueEventListener(new ValueEventListener() {
+        userJobsQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<JobPosting> jobPostings = new ArrayList<>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                    // Checking if the job is already completed or not
+                    boolean isCompleted = Boolean.TRUE.equals(snapshot.child("isCompleted").getValue(Boolean.class));
+
                     JobPosting job = snapshot.getValue(JobPosting.class);
-                    jobPostings.add(job);
+                    if(!isCompleted){
+                        jobPostings.add(job);
+
+                    }
                 }
                 callback.onJobPostingsRetrieved(jobPostings);
             }
@@ -151,24 +208,29 @@ public class FirebaseCrud {
     // Callback interface for job posting results
     public interface JobPostingResultCallback {
         void onSuccess(String result);
+
         void onFailure(String errorMessage);
     }
 
     // Callback interface for retrieving multiple job postings
     public interface JobPostingsResultCallback {
         void onJobPostingsRetrieved(List<JobPosting> jobPostings);
+
         void onError(Exception e);
     }
 
     public interface JobNotificationsResultCallback {
         void onJobNotificationsRetrieved(List<JobNotificationData> jobNotifications);
+
         void onError(Exception e);
     }
 
     public interface NotificationResultCallback {
         void onNotificationRetrieved(List<JobPosting> jobPostings);
+
         void onError(Exception e);
     }
+
     protected void initializeDatabaseRefListeners() {
         //Incomplete method, add your implementation
         this.setNameListener();
@@ -270,8 +332,6 @@ public class FirebaseCrud {
     }
 
 
-
-
     protected void setNameListener() {
         this.nameRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -339,8 +399,9 @@ public class FirebaseCrud {
             }
         });
     }
+
     public void applyForJob(String jobId, String applicantEmail, String applicantName, String applicantPhoneNumber, final JobApplicationResultCallback callback) {
-        DatabaseReference jobApplicationRef = database.getReference("JobApplications").child(jobId);
+        DatabaseReference jobApplicationRef = database.getReference("AllJobs").child(jobId).child("applicants");
 
         HashMap<String, Object> application = new HashMap<>();
         application.put("email", applicantEmail);
@@ -363,10 +424,9 @@ public class FirebaseCrud {
 
     public interface JobApplicationResultCallback {
         void onApplicationSuccess(String result);
+
         void onApplicationFailure(String errorMessage);
     }
-
-
 
 
 }

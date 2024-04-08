@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/toolbar_employee"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#1468B2">
+
+        <TextView
+            android:id="@+id/AppHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:background="#0c68b5"
+            android:paddingEnd="10dp"
+            android:text="Quick Cash"
+            android:textColor="@color/white"
+            android:textSize="19sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/job_board_btn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/job_board_btn"
+            android:layout_width="75dp"
+            android:layout_height="39dp"
+            android:backgroundTint="#0c68b5"
+            android:text="Jobs"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:iconPadding="0dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/notification_btn"
+            app:layout_constraintEnd_toStartOf="@+id/notification_btn"
+            app:layout_constraintStart_toEndOf="@+id/AppHeader" />
+
+        <Button
+            android:id="@+id/notification_btn"
+            android:layout_width="116dp"
+            android:layout_height="37dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="1dp"
+            android:backgroundTint="#0c68b5"
+            android:text="Notification"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/profile"
+            app:layout_constraintStart_toEndOf="@+id/job_board_btn"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/profile_btn"
+            android:layout_width="85dp"
+            android:layout_height="40dp"
+            android:backgroundTint="#0c68b5"
+            android:text="Profile"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/notification_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/notification_btn" />
+
+
+        <!--        </androidx.appcompat.widget.Toolbar>-->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</RelativeLayout>

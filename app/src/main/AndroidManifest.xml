@@ -41,15 +41,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".employee_landing" />
-        <activity android:name=".employer_landing" />
-        <activity android:name=".job_Posting" />
+        <activity android:name=".JobDetails" />
+        <activity android:name=".EmployeeLanding" />
+        <activity android:name=".EmployerLanding" />
+        <activity android:name=".JobPostingActivity" />
         <activity android:name=".JobNotification" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ApplyJobActivity" />
         <activity android:name=".Notification" />
-        <activity android:name=".JobNotification" />
+        <activity android:name=".ApplicantListActivity" />
+        <activity android:name=".Paypal"/>
+        <activity android:name=".JobApplicantsDetails"></activity>
+        <activity android:name=".EmployeeProfile"></activity>
+
 
     </application>
 

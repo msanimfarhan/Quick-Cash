@@ -9,10 +9,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -89,12 +87,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void move2employer(){
-        Intent emplyerIntent = new Intent(this, employer_landing.class);
+        Intent emplyerIntent = new Intent(this, EmployerLanding.class);
         startActivity(emplyerIntent);
     }
 
     protected void move2employee(){
-        Intent employeeIntent = new Intent(this, employee_landing.class);
+        Intent employeeIntent = new Intent(this, EmployeeLanding.class);
         startActivity(employeeIntent);
     }
     private void setupRegisterButton() {
@@ -144,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
                     String DBemail = String.valueOf(dataSnapshot.child("email").getValue());
                     String DBpassword = String.valueOf(dataSnapshot.child("password").getValue());
                     String DBrole = String.valueOf(dataSnapshot.child("role").getValue());
+                    String name = String.valueOf(dataSnapshot.child("name").getValue());
 
 
                     if (email.equals(DBemail) && pass.equals(DBpassword)) {
@@ -163,6 +162,7 @@ public class MainActivity extends AppCompatActivity {
                             SharedPreferences.Editor editor = sharedPref.edit();
                             editor.putString("userEmail", sanitizedEmail);
                             editor.putString("userRole", DBrole);
+                            editor.putString("name", name);
                             editor.apply();
 
                             move2employee();

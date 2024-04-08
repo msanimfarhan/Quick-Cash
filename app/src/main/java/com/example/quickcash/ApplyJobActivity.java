@@ -26,6 +26,7 @@ public class ApplyJobActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apply_job);
+        Intent intent=getIntent();
 
         // Initialize Firebase
         FirebaseApp.initializeApp(this);
@@ -38,6 +39,15 @@ public class ApplyJobActivity extends AppCompatActivity {
         editTextPhoneNumber = findViewById(R.id.editTextPhoneNumber);
         buttonApply = findViewById(R.id.buttonApply);
 
+        SharedPreferences sharedPref = getSharedPreferences("userDetails", Context.MODE_PRIVATE);
+
+        editTextEmail.setText(sharedPref.getString("userEmail","").replace(",","."));
+        editTextName.setText(sharedPref.getString("name",""));
+
+        editTextEmail.setEnabled(false);
+        editTextEmail.setFocusable(false);
+        editTextName.setEnabled(false);
+        editTextName.setFocusable(false);
         buttonApply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,9 +76,9 @@ public class ApplyJobActivity extends AppCompatActivity {
                 String userRole = sharedPref.getString("userRole", "");
                 Intent intent;
                 if (userRole.equals("Employee")) {
-                    intent = new Intent(ApplyJobActivity.this, employee_landing.class);
+                    intent = new Intent(ApplyJobActivity.this, EmployeeLanding.class);
                 } else{
-                    intent = new Intent(ApplyJobActivity.this, employer_landing.class);
+                    intent = new Intent(ApplyJobActivity.this, EmployerLanding.class);
                 }
                 startActivity(intent);
             }
@@ -81,7 +91,7 @@ public class ApplyJobActivity extends AppCompatActivity {
         String phoneNumber = editTextPhoneNumber.getText().toString().trim();
 
         // Replace "jobId" with the actual job ID you're applying for
-        String jobId = "someJobId"; // This should be retrieved from the Intent or other sources
+        String jobId = getIntent().getStringExtra("jobId"); // This should be retrieved from the Intent or other sources
 
         if (email.isEmpty() || name.isEmpty() || phoneNumber.isEmpty()) {
             Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show();

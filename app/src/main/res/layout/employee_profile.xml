@@ -1,0 +1,134 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/include8"
+        layout="@layout/toolbar_employee"
+        tools:layout_editor_absoluteX="-30dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="92dp"
+        android:text="Employee Profile"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintStart_toStartOf="@+id/include8"
+        app:layout_constraintTop_toTopOf="@+id/include8" />
+
+    <!-- Add TextViews for displaying employee information -->
+
+    <TextView
+        android:id="@+id/name_employeeInfo_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="28dp"
+        android:text="Name: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView6" />
+
+    <TextView
+        android:id="@+id/name_employeeInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintStart_toEndOf="@id/name_employeeInfo_label"
+        app:layout_constraintTop_toTopOf="@id/name_employeeInfo_label"
+        app:layout_constraintBottom_toBottomOf="@id/name_employeeInfo_label"
+        app:layout_constraintVertical_bias="0.5"/>
+
+    <TextView
+        android:id="@+id/email_employeeInfo_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:text="Email: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name_employeeInfo_label" />
+
+    <TextView
+        android:id="@+id/email_employeeInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintStart_toEndOf="@id/email_employeeInfo_label"
+        app:layout_constraintTop_toTopOf="@id/email_employeeInfo_label"
+        app:layout_constraintBottom_toBottomOf="@id/email_employeeInfo_label"
+        app:layout_constraintVertical_bias="0.5"/>
+
+    <!-- Add more TextViews for other employee information -->
+    <TextView
+        android:id="@+id/role_employeeInfo_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Role: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/email_employeeInfo_label"
+        android:layout_marginTop="10dp"
+
+        app:layout_constraintVertical_bias="0.5"
+        android:layout_marginStart="30dp"/>
+
+    <TextView
+        android:id="@+id/role_employeeInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintStart_toEndOf="@id/role_employeeInfo_label"
+        app:layout_constraintTop_toTopOf="@id/role_employeeInfo_label"
+        app:layout_constraintBottom_toBottomOf="@id/role_employeeInfo_label"
+        app:layout_constraintVertical_bias="0.5"/>
+
+    <TextView
+        android:id="@+id/totalJobsCompleted_employeeInfo_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Jobs Completed: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/role_employeeInfo_label"
+        android:layout_marginTop="10dp"
+
+        app:layout_constraintVertical_bias="0.5"
+        android:layout_marginStart="30dp"/>
+
+    <TextView
+        android:id="@+id/totalJobsCompleted_employeeInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintStart_toEndOf="@id/totalJobsCompleted_employeeInfo_label"
+        app:layout_constraintTop_toTopOf="@id/totalJobsCompleted_employeeInfo_label"
+        app:layout_constraintBottom_toBottomOf="@id/totalJobsCompleted_employeeInfo_label"
+        app:layout_constraintVertical_bias="0.5"/>
+
+    <TextView
+        android:id="@+id/accountBalance_employeeInfo_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Account Balance: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/totalJobsCompleted_employeeInfo_label"
+        app:layout_constraintVertical_bias="0.5"
+        android:layout_marginTop="10dp"
+
+        android:layout_marginStart="30dp"/>
+
+    <TextView
+        android:id="@+id/accountBalance_employeeInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintStart_toEndOf="@id/accountBalance_employeeInfo_label"
+        app:layout_constraintTop_toTopOf="@id/accountBalance_employeeInfo_label"
+        app:layout_constraintBottom_toBottomOf="@id/accountBalance_employeeInfo_label"
+        app:layout_constraintVertical_bias="0.5"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
