@@ -102,7 +102,10 @@ public class ApplyJobActivity extends AppCompatActivity {
         firebaseCrud.applyForJob(jobId, email, name, phoneNumber, new FirebaseCrud.JobApplicationResultCallback() {
             @Override
             public void onApplicationSuccess(String result) {
+                editTextPhoneNumber.setText("");
                 Toast.makeText(ApplyJobActivity.this, result, Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(ApplyJobActivity.this,EmployeeLanding.class);
+                startActivity(intent);
             }
 
             @Override
