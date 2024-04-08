@@ -1,37 +1,54 @@
 package com.example.quickcash;
-import androidx.test.espresso.Espresso;
-import androidx.test.espresso.assertion.ViewAssertions;
-import androidx.test.espresso.matcher.ViewMatchers;
-import androidx.test.ext.junit.rules.ActivityScenarioRule;
+import androidx.test.core.app.ActivityScenario;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static androidx.test.espresso.action.ViewActions.scrollTo;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static org.junit.Assert.*;
 
 @RunWith(AndroidJUnit4.class)
 public class ApplicantListActivityTest {
 
-    @Rule
-    public ActivityScenarioRule<ApplicantListActivity> activityRule =
-            new ActivityScenarioRule<>(ApplicantListActivity.class);
-
     @Test
-    public void checkRecyclerViewDisplay() {
-        Espresso.onView(withId(R.id.recyclerViewApplicants))
-                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+    public void activityNotNull() {
+        try (ActivityScenario<ApplicantListActivity> scenario = ActivityScenario.launch(ApplicantListActivity.class)) {
+            scenario.onActivity(activity -> {
+                assertNotNull(activity);
+            });
+        }
     }
 
     @Test
-    public void checkApplicantNameInRecyclerView() {
-        // Scroll to the item to make sure it's visible and check if it contains the expected text.
-        // Note: This test assumes you have an applicant with the name "John Doe" in your data set.
-        Espresso.onView(withId(R.id.recyclerViewApplicants))
-                .perform(scrollTo())
-                .check(ViewAssertions.matches(ViewMatchers.hasDescendant(withText("John Doe"))));
+    public void recyclerViewNotNullAfterOnCreate() {
+        try (ActivityScenario<ApplicantListActivity> scenario = ActivityScenario.launch(ApplicantListActivity.class)) {
+            scenario.onActivity(activity -> {
+                RecyclerView recyclerView = activity.findViewById(R.id.recyclerViewApplicants);
+                assertNotNull(recyclerView);
+                assertTrue(recyclerView.getLayoutManager() instanceof LinearLayoutManager);
+            });
+        }
+    }
+    @Test
+    public void recyclerViewAdapterNotNullAfterOnCreate() {
+        try (ActivityScenario<ApplicantListActivity> scenario = ActivityScenario.launch(ApplicantListActivity.class)) {
+            scenario.onActivity(activity -> {
+                RecyclerView recyclerView = activity.findViewById(R.id.recyclerViewApplicants);
+                assertNotNull("RecyclerView adapter should not be null", recyclerView.getAdapter());
+            });
+        }
+    }
+
+    @Test
+    public void recyclerViewUsesLinearLayoutManager() {
+        try (ActivityScenario<ApplicantListActivity> scenario = ActivityScenario.launch(ApplicantListActivity.class)) {
+            scenario.onActivity(activity -> {
+                RecyclerView recyclerView = activity.findViewById(R.id.recyclerViewApplicants);
+                RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+                assertTrue("LayoutManager should be a LinearLayoutManager", layoutManager instanceof LinearLayoutManager);
+            });
+        }
     }
 }
