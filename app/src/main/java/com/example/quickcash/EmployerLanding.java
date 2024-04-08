@@ -151,7 +151,6 @@ public class EmployerLanding extends AppCompatActivity implements View.OnClickLi
         SharedPreferences sharedPref = getSharedPreferences("userDetails", Context.MODE_PRIVATE);
         String userEmail = sharedPref.getString("userEmail", null);
         String sanitizedEmail = userEmail.replace(".", ",");
-        System.out.println(userEmail + "i am in epm land");
         crud.fetchUserJobs(sanitizedEmail, new FirebaseCrud.JobPostingsResultCallback() {
             @Override
             public void onJobPostingsRetrieved(List<JobPosting> jobPostings) {

@@ -108,8 +108,10 @@ public class FirebaseCrud {
                 List<JobPosting> jobPostings = new ArrayList<>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     JobPosting job = snapshot.getValue(JobPosting.class);
+
+                    // Checking if the job is already completed or not
                     boolean isCompleted = Boolean.TRUE.equals(snapshot.child("isCompleted").getValue(Boolean.class));
-                    Log.i("isCom", String.valueOf(isCompleted));
+
                     if (!searchText.equals("")) {
                         Log.i("email", job.getEmployer());
                         Log.i("isCom", String.valueOf(job.getCompleted()));
@@ -154,8 +156,15 @@ public class FirebaseCrud {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<JobPosting> jobPostings = new ArrayList<>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                    // Checking if the job is already completed or not
+                    boolean isCompleted = Boolean.TRUE.equals(snapshot.child("isCompleted").getValue(Boolean.class));
+
                     JobPosting job = snapshot.getValue(JobPosting.class);
-                    jobPostings.add(job);
+                    if(!isCompleted){
+                        jobPostings.add(job);
+
+                    }
                 }
                 callback.onJobPostingsRetrieved(jobPostings);
             }
