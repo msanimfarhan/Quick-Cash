@@ -62,12 +62,9 @@ public class EmployeeProfile extends AppCompatActivity {
         fetchUserInfo();
     }
 
-
     public void fetchUserInfo() {
         Intent intent = getIntent();
-//        String sanitizedEmail=intent.getStringExtra("userEmail").replace(".",",");
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Users").child("employee@gmail,com");
-
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -79,12 +76,8 @@ public class EmployeeProfile extends AppCompatActivity {
                     employee.setAccountBalance(snapshot.child("accountBalance").getValue(Integer.class));
                     employee.setTotalJobsCompleted(snapshot.child("totalJobsCompleted").getValue(Integer.class));
                     updateUi(employee);
-
                 }
-
             }
-
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
