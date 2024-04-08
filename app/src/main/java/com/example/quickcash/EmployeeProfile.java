@@ -59,12 +59,15 @@ public class EmployeeProfile extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        fetchUserInfo();
+        SharedPreferences sharedPref = getSharedPreferences("userDetails", Context.MODE_PRIVATE);
+        String email=sharedPref.getString("userEmail","");
+        Log.i("email",email);
+        fetchUserInfo(email);
     }
 
-    public void fetchUserInfo() {
-        Intent intent = getIntent();
-        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Users").child("employee@gmail,com");
+    public void fetchUserInfo(String email) {
+
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Users").child(email);
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -73,11 +76,21 @@ public class EmployeeProfile extends AppCompatActivity {
                     employee.setName(snapshot.child("name").getValue(String.class));
                     employee.setEmail(snapshot.child("email").getValue(String.class));
                     employee.setRole(snapshot.child("role").getValue(String.class));
-                    employee.setAccountBalance(snapshot.child("accountBalance").getValue(Integer.class));
-                    employee.setTotalJobsCompleted(snapshot.child("totalJobsCompleted").getValue(Integer.class));
+                    if (snapshot.child("accountBalance").exists()) {
+                        employee.setAccountBalance(snapshot.child("accountBalance").getValue(Integer.class));
+                    } else {
+                        employee.setAccountBalance(0);
+                    }
+                    if (snapshot.child("totalJobsCompleted").exists()) {
+
+                        employee.setTotalJobsCompleted(snapshot.child("totalJobsCompleted").getValue(Integer.class));
+                    } else {
+                        employee.setTotalJobsCompleted(0);
+                    }
                     updateUi(employee);
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -100,7 +113,7 @@ public class EmployeeProfile extends AppCompatActivity {
         totalJobsCompletedTextView.setText(String.valueOf(employee.getTotalJobsCompleted()));
 
         TextView accountBalanceTextView = findViewById(R.id.accountBalance_employeeInfo);
-        accountBalanceTextView.setText("$"+String.valueOf(employee.getAccountBalance())+" CAD");
+        accountBalanceTextView.setText("$" + String.valueOf(employee.getAccountBalance()) + " CAD");
     }
 
 
